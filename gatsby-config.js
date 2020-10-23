@@ -9,12 +9,7 @@ module.exports = {
   siteMetadata: {
     siteUrl: `https://localhost:9000/`
   },
-  plugins: [{
-    resolve: "gatsby-source-filesystem",
-    options:{
-      path: "./data/blogPosts",
-    },
-  },
+  plugins: [
   {resolve: `gatsby-plugin-manifest`,
       options: {
         name: "Gatsby Blog",
@@ -60,7 +55,24 @@ module.exports = {
               linkImagesToOriginal: false,
             },
           
-        }, 
+        },
+        {
+          resolve: `gatsby-remark-vscode`,
+          options: {
+            theme: 'Abyss' // Or install your favorite theme from GitHub
+          }
+        },
+        {
+          resolve: `gatsby-remark-embedder`,
+          options: {
+            customTransformers: [
+              // Your custom transformers
+            ],
+            services: {
+              // The service-specific options by the name of the service
+            },
+          },
+        },
         `gatsby-remark-autolink-headers`,
         `gatsby-remark-slug`,
         {

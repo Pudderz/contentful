@@ -7,7 +7,7 @@ import Metadata from "../Components/metadata";
 import { MDXRenderer } from "gatsby-plugin-mdx";
 import TableOfContents from "../Components/TableOfContent";
 import PropTypes from "prop-types";
-
+import '../Components/blogStyles.scss'
 
 const markdownTemp = ({ data }) => {
   const post = data.contentfulTeam.post;
