@@ -1,0 +1,53 @@
+summary{
+    outline: none;
+}
+
+details{
+    grid-column: 6/7;
+    margin: 20px;
+    position: sticky;
+    display: block;
+    background-color: #2d2640;
+    font-size: 1.2em;
+    grid-column: 6/7;
+    ol{
+        padding: 0;
+        list-style: none;
+    }
+    border: 1px solid black;
+    border-radius: 5px;
+    border: 1px solid;
+    padding: 1rem;
+    margin-bottom: 2rem;
+    max-height: calc(100vh - (4rem * 2));
+    overflow: auto;
+    top: 4rem;
+    height: fit-content;
+}
+
+section{
+    display: grid;
+    grid-template-columns: 1fr minmax(0, 35ch) 1fr 90ch 1fr 35ch 1fr;
+    grid-auto-flow: dense;
+    margin-top: 4rem;
+    margin-bottom: 4rem;
+}
+
+.blogPiece{
+    grid-column: 4/5;
+}
+
+
+@media(max-width: 1200px){
+    section{
+        grid-template-columns: 1rem 1fr 1rem ; 
+    }
+    details{
+        grid-column:2;
+        position: inherit;
+    }
+    .blogPiece{
+        grid-column: 2;
+        display: flow-root;
+    }
+}

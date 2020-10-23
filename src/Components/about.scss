@@ -1,0 +1,9 @@
+#aboutSite ol{
+    padding-left: 0;
+}
+
+@media(max-width: 750px){
+    #aboutSite, #formDiv{
+        margin: 10px 0px 0px 0px;
+    }
+}
