@@ -8,10 +8,16 @@ import { MDXRenderer } from "gatsby-plugin-mdx";
 import TableOfContents from "../Components/TableOfContent";
 import PropTypes from "prop-types";
 import '../Components/blogStyles.scss'
+import {DiscussionEmbed} from 'disqus-react';
+
+
 
 const markdownTemp = ({ data }) => {
   const post = data.contentfulTeam.post;
-
+  const disqusConfig = {
+    shortname: process.env.GATSBY_DISQUS_NAME,
+    config: { identifier: `${post.childMdx.frontmatter.title}${post.childMdx.frontmatter.postedAt}`},
+  }
   return (
     <React.Fragment>
       <Navigation />
@@ -33,9 +39,12 @@ const markdownTemp = ({ data }) => {
           <p>{post.childMdx.frontmatter.postedAt}</p>
           <div className="blogContent">
             <MDXRenderer>{post.childMdx.body}</MDXRenderer>
+            <DiscussionEmbed {...disqusConfig} />
           </div>
         </div>
+        
       </section>
+      
       <Footer />
     </React.Fragment>
   );
