@@ -2,12 +2,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Karla:wght@400;700&display=swap');
 
 
-$background-color: #131127;
-$purple-color: hsl(256, 25%, 20%);
+$background-color: #fff;
+$purple-color: #fff;
 $font-header: 'Karla', sans-serif;
 
 body{
-    color: white;
+    color: #1b1f25;
     background-color: $background-color;
     /* background-color: rgb(17,17,17); */
     margin: 0%;
@@ -39,7 +39,7 @@ ul{
 .container{
     display: block;
     height: fit-content;
-    background-color: $purple-color;
+    background-color:  #1b1f25;
     color: hsl(0, 0%, 98%);
     width: 100%;
     position: relative;
@@ -57,20 +57,23 @@ h2,h3,h4{
 
 }
 
-h1,h2,h3{
-    font-size: 3em;
-}
+// h1,h2,h3{
+//     font-size: 3em;
+// }
 
 nav{
     display: flex;
     position: sticky;
     top: 0%;
-    z-index: 3;
-    background-color: white;
+    z-index: 4;
+    background-color: rgba(0, 0, 0, 0.6);
     justify-content: space-around;
+    color: #fff;
+    font-weight: 600;
     height: 1em;
     padding: 1em;
     transition: 0.3s;
+    backdrop-filter: blur(1em);
     
     
 
@@ -79,8 +82,9 @@ nav{
         width: 100%;
         justify-content: space-between;
         margin: 0px 20px;
+        color: white;
         a{
-            color: rgb(51, 42, 50);
+            color: white;
         }
         
     }
@@ -89,10 +93,12 @@ nav{
 
 
 .featured{
-    min-height: 70vh;
     margin: 0 auto;
     position: relative;
     display: contents;
+    .purple{
+        width:fit-content;
+    }
 }
 
 .featuredImage{
@@ -112,33 +118,53 @@ nav{
 
 .image{
     position: relative;
-    div{
-    position: absolute;
-    }
-     picture > img{
-    position: relative !important;
-    }
+    // div{
+    // position: absolute;
+    // }
+    //  picture > img{
+    // position: relative !important;
+    // }
 }
 
 
 .featuredText{
     margin: auto;
     padding: 20px;
-    width: fit-content;
-    background-color:  hsl(256, 26%, 20%);
-    display: flow-root;
-    max-width: 600px;
-    h2{
-        font-size: 475%;
+    // background-color:  #1b1f25;;
+    background: rgba(0,0,0,.85);
+    padding: 20px;
+    display: grid;
+    width: 100%;
+    max-width: 700px;
+    position: absolute;
+    bottom:75px;
+    *{
         margin: auto;
+        z-index: 2;
+    }
+    h2{
+        font-size: 58px;
+        
+        color: #fff;
+    position: relative;
+    line-height: 1.2em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
     }
     p {
         width: fit-content;
         padding: 0px;
+        font-size: 15px;
+        margin: 5px;
     }
-    @media (max-width: 750px){
-        text-align: center;
+    .purple{
+        margin: 0;
+        display: block;
+        margin-top: 20px;
     }
+    // @media (max-width: 750px){
+    //     text-align: center;
+    // }
 
 }
 
@@ -167,7 +193,7 @@ nav{
     div{
         width: 24px;
         height: 3px;
-        background-color: #1f1e1e;
+        background-color: #fff;
         margin: 3px 0;
     }
     
@@ -202,14 +228,35 @@ nav{
         position: static;
         text-align: center;
     }
-    .featuredText h2{
-        font-size: 3em;
-    }
+    // .featuredText h2{
+    //     font-size: 3em;
+    // }
     nav button{
         display: none;
     }
-    .featuredText p {
-        padding: 20px;
+    // .featuredText p {
+    //     padding: 20px;
+    // }
+    @media(max-width:550px){
+        .featuredText, .popularSelection{
+            position: relative !important;
+        }
+        .featuredText h2{
+            font-size: 30px;
+        }
+        .featuredText{
+            bottom: 0;
+        }
+        #popular li{
+            min-width: 25vw !important;
+            border-radius: 0px !important;
+        }
+        .featuredText *{
+            margin: 10px 0;
+        }
+        .container{
+            max-height: fit-content !important;
+        }
     }
 }
 
@@ -229,6 +276,7 @@ nav{
 footer{
     margin-top: 30px;
     padding: 20px;
+    background-color: #1b1f25;
     .flex{
         justify-content: space-evenly;
     }
@@ -270,7 +318,7 @@ img{
     box-sizing: border-box;
     max-width: 48%; 
     background-color: $purple-color;
-    color: #aaa;
+    color: #1b1f25;
     margin-bottom: 20px;
     list-style: none;
     margin: 1%;
@@ -283,10 +331,21 @@ img{
     img{
         height: 400px !important;
         max-height: 50vh;
-        
+        &:hover{
+            -moz-transform: scale(1.05);
+            -webkit-transform: scale(1.05);
+            -o-transform: scale(1.05);
+            -ms-transform: scale(1.05);
+            -webkit-transform: scale(1.05);
+            transform: scale(1.05);
+
+            -webkit-transition: transform 1.05s ease-in-out;
+            -moz-transition:transform 1.05s ease-in-out;
+            -ms-transition:transform 1.05s ease-in-out;
+        }
     }
     h2{
-       color: white;
+       color: #1b1f25;
     margin: 0;
     margin-bottom: 15px;
     font-size: xx-large; 
@@ -309,6 +368,7 @@ img{
 #popular{
     display: flex;
     flex-wrap: nowrap;
+    justify-content: space-around;
     list-style-type: none;
     padding-left:0px;
     overflow: hidden;
@@ -316,13 +376,15 @@ img{
     gap: 0;
     max-width: 100%;
     li{
-        height: 20vh;
-        min-width: 25vw;
+        height: 50px;
+        min-width: 50px;
+        border-radius: 50%;
+        overflow: hidden;
         position: relative;
-        @media (max-height: 480px) {
-            height: 40vh;
-            width: 100%;
-        }
+        // @media (max-height: 480px) {
+        //     height: 40vh;
+        //     width: 100%;
+        // }
     }   
 
     
@@ -351,6 +413,7 @@ img{
     margin: 0;
     max-width: 600px;
     padding: 20px;
+    padding-bottom: 0;
     display: flex;
     @media (max-width: 750px){
         text-align: center;
@@ -415,23 +478,27 @@ img{
 }
 
 .blogPiece{
-    background-color: hsl(256, 26%, 20%);
-    max-width: 800px;
-    margin: auto;    
-    margin-top: 20px;
-    margin-bottom: 20px;
+    background-color: white;
+    max-width: 1000px;
+    margin: 0px auto 20px auto;    
+    // margin-bottom: 20px;
     padding: 0.5vw;
+    font-size: 1.3em;
     h1{
-        margin-bottom: 0;
+        margin: 0;
         font-size: 3rem;
     }
     picture > img{
         max-height: 60vh;
     }
 }
+.buttonGap{
+    font-size: 15px;
+    margin: 20px;
+}
 
 .blogContent{
-    background-color: rgb(19,17,39);
+    background-color:white;
     padding: 20px;
 }
 
@@ -497,40 +564,6 @@ img{
 }
 
 
-.contactForm{
-    display: grid;
-    background-color: $purple-color;
-    padding: 20px;
-    border-radius: 5px;
-    color: white;
-    font-weight: 700;
-    .contactForm h3{
-        margin: auto;
-    }
-    .contactForm label{
-    padding: 20px;
-    }
-    input, textarea{
-        background-color: #131127;
-        outline: none;
-        border-style: none;
-        
-    }  
-    textarea{
-        width: 100%;
-        height: 200px;
-        color: grey;
-        font-size: 15px;
-    }
-    #message{
-        padding-top: 0;
-        padding-bottom: 0;
-    }
-    .purple{
-        width: 200px;
-        margin: 10px auto 0 auto;
-    }
-}
 
 
 label input{
@@ -538,20 +571,6 @@ label input{
 }
 #message{
     height: 200px
-}
-#formDiv{
-    
-    margin: 50px
-}
-
-#aboutSite{
-    background-color: hsl(256, 26%, 20%);
-    padding: 20px;
-    margin: 50px;
-    ol{
-       list-style: none; 
-    }
-    
 }
 
 .scrollTo{
@@ -570,7 +589,7 @@ label input{
         svg{
             width: 100%;
             height: 100%;
-            fill: white;
+            fill: black;
         }
     }
 }
@@ -581,13 +600,19 @@ label input{
 
 
 .popularPosts{
-    margin-top: 6vh;
+    margin: auto;
+    max-width: 1300px;
+    width: 100%;
 }
 
-@media(min-width: 1250px){
+@media(max-width: 750px){
     .container{
-        max-height: 50vh;
+        height: 50vh;
+        a .image{
+            min-height: 50vh;
+        }
     }
+
 }
 
 // Home Page Styles For large Displays
@@ -657,7 +682,7 @@ label input{
   .bar1, .bar2, .bar3 {
     width: 35px;
     height: 5px;
-    background-color: #333;
+
     margin: 6px 0;
     transition: 0.4s;
   }
@@ -683,3 +708,96 @@ label input{
     transform: rotate(44deg) translate(-4px, -16px);
     transform-origin: 11% 78%;
   }
+
+
+
+
+#searchContainer{
+    .bigSearch{
+        // background: #fff;
+    
+    padding-left: 0px;
+    max-width: 80%;
+    width: 100%;
+    background-color: transparent;
+    outline: none;
+    border-style: none;
+    font-size: 50px;
+    color: #262626;
+    transition: all 0.3s;
+    border-radius: 6px;
+    padding: 20px 60px 20px 0px;
+        margin: 0 20px 0 0;
+    &:focus{
+        
+        box-shadow: 0 3px 5px #ccc;
+        background-color: #fff;
+        padding: 20px 40px 20px 20px;
+        
+    }
+    
+    }
+    &:hover{
+        .bigSearch{
+        box-shadow: 0 3px 5px #ccc;
+        background-color: #fff;
+        padding: 20px 40px 20px 20px;
+        }
+    }
+}
+@media(min-width:590px){
+    .recent{
+    .items{
+        display: flex;
+         box-shadow: 0 3px 5px #ccc;
+         padding: 0!important;
+        &:hover{
+            // transform: scale(1.02);
+            // transition: 0.3s;
+            overflow: hidden;
+            .image{
+                transform: scale(1.15);
+                transition: 5s;
+            } 
+        }
+    }
+    .image{
+        height: 190px;
+        width: 190px;
+        z-index: 1;
+    }
+    #imageContainer{
+        width: fit-content;
+        height: fit-content;
+    }
+    .information{
+        z-index: 2;
+        background-color: #fff;
+        h2{
+            margin: 0;
+        }
+        div{
+            font-size: 13px
+        }
+        
+    }
+    
+}
+}
+.items .purple{
+        color: #1b1f25;
+        border: 2px solid #1b1f25;
+        margin-left: 20px;
+        &:hover{
+            color: #fff;
+            background-color: #1b1f25;
+        }
+    }
+    
+.recent .items{
+    margin-bottom: 15px;
+}
+
+#searchContainer{
+    position: relative;
+}

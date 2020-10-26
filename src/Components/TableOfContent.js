@@ -8,7 +8,7 @@ function renderItems(items, activeId) {
               {item.url && 
               <a href={item.url}
             style={{
-                color: activeId === item.url.slice(1) ? "white" : "grey",
+                color: activeId === item.url.slice(1) ? "black" : "grey",
               }}
             >{item.title}</a>
               }
