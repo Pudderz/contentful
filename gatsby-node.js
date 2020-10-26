@@ -14,6 +14,8 @@ exports.createPages = async ({ actions, graphql }) => {
               childMdx {
                 frontmatter {
                   slug
+                  title
+                  Date
                 }
               }
             }
@@ -47,5 +49,19 @@ exports.createPages = async ({ actions, graphql }) => {
         slug: product.frontmatter.slug,
       },
     });
+  });
+
+  createPage({
+    path: "/search",
+    component: path.resolve(`./src/templates/searchTemplate.js`),
+    context: {
+      blogData: {
+        allBlogs: results.data.allContentfulTeam.edges,
+        options: {
+          indexStrategy: "All",
+          searchSanitizer: "Lower Case",
+        },
+      },
+    },
   });
 };

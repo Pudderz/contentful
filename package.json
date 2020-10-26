@@ -41,6 +41,7 @@
     "gatsby-source-contentful": "^3.0.3",
     "gatsby-source-filesystem": "^2.3.30",
     "gatsby-transformer-sharp": "^2.5.15",
+    "js-search": "^2.0.0",
     "node-sass": "^4.14.1",
     "path": "^0.12.7",
     "react": "^16.12.0",
