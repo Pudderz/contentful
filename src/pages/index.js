@@ -23,6 +23,7 @@ import "fontsource-roboto";
 import Typography from "@material-ui/core/Typography";
 
 import MenuListComposition from '../Components/top'
+import Footer from "../Components/footer";
 
 const useStyles = makeStyles({
   root: {
@@ -95,7 +96,7 @@ function Home({ data }) {
       <Metadata />
       
       <MenuListComposition/>
-      <Navigation />
+      {/* <Navigation /> */}
       <main>
         <div className="featured">
           <Featured
@@ -106,6 +107,7 @@ function Home({ data }) {
         </div>
         <RecentPosts data={data.allContentfulTeam.edges} onPostClick={onPostClick} />
       </main>
+      <Footer/>
 
 
 

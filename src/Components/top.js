@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect} from 'react';
 import Button from '@material-ui/core/Button';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import Grow from '@material-ui/core/Grow';
@@ -15,6 +15,9 @@ import SearchOutlinedIcon from "@material-ui/icons/SearchOutlined";
 import IconButton from "@material-ui/core/IconButton";
 import InputBase from '@material-ui/core/InputBase';
 import Badge from '@material-ui/core/Badge';
+import SettingsIcon from '@material-ui/icons/Settings';
+import {Link} from 'gatsby';
+
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
@@ -93,8 +96,52 @@ export default function MenuListComposition() {
 
     prevBookOpen.current = bookmarkOpen;
   }, [bookmarkOpen]);
+
+
+  const [navState, setNavDisplay] = useState({ top: "0px" });
+  const [menuState, setShowMenu] = useState({
+    showing: "",
+    hamburger: "",
+  });
+  const menuShowingRef = useRef(false);
+
+  const displayMenu = () => {
+    menuShowingRef.current = menuState.showing === "none" ? true : false;
+
+    setShowMenu({
+      showing: menuState.showing === "" ? "showing" : "",
+      hamburger: menuState.showing === "" ? "change" : "",
+    });
+    setNavDisplay({
+      top: "0px",
+    });
+  };
+
+
+
+
+
+
   return (
-    <div style={{ display: "flex", justifyContent: "flex-end" }}>
+    <nav>
+    
+    <div className="navbuttons buttons" style={{ display: "flex", justifyContent: "space-between" }}>
+      
+          <Link to="/">Home</Link>
+          <Link to="/posts">Posts</Link>
+          <Link to="/about">About</Link>
+          <Link to="/search">Search</Link>
+          <button>Categories</button>
+          {/* <input
+                id="Search"
+                // value={searchQuery}
+                // onChange={this.searchData}
+                placeholder="Enter your search here"
+              /> */}
+      <div  style={{    minWidth: '250px',    width: '400px',
+    'display': 'flex',
+    justifyContent: 'flex-end'}}>
+      
         <Tooltip title="Search">
             <IconButton color="disabled" variant="contained" onClick={handleSearch}>
             <SearchOutlinedIcon />
@@ -151,7 +198,16 @@ export default function MenuListComposition() {
           <AccountCircleOutlinedIcon />
         </IconButton>
         </Tooltip>
+        <Tooltip title = "settings">
+        <IconButton
+         aria-label="profile"
+         variant="contained"
+        >
+          <SettingsIcon/>
+        </IconButton>
         
+        </Tooltip>
+        </div>
         <Popper
           open={open}
           anchorEl={anchorRef.current}
@@ -236,6 +292,35 @@ export default function MenuListComposition() {
             </Grow>
           )}
         </Popper>
+        
       </div>
+      <div className="menu" >
+      <Link
+          to="/"
+         
+          style={{ color: "#000", margin: "0", fontSize: "large" }}
+        >
+          Blog
+        </Link>
+       <button
+          className={`menubar${menuState.hamburger}`}
+          onClick={displayMenu}
+          onKeyDown={displayMenu}
+          title="menu"
+        >
+          <div className="bar1"></div>
+          <div className="bar2"></div>
+          <div className="bar3"></div>
+        </button>  
+      </div>
+     
+      <div id="overlay" className={`${menuState.showing}`}>
+        <Link to="/">Home</Link>
+        <Link to="/posts">Posts</Link>
+        <Link to="/about">About</Link>
+        <Link to="http://www.matthewPudney.co.uk">Portfolio</Link>
+        <Link to="https://github.com/Pudderz">Github</Link>
+      </div>
+      </nav>
   );
 }

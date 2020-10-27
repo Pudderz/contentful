@@ -62,32 +62,38 @@ h2,h3,h4{
 // }
 
 nav{
-    display: flex;
+    // display: flex;
     position: sticky;
     top: 0%;
     z-index: 4;
     background-color: rgba(0, 0, 0, 0.6);
-    justify-content: space-around;
-    color: #fff;
-    font-weight: 600;
-    height: 1em;
-    padding: 1em;
-    transition: 0.3s;
-    backdrop-filter: blur(1em);
+    // justify-content: space-around;
+    a{
+        color: lightsteelblue !important;
+    }
     
+    font-weight: 600;
+    // height: 1em;
+    // padding: 1em;
+    transition: 0.3s;
+
+    backdrop-filter: blur(1em);
+    .MuiButtonBase-root{
+        fill: lightsteelblue;
+    }
     
 
-    .buttons{
-        display: flex;
-        width: 100%;
-        justify-content: space-between;
-        margin: 0px 20px;
-        color: white;
-        a{
-            color: white;
-        }
+    // .buttons{
+    //     display: flex;
+    //     width: 100%;
+    //     justify-content: space-between;
+    //     margin: 0px 20px;
+    //     color: white;
+    //     a{
+    //         color: white;
+    //     }
         
-    }
+    // }
 }
 
 
@@ -182,33 +188,39 @@ nav{
         
 }
     
-
+.menubar{
+    background: none;
+    outline: none;
+    border-style: none;
+}
 
 .menu{
     display: none;
     height: fit-content;
-    background: none;
-    outline: none;
-    border-style: none;
+    
+    
+    justify-content: space-between;
+    padding: 13px 15px;
     div{
         width: 24px;
         height: 3px;
-        background-color: #fff;
         margin: 3px 0;
+        background-color: #fff;
     }
     
 }
 
 
 @media(max-width:750px){
+    .buttons{
+            display: none !important;
+        }
+    .menu{
+            display: flex;
+    }
     nav{
         justify-content: space-between;
-        .buttons{
-            display: none;
-        }
-        .menu{
-            display: block;
-        }
+        
 
     }
     .featuredImage{
@@ -231,9 +243,9 @@ nav{
     // .featuredText h2{
     //     font-size: 3em;
     // }
-    nav button{
-        display: none;
-    }
+    // nav button{
+    //     display: none;
+    // }
     // .featuredText p {
     //     padding: 20px;
     // }
@@ -682,7 +694,7 @@ label input{
   .bar1, .bar2, .bar3 {
     width: 35px;
     height: 5px;
-
+    background-color: #1b1f25;
     margin: 6px 0;
     transition: 0.4s;
   }
@@ -800,4 +812,11 @@ label input{
 
 #searchContainer{
     position: relative;
+}
+
+.navbuttons a{
+    text-align: center;
+    line-height: 335%;
+    height: 100%;
+    width: 20%;
 }

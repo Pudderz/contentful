@@ -22,7 +22,7 @@ const markdownTemp = ({ data }) => {
   return (
     <React.Fragment>
       <MenuListComposition/>
-      <Navigation />
+      {/* <Navigation /> */}
       <Metadata />
       
       <header style={{

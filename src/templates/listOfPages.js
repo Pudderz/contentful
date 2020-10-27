@@ -15,7 +15,7 @@ const BlogPost = ({ data, pageContext }) => {
     <div>
       <Metadata />
       <MenuListComposition/>
-      <Navigation />
+      {/* <Navigation /> */}
       <h3 style={{ margin: "auto", textAlign: "center" }}>Posts</h3>
       <Pager pageContext={pageContext} />
       <div>

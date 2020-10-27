@@ -98,7 +98,7 @@ class SearchTemplate extends Component {
     return (
       <div>
         <MenuListComposition />
-        <Navigation />
+        {/* <Navigation /> */}
         <div
           id="searchContainer"
           style={{
