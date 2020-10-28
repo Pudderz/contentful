@@ -1,11 +1,6 @@
 import React from 'react'
 import {Link} from 'gatsby'
 import Image from "gatsby-image"
-import { IconButton } from '@material-ui/core'
-import ImageIcon from '@material-ui/icons/Image';
-
-
-
 
 const Featured =(props)=>{
     const { data, allData} = props;
@@ -24,9 +19,8 @@ const Featured =(props)=>{
         overflow: 'hidden',
         borderRadius: '15px',
         marginTop: '25px',
-        maxHeight: 'auto',
         maxWidth: '1300px',
-        maxHeight: '80vh'
+        maxHeight: '80vh',
 
     }}>
         <div 

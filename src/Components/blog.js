@@ -1,15 +1,12 @@
 import React from 'react'
 import Image from 'gatsby-image'
 import {Link} from 'gatsby'
-import Paper from '@material-ui/core/Paper';
+
 import Grid from '@material-ui/core/Grid';
-function Blog({data, smallestSize}) {
+function Blog({data, smallestSize, small}) {
 
     return (
-        <Grid className="items" item xs={12} sm={12} md={6} lg={smallestSize} key={data.node.post.childMdx.frontmatter.slug}>
-        {/* <li   */}
-         {/* className="blogPost" */}
-        {/* > */}
+        <Grid className="items" item xs={12} sm={small} md={6} lg={smallestSize} key={data.node.post.childMdx.frontmatter.slug}>
             <div id="imageContainer">
                 <Link to={`/blogs/${data.node.post.childMdx.frontmatter.slug}`}>
                 <Image

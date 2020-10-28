@@ -1,14 +1,14 @@
 import React, { Component } from 'react'
-import Navigation from '../Components/navigation'
 import Footer from '../Components/footer'
 import Metadata from '../Components/metadata'
 import '../Components/about.scss'
+import MenuListComposition from '../Components/top'
 
 class about extends Component {
     render() {
         return (
             <div style={{'textAlign': 'center'}}>
-                <Navigation/>
+                <MenuListComposition/>
                 <Metadata/>
                 <div id="aboutSite">
                     <h2>About Site</h2>     

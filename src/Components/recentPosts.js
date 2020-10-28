@@ -1,5 +1,4 @@
 import React from 'react'
-import Image from 'gatsby-image'
 import { Link } from 'gatsby';
 import {Grid} from '@material-ui/core'
 import Blog from './blog'
@@ -12,7 +11,7 @@ export const PopularPosts =(props)=> {
             <ul className="allPosts recent">
             <Grid container spacing={2}>
             {articles.map((article, index) => (
-                <Blog key={index} data={article} smallestSize={6}/>
+                <Blog key={index} data={article} smallestSize={6} small={12}/>
             ))}
             </Grid>
              </ul>

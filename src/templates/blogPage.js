@@ -1,7 +1,6 @@
 import React from "react";
 import { graphql } from "gatsby";
 import Image from "gatsby-image";
-import Navigation from "../Components/navigation";
 import Footer from "../Components/footer";
 import Metadata from "../Components/metadata";
 import { MDXRenderer } from "gatsby-plugin-mdx";
@@ -22,7 +21,6 @@ const markdownTemp = ({ data }) => {
   return (
     <React.Fragment>
       <MenuListComposition/>
-      {/* <Navigation /> */}
       <Metadata />
       
       <header style={{

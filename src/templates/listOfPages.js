@@ -4,7 +4,6 @@ import { graphql } from "gatsby";
 import Footer from "../Components/footer";
 import Blog from "../Components/blog";
 import Pager from "../Components/pager";
-import Navigation from "../Components/navigation";
 import GoToTopBot from "../Components/goToTopBot";
 import Metadata from "../Components/metadata";
 import Grid from '@material-ui/core/Grid';
@@ -15,15 +14,14 @@ const BlogPost = ({ data, pageContext }) => {
     <div>
       <Metadata />
       <MenuListComposition/>
-      {/* <Navigation /> */}
-      <h3 style={{ margin: "auto", textAlign: "center" }}>Posts</h3>
+      <h3 style={{ margin: "50px auto 25px auto", textAlign: "center" }}>All Articles</h3>
       <Pager pageContext={pageContext} />
       <div>
         
         <ul className="allPosts">
           <Grid container spacing={2}>
           {articles.map((article, index) => (
-            <Blog key={index} data={article}  smallestSize={4}/>
+            <Blog key={index} data={article}  smallestSize={4} small={6}/>
           ))}
           </Grid>
         </ul>

@@ -10,6 +10,7 @@ exports.createPages = async ({ actions, graphql }) => {
       ) {
         edges {
           node {
+            
             post {
               childMdx {
                 frontmatter {
