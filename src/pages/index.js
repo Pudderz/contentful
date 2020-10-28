@@ -10,15 +10,7 @@ import Footer from "../Components/footer";
 
 
 function Home({ data }) {
-  const [state, setstate] = useState({
-    featuredIndex: 0,
-  });
-  const onPostClick = (e) => {
-    setstate({
-      featuredIndex: e,
-    });
-
-  };
+ 
 
   return (
     <>
@@ -33,12 +25,12 @@ function Home({ data }) {
       <main>
         <div className="featured">
           <Featured
-            data={data.allContentfulTeam.edges[state.featuredIndex]}
+            // data={data.allContentfulTeam.edges[state.featuredIndex]}
             allData={data}
-            onPostClick={onPostClick}
+            // onPostClick={onPostClick}
           ></Featured>
         </div>
-        <RecentPosts data={data.allContentfulTeam.edges} onPostClick={onPostClick} />
+        <RecentPosts data={data.allContentfulTeam.edges} />
       </main>
       <Footer/>
     </>

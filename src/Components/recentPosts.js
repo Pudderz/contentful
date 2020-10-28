@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'gatsby';
 import {Grid} from '@material-ui/core'
 import Blog from './blog'
-export const PopularPosts =(props)=> {
+export const PopularPosts = props => {
     const articles = props.data;
     return (
         <div className="popularPosts">
@@ -16,7 +16,7 @@ export const PopularPosts =(props)=> {
             </Grid>
              </ul>
             <hr/>
-            <div className="center"><Link to="/posts">All Posts</Link></div>
+            <div className="center"><Link style={{backgroundColor:'#191c1d', padding:'10px', color:'#fff'}} to="/posts">All Posts</Link></div>
         </div>
     )
     
