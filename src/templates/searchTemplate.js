@@ -4,6 +4,8 @@ import MenuListComposition from "../Components/top";
 import { Link } from "gatsby";
 import Container from "@material-ui/core/Container";
 import Footer from "../Components/footer";
+import { InputLabel, MenuItem, Select } from "@material-ui/core";
+import { StaticQuery, graphql } from "gatsby";
 class SearchTemplate extends Component {
   state = {
     isLoading: true,
@@ -17,6 +19,7 @@ class SearchTemplate extends Component {
     searchQuery: "",
     selectedStrategy: "",
     selectedSanitizer: "",
+    category: "",
   };
 
   static getDerivedStateFromProps(nextProps, prevState) {
@@ -35,18 +38,22 @@ class SearchTemplate extends Component {
   }
   async componentDidMount() {
     await this.rebuildIndex();
-    console.log(window.location.search)
-    if(window.location.search){
-      const regex = /(?<=\?search=).+/g
-      let searchResult = window.location.search.match(regex);
-      searchResult = decodeURIComponent(( searchResult[0]+ '').replace(/\+/g, '%20'));
-      this.setState({searchQuery: searchResult});
-      this.searchData({target:{value: searchResult}});
+
+    if (this.props.location.state !== null) {
+      if (this.props.location.state.search) {
+        this.setState({ searchQuery: this.props.location.state.search }, () => {
+          this.searchData({ target: { value: this.state.searchQuery } });
+        });
+      } else if (this.props.location.state.category) {
+        this.setState({ category: this.props.location.state.category }, () => {
+          console.log(this.state.category);
+          this.searchData({ target: { value: "" } });
+        });
+      }
     }
   }
 
   rebuildIndex = () => {
-    const { selectedStrategy, removeStopWords, termFrequency } = this.state;
     const blogs = this.props.pageContext.blogData.allBlogs;
     const dataToSearch = new JsSearch.Search([
       "node",
@@ -56,59 +63,78 @@ class SearchTemplate extends Component {
       "Date",
     ]);
 
-    if (removeStopWords) {
-      dataToSearch.tokenizer = new JsSearch.StopWordsTokenizer(
-        dataToSearch.tokenizer
-      );
-    }
-
-    if (selectedStrategy === "All") {
-      dataToSearch.indexStrategy = new JsSearch.AllSubstringsIndexStrategy();
-    }
-    if (selectedStrategy === "Exact match") {
-      dataToSearch.indexStrategy = new JsSearch.ExactWordIndexStrategy();
-    }
-    if (selectedStrategy === "Prefix match") {
-      dataToSearch.indexStrategy = new JsSearch.PrefixIndexStrategy();
-    }
-
-    dataToSearch.sanitizer = new JsSearch.LowerCaseSanitizer();
-    termFrequency === true
-      ? (dataToSearch.searchIndex = new JsSearch.TfIdfSearchIndex([
-          "node",
-          "post",
-          "childMdx",
-          "frontmatter",
-          "Date",
-        ]))
-      : (dataToSearch.searchIndex = new JsSearch.UnorderedSearchIndex());
+    dataToSearch.indexStrategy = new JsSearch.AllSubstringsIndexStrategy();
+    dataToSearch.searchIndex = new JsSearch.UnorderedSearchIndex();
 
     dataToSearch.addIndex(["node", "post", "childMdx", "frontmatter", "title"]);
+    dataToSearch.addIndex(["node", "categories"]);
+
     dataToSearch.addDocuments(blogs);
+
     this.setState({ search: dataToSearch, isLoading: false });
   };
 
-  searchData = (e) => {
+  searchData = e => {
     const { search } = this.state;
-    const queryResult = search.search(e.target.value);
+     const query = `${e.target.value} ${this.state.category}`.trim();
+    // let queryResult = search;
+    console.log(search)
+    const searchValue= `${e.target.value}`.trim();
+    // if(searchValue !== ''){
+      const queryResult = search.search(query);
+    //   if(this.state.category!== ''){
+    //   // console.log(`searching: ${query}`);
+    //   queryResult = queryResult.search(this.state.categories);
+    //   }
+    // }else if(this.state.category!== ''){
+    //     queryResult = queryResult.search(searchValue);
+    //     if(searchValue !== ''){
+    //     // console.log(`searching: ${query}`);
+    //     queryResult = queryResult.search(this.state.categories);
+    //     }
+    //   }
+  
+    // console.log(queryResult)
+    
+    // console.log(queryResult)
+    // console.log(queryResult);
     this.setState({ searchQuery: e.target.value, searchResults: queryResult });
   };
-  handleSubmit = (e) => {
+
+  handleSubmit = e => {
     e.preventDefault();
-    this.searchData({target:{value:e.target.children[0].children[0].value}});
+    this.searchData({
+      target: { value: e.target.children[0].children[0].value },
+    });
   };
 
-  
+  changeCategory = e => {
+    console.log(e.target.value);
+    this.setState(
+      {
+        category: e.target.value,
+      },
+      () => {
+        console.log(this.state.category);
+        this.searchData({ target: { value: this.state.searchQuery } });
+      }
+    );
+  };
+
   render() {
-    
-    const { searchResults, searchQuery } = this.state;
+    const { searchResults, searchQuery, category } = this.state;
     const {
       pageContext: { blogData: { allBlogs } = allBlogs } = {},
     } = this.props;
-    const queryResults = searchQuery === "" ? allBlogs : searchResults;
+    const queryResults =
+      searchQuery === "" && category === "" ? allBlogs : searchResults;
     return (
       <div>
-        <MenuListComposition />
+        <MenuListComposition
+          changeSearch={this.searchData}
+          changeCategory={this.changeCategory}
+        />
+
         <div
           id="searchContainer"
           style={{
@@ -127,44 +153,72 @@ class SearchTemplate extends Component {
                 position: "absolute",
                 bottom: "50%",
                 right: "10%",
-                boxSizing: 'border-box',
+                boxSizing: "border-box",
               }}
             >
               <input
                 className="bigSearch"
+                autoComplete="off"
                 id="Search"
                 value={searchQuery}
                 onChange={this.searchData}
                 placeholder="Search"
                 style={{ margin: "0 auto" }}
-                
               />
             </div>
           </form>
         </div>
         <Container maxWidth="lg">
+          <InputLabel id="demo-controlled-open-select-label">
+            Category
+          </InputLabel>
+          <Select
+            labelId="demo-controlled-open-select-label"
+            id="demo-controlled-open-select"
+            value={this.state.category}
+            onChange={this.changeCategory}
+            style={{width: '100%'}}
+          >
+            <MenuItem value="">
+              <em>None</em>
+            </MenuItem>
+
+            {allBlogs.map((article, pageIndex) => {
+              console.log(article.node.categories);
+              return article.node.categories.map((category, index) => {
+                return (
+                  <MenuItem key={`${pageIndex},${index}`} value={`${category}`}>
+                    {category}
+                  </MenuItem>
+                );
+              });
+            })}
+          </Select>
           <h2>{queryResults.length} Results</h2>
-          <ol style={{paddingLeft:0, minHeight: '20vh'}}>
+          <ol style={{ paddingLeft: 0, minHeight: "20vh" }}>
             {queryResults.map((item) => {
               return (
                 <li
                   key={item.node.post.childMdx.frontmatter.slug}
+                  className="searchItem"
                   style={{
                     maxWidth: "1300px",
-                    width: '100%',
-                    height: "240px",
+                    width: "100%",
+                    // height: "240px",
                     margin: "20px auto",
                     padding: "20px",
-                    borderRadius: '20px',
-                     boxShadow: "0px 1px 2px 1px lightslategrey",
-                     boxSizing: 'border-box',
-                     listStyle:'none',
+                    borderRadius: "20px",
+                    boxShadow: "0px 1px 2px 1px lightslategrey",
+                    boxSizing: "border-box",
+                    listStyle: "none",
                   }}
                 >
                   <Link
                     to={`../blogs/${item.node.post.childMdx.frontmatter.slug}`}
                   >
-                    <h3 style={{color: '#191c1d'}}>{item.node.post.childMdx.frontmatter.title}</h3>
+                    <h3 style={{ color: "#191c1d", margin: "10px 0" }}>
+                      {item.node.post.childMdx.frontmatter.title}
+                    </h3>
                   </Link>
                   <p>Posted at: {item.node.post.childMdx.frontmatter.Date}</p>
                 </li>
@@ -172,14 +226,9 @@ class SearchTemplate extends Component {
             })}
           </ol>
         </Container>
-        <Footer/>
+        <Footer changeCategory={this.changeCategory} />
       </div>
     );
   }
-  // return (
-  //   <div>
-  //       <ClientSearch blogs={allBlogs} engine={options} />
-  //   </div>
-  // )
 }
 export default SearchTemplate;
