@@ -310,6 +310,8 @@ export default function MenuListComposition() {
             onClick={displayMenu}
             onKeyDown={displayMenu}
             title="menu"
+            style={{    background: 'none',
+              border: 'none', outline:'none'}}
           >
             <div className="bar1"></div>
             <div className="bar2"></div>
@@ -336,7 +338,9 @@ export default function MenuListComposition() {
         open={state["top"]}
         onClose={toggleDrawer("top", false)}
       >
+
         <div className="selection" style={{maxWidth:'1300px', margin:' 20px auto', width:'fit-content', maxHeight:'auto'}}>
+          <h5 style={{margin: '5px auto', width: 'fit-content', color: '#fff'}}>Categories</h5>
           <CategorySelection />
         </div>
         

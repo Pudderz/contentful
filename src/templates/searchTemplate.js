@@ -144,7 +144,7 @@ class SearchTemplate extends Component {
         </div>
         <Container maxWidth="lg">
           <h2>{queryResults.length} Results</h2>
-          <ol style={{paddingLeft:0}}>
+          <ol style={{paddingLeft:0, minHeight: '20vh'}}>
             {queryResults.map((item) => {
               return (
                 <li
