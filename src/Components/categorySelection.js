@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { StaticQuery, graphql } from "gatsby";
-
+import { navigate } from "gatsby";
 import { Button } from "@material-ui/core";
 
 
-const CategorySelection = () => {
+const CategorySelection = (props) => {
     const [showOutline, setShowOutline] = useState('')
   const [outlinePlacement, setOutlinePlacement] = useState({
     top: 0,
@@ -40,6 +40,16 @@ const onMouseLeave = e =>{
         setShowOutline('');
     }, 1000)
 }
+
+const buttonClicked =(category)=>{
+  if(window.location.pathname === "/search"){
+    props.changeCategory({target:{value:category}})
+  }else{
+    navigate('/search',{state: { category : category}}
+    )
+  }
+  }
+
   return (
     <StaticQuery
       query={graphql`
@@ -58,16 +68,22 @@ const onMouseLeave = e =>{
           <div style={{ position: "relative" ,display: 'flex',
           flexWrap: 'wrap',
           justifyContent: 'center',}}>
+
             {data.allContentfulTeam.edges.map((article, pageIndex) =>
               article.node.categories.map((category, index) => {
                 return (
                   <Button
+                  className="categoryLink"
                     key={`${pageIndex},${index}`}
                     onMouseEnter={onMouseOver}
                     onMouseLeave= {onMouseLeave}
                     variant="outlined"
                     style={{ margin: "4px",
                 borderRadius: '0px' }}
+                    onClick={e=>{
+                      e.preventDefault();
+                      buttonClicked(category)
+                      }} 
                   >
                     {category}
                   </Button>
@@ -95,4 +111,4 @@ const onMouseLeave = e =>{
   );
 };
 
-export default CategorySelection;
+export default React.memo(CategorySelection);
