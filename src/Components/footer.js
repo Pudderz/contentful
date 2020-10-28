@@ -1,49 +1,82 @@
-import { Link } from 'gatsby'
-import React, { Component } from 'react'
+import { Button, ButtonGroup, TextField } from "@material-ui/core";
+import { Link } from "gatsby";
+import React, { Component } from "react";
+import CategorySelection from "./categorySelection";
 
 class Footer extends Component {
-    render() {
-        return (
-            <div className="colorPurple">
-               <footer>
-                    <h4>Blog</h4> 
-                    <div className="flex">
-                    <div className="grid">
-                    <h5>Our company</h5>
-                    <Link to="/about">About us</Link>
-                    <Link to="/">Jobs</Link>
-                    <Link to="/">View plans</Link>
-                    <Link to="/">Reviews</Link>  
-                    </div>
-
-                    <div className="grid">
-                    <h5>Help me</h5>
-                    <Link to="/">FAQ</Link>
-                    <Link to="/">Terms of use</Link>
-                    <Link to="/">Privacy policy</Link>
-                    <Link to="/">Cookies</Link>  
-                    </div>
-
-                    <div className="grid">
-                    <h5>Contact</h5>
-                    <Link to="/">Email</Link>
-                    <Link to="/">Support</Link>
-                    <Link to="/">Live chat</Link>
-                    </div>
-
-                    <div className="grid">
-                    <h5>Others</h5>
-                    <Link to="/">Careers</Link>
-                    <Link to="/">Information</Link>
-                    <Link to="/">Licenses</Link>  
-                    </div>
-                    </div>
-
-
-                </footer> 
-            </div>
-        )
-    }
+  render() {
+    return (
+      <div className="colorPurple">
+        <footer className="grid">
+          <div
+            style={{
+              maxWidth: "1300px",
+              margin: "auto",
+              backgroundColor: "#fcbc3e",
+              padding: "30px",
+              color: "black",
+              display: "flex",
+              justifyContent: "space-around",
+              flexWrap: "wrap",
+              width: "100%",
+              boxSizing: "border-box",
+            }}
+          >
+            <h2 style={{ margin: "auto", textAlign: "center" }}>
+              Subscribe to the mailing list
+            </h2>
+            <ButtonGroup style={{ height: "fit-content", minWidth: "40%" }}>
+              <TextField
+                id="outlined-basic"
+                label="email"
+                variant="outlined"
+                style={{
+                  backgroundColor: "white",
+                  borderRadius: "0",
+                  width: "60%",
+                }}
+              />
+              <Button
+                style={{
+                  color: "white",
+                  backgroundColor: "#191c1d",
+                  borderRadius: "0",
+                }}
+              >
+                SubScribe
+              </Button>
+            </ButtonGroup>
+          </div>
+          <hr
+            style={{ width: "100%", maxWidth: "1300px", margin: "24px auto 0" }}
+          />
+          <div
+            style={{ margin: "auto", padding: "20px" }}
+            className="selection"
+          >
+            <CategorySelection />
+          </div>
+          <hr style={{ width: "100%", maxWidth: "1300px", margin: "auto" }} />
+          <div
+            className="flexFooter"
+            style={{
+              width: "100%",
+              maxWidth: "1300px",
+              margin: "auto",
+              padding: "10px",
+              flexWrap: 'wrap',
+            }}
+          >
+            <Link to="/about">About us</Link>
+            <Link to="/">Contact</Link>
+            <Link to="/">All Articles</Link>
+            <Link to="/">Privacy policy</Link>
+            <Link to="/">Cookies</Link>
+          </div>
+        </footer>
+      </div>
+    );
+  }
 }
 
-export default Footer
+export default Footer;
