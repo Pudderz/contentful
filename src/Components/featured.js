@@ -1,13 +1,29 @@
-import React from 'react'
+import React ,{useState}from 'react'
 import {Link} from 'gatsby'
 import Image from "gatsby-image"
 
 const Featured =(props)=>{
-    const { data, allData} = props;
-
-    const onChange=(e)=>{
-        props.onPostClick(e.currentTarget.getAttribute('data-key')); 
-    }
+    const { allData} = props;
+    const [state, setstate] = useState({
+        featuredIndex: 0,
+      });
+      const [active, setActive] = useState({
+        0: 'active',
+      });
+     
+    //  const data = allData[state.featuredIndex] 
+      const onChange = (e) => {
+        setstate({
+          featuredIndex: e.currentTarget.getAttribute('data-key'),
+        });
+        setActive({
+            [e.currentTarget.getAttribute('data-key')]: 'active'
+        })
+    
+      };
+    // const onChange=(e)=>{
+    //     props.onPostClick(); 
+    // }
     return(
     <div className="container" style={{
         height: 'fit-content',
@@ -20,7 +36,7 @@ const Featured =(props)=>{
         borderRadius: '15px',
         marginTop: '25px',
         maxWidth: '1300px',
-        maxHeight: '80vh',
+        maxHeight: '75vh',
 
     }}>
         <div 
@@ -33,16 +49,28 @@ const Featured =(props)=>{
                 maxWidth: '100%',
                 
             }}>
-                <Link to={`/blogs/${data.node.post.childMdx.frontmatter.slug}`}>
-                <Image
+                <Link to={`/blogs/${allData.allContentfulTeam.edges[state.featuredIndex].node.post.childMdx.frontmatter.slug}`}>
+                {allData.allContentfulTeam.edges.map((data,index)=>(
+                    <Image
+                    key={index}
+                    style={{
+                        height:'100%',
+                    }}
+                    fluid={data.node.featuredImage.fluid}
+                    alt={data.node.post.childMdx.frontmatter.title}
+                    className={`image featuredImages ${active[index]} active${index}`}
+                    height="300px"
+                    />    
+                ))}
+                {/* <Image
                 style={{
                     height:'100%',
                 }}
-                fluid={data.node.featuredImage.fluid}
-                alt={data.node.post.childMdx.frontmatter.title}
-                className="image"
+                fluid={allData.allContentfulTeam.edges[state.featuredIndex].node.featuredImage.fluid}
+                alt={allData.allContentfulTeam.edges[state.featuredIndex].node.post.childMdx.frontmatter.title}
+                className={`image ${active[allData.allContentfulTeam.edges[state.featuredIndex].node.post.childMdx.frontmatter.title]}`}
                 height="300px"
-                />    
+                />     */}
             </Link>
             </div>
             
@@ -50,11 +78,11 @@ const Featured =(props)=>{
         <div className="featuredText">
             <div >
                 <p className="category">Category</p>
-                <h2>{data.node.post.childMdx.frontmatter.title}</h2>
+                <h2>{allData.allContentfulTeam.edges[state.featuredIndex].node.post.childMdx.frontmatter.title}</h2>
 
-            <time>Posted At: {data.node.post.childMdx.frontmatter.postedAt}</time>
+            <time>Posted At: {allData.allContentfulTeam.edges[state.featuredIndex].node.post.childMdx.frontmatter.postedAt}</time>
             {/* <div dangerouslySetInnerHTML={{__html : data.node.post.childMdx.frontmatter.snippet}}/> */}
-            <Link to={`/blogs/${data.node.post.childMdx.frontmatter.slug}`}className="purple">Go To Post</Link>    
+            <Link to={`/blogs/${allData.allContentfulTeam.edges[state.featuredIndex].node.post.childMdx.frontmatter.slug}`}className="purple">Go To Post</Link>    
             </div>
             
         </div>
@@ -71,12 +99,12 @@ const Featured =(props)=>{
                         fluid={item.node.featuredImage.fluid}
                         alt={item.node.post.childMdx.frontmatter.title}
                         className="image recentPostImage"
-                        style={{'objectFit':'cover', width: '100%', height:'100%',}}
+                        style={{'objectFit':'cover', margin: '10px',}}
                         data-key={`${index}`}
                         />
                         <div className="middle">
                             <div className="text">
-                                <p>{item.node.post.childMdx.frontmatter.postedAt}</p>
+                                <p>{item.node.post.childMdx.frontmatter.title}</p>
                             </div>
                         </div>
                     </li>
