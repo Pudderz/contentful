@@ -1,4 +1,4 @@
-import React, { useState, useRef} from "react";
+import React, { useState, useRef } from "react";
 import Button from "@material-ui/core/Button";
 import ClickAwayListener from "@material-ui/core/ClickAwayListener";
 import Grow from "@material-ui/core/Grow";
@@ -16,12 +16,13 @@ import IconButton from "@material-ui/core/IconButton";
 import InputBase from "@material-ui/core/InputBase";
 import Badge from "@material-ui/core/Badge";
 import SettingsIcon from "@material-ui/icons/Settings";
-import { Link } from "gatsby";
+import { Link, navigate } from "gatsby";
 import Drawer from "@material-ui/core/Drawer";
 import CategorySelection from "./categorySelection";
+import { Grid } from "@material-ui/core";
+import Switch from "@material-ui/core/Switch";
 
-
-export default function MenuListComposition() {
+export const MenuListComposition = (props) => {
   const [open, setOpen] = React.useState(false);
   const [bookmarkOpen, setBookOpen] = React.useState(false);
   const anchorRef = React.useRef(null);
@@ -123,7 +124,19 @@ export default function MenuListComposition() {
     setState({ ...state, [anchor]: !state[anchor] });
   };
 
+  const [searchQuery, setSearchQuery] = useState("");
+  const changeSearchQuery = (e) => setSearchQuery(e.target.value);
 
+  const submitSearch = (e) => {
+    e.preventDefault();
+    if (window.location.pathname === "/search") {
+      props.changeSearch({ target: { value: searchQuery } });
+      setSearchQuery("");
+    } else {
+      navigate("/search", { state: { search: searchQuery } });
+    }
+  };
+  const changeCategory = (e) => props.changeCategory(e);
   return (
     <>
       <nav>
@@ -131,15 +144,24 @@ export default function MenuListComposition() {
           className="navbuttons buttons"
           style={{ display: "flex", justifyContent: "space-between" }}
         >
-          <Link to="/">Home</Link>
-          <Link to="/posts">Posts</Link>
-          <Link to="/about">About</Link>
-          <Button
-            style={{ color: "white", fontSize: "0.9em" }}
-            onClick={toggleDrawer("top")}
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-around",
+              width: "75%",
+            }}
           >
-            Categories
-          </Button>
+            <Link to="/">Home</Link>
+            <Link to="/posts">Posts</Link>
+            <Link to="/about">About</Link>
+            <Button
+              style={{ textTransform: "none" }}
+              onClick={toggleDrawer("top")}
+            >
+              Categories
+            </Button>
+          </div>
+
           <div
             style={{
               minWidth: "250px",
@@ -149,34 +171,32 @@ export default function MenuListComposition() {
             }}
           >
             <Tooltip title="Search">
-              <IconButton
-                color="disabled"
-                variant="contained"
-                onClick={handleSearch}
-              >
-                <SearchOutlinedIcon />
+              <IconButton variant="contained" onClick={handleSearch}>
+                <SearchOutlinedIcon style={{ fill: "#fff" }} />
               </IconButton>
             </Tooltip>
             <div style={{ width: searchWidth, overflow: "hidden" }}>
-              <form action="/search" method="GET">
+              <form onSubmit={(e) => submitSearch(e)}>
                 <InputBase
-                name="search"
-                placeholder="Search…"
-                style={{
-                  margin: "10px auto",
-                  backgroundColor: "lightgrey",
-                  padding: "0px 11px",
-                  borderRadius: "36px",
-                  width: searchWidth,
-                  transition: "width 2s",
-                }}
-                inputProps={{ "aria-label": "search" }}
-              />
+                  autoComplete="off"
+                  name="search"
+                  value={searchQuery}
+                  onChange={changeSearchQuery}
+                  placeholder="Search…"
+                  style={{
+                    margin: "10px auto",
+                    backgroundColor: "lightgrey",
+                    padding: "0px 11px",
+                    borderRadius: "36px",
+                    width: searchWidth,
+                    transition: "width 2s",
+                  }}
+                  inputProps={{ "aria-label": "search" }}
+                />
               </form>
-              
             </div>
 
-            <Tooltip title={bookmarkOpen === true ? "" : "Saved"}>
+            {/* <Tooltip title={bookmarkOpen === true ? "" : "Saved"}>
               <IconButton color="disabled" variant="contained">
                 <BookmarksOutlinedIcon
                   ref={anchorBookRef}
@@ -206,10 +226,18 @@ export default function MenuListComposition() {
               >
                 <AccountCircleOutlinedIcon />
               </IconButton>
-            </Tooltip>
-            <Tooltip title="settings">
+            </Tooltip> */}
+            <Tooltip title={!open?"settings": ""}>
               <IconButton aria-label="profile" variant="contained">
-                <SettingsIcon />
+                <SettingsIcon
+                  style={{ fill: "#fff" }}
+                  aria-label="profile"
+                  variant="contained"
+                  ref={anchorRef}
+                  aria-controls={open ? "menu-list-grow" : undefined}
+                  aria-haspopup="true"
+                  onClick={handleToggle}
+                />
               </IconButton>
             </Tooltip>
           </div>
@@ -241,16 +269,33 @@ export default function MenuListComposition() {
                       id="menu-list-grow"
                       onKeyDown={handleListKeyDown}
                     >
-                      <MenuItem onClick={handleClose}>Profile</MenuItem>
+                      <Grid
+                        component="label"
+                        container
+                        alignItems="center"
+                        spacing={1}
+                        style={{width:'fit-content', margin: '-4px 5px'}}
+                      >
+                        <Grid item>Light</Grid>
+                        <Grid item>
+                          <Switch
+                            checked={state.checkedC}
+                            // onChange={handleChange}
+                            name="checkedC"
+                          />
+                        </Grid>
+                        <Grid item>Dark</Grid>
+                      </Grid>
+                      {/* <MenuItem onClick={handleClose}>Profile</MenuItem>
                       <MenuItem onClick={handleClose}>My account</MenuItem>
-                      <MenuItem onClick={handleClose}>Logout</MenuItem>
+                      <MenuItem onClick={handleClose}>Logout</MenuItem> */}
                     </MenuList>
                   </ClickAwayListener>
                 </Paper>
               </Grow>
             )}
           </Popper>
-          <Popper
+          {/* <Popper
             open={bookmarkOpen}
             anchorEl={anchorBookRef.current}
             role={undefined}
@@ -296,7 +341,7 @@ export default function MenuListComposition() {
                 </Paper>
               </Grow>
             )}
-          </Popper>
+          </Popper> */}
         </div>
         <div className="menu">
           <Link
@@ -310,41 +355,56 @@ export default function MenuListComposition() {
             onClick={displayMenu}
             onKeyDown={displayMenu}
             title="menu"
-            style={{    background: 'none',
-              border: 'none', outline:'none'}}
+            style={{ background: "none", border: "none", outline: "none" }}
           >
             <div className="bar1"></div>
             <div className="bar2"></div>
             <div className="bar3"></div>
           </button>
         </div>
-
-        
       </nav>
       <div id="overlay" className={`${menuState.showing}`}>
-          <Link to="/">Home</Link>
-          <Link to="/posts">Posts</Link>
-          <Link to="/about">About</Link>
-          <Button to="http://www.matthewPudney.co.uk">Portfolio</Button>
-          <Button to="https://github.com/Pudderz">Github</Button>
-        </div>
+        <Link to="/">Home</Link>
+        <Link to="/posts">Posts</Link>
+        <Link to="/about">About</Link>
+        <Button to="http://www.matthewPudney.co.uk">Portfolio</Button>
+        <Button to="https://github.com/Pudderz">Github</Button>
+      </div>
       <Drawer
         className={`categoriesSelection ${state["top"]}`}
-        style={{ position: "fixed", top: "52px", left: "0", right: "0", 
-        backgroundColor: '#191c1d', maxHeight:'fit-content', width: '100%'
-    }}
+        style={{
+          position: "fixed",
+          top: "52px",
+          left: "0",
+          right: "0",
+          backgroundColor: "#191c1d",
+          maxHeight: "fit-content",
+          width: "100%",
+        }}
         anchor={"top"}
         variant="persistent"
         open={state["top"]}
         onClose={toggleDrawer("top", false)}
       >
-
-        <div className="selection" style={{maxWidth:'1300px', margin:' 20px auto', width:'fit-content', maxHeight:'auto'}}>
-          <h5 style={{margin: '5px auto', width: 'fit-content', color: '#fff'}}>Categories</h5>
-          <CategorySelection />
+        <div
+          className="selection"
+          style={{
+            maxWidth: "1300px",
+            margin: " 20px auto",
+            width: "fit-content",
+            maxHeight: "auto",
+          }}
+        >
+          <h5
+            style={{ margin: "5px auto", width: "fit-content", color: "#fff" }}
+          >
+            Categories
+          </h5>
+          <CategorySelection changeCategory={changeCategory} />
         </div>
-        
       </Drawer>
     </>
   );
-}
+};
+
+export default React.memo(MenuListComposition);

@@ -67,12 +67,16 @@ nav{
     top: 0%;
     z-index: 4;
     background-color: rgba(0, 0, 0, 0.6);
+    font-weight: 400;
     // justify-content: space-around;
     a{
-        color: lightsteelblue !important;
+       color: white;
+        &:hover{
+             color: lightsteelblue ;
+    
+        }
     }
     
-    font-weight: 600;
     // height: 1em;
     // padding: 1em;
     transition: 0.3s;
@@ -144,6 +148,7 @@ nav{
     max-width: 700px;
     position: absolute;
     bottom:75px;
+    z-index: 1;
     *{
         margin: auto;
         z-index: 2;
@@ -261,9 +266,14 @@ nav{
         .featuredText{
             bottom: 0;
         }
-        #popular li{
+        #popular li, #popular .image{
             min-width: 25vw !important;
             border-radius: 0px !important;
+            height: 50px;
+            margin:0 !important;
+        }
+        #popular .middle{
+            display: none;
         }
         .featuredText *{
             margin: 10px 0;
@@ -549,6 +559,7 @@ img{
     z-index: 0;
     overflow: hidden;
     cursor: pointer;
+   
 }
 
 .pager{
@@ -586,12 +597,8 @@ img{
 
 
 
-label input{
-    width:100%
-}
-#message{
-    height: 200px
-}
+
+
 
 .scrollTo{
     position: fixed;
@@ -768,7 +775,7 @@ label input{
         box-shadow: 0 3px 5px #ccc;
         background-color: #fff;
         padding: 20px 40px 20px 20px;
-        color: white;
+        
     }
     
     }
@@ -844,7 +851,20 @@ label input{
     text-align: center;
     line-height: 335%;
     height: 100%;
-    width: 20%;
+    color: white;
+    
+    &:hover{
+        color: lightsteelblue;
+    }
+}
+
+.navbuttons button{
+    color: white;
+    font-family: $font-header !important;
+    font-size: inherit !important;
+    &:hover{
+        color: lightsteelblue;
+    }
 }
 
 .categoriesSelection{
@@ -907,4 +927,46 @@ label input{
             margin: 5px auto;
         }
     }
+}
+
+
+.featuredImages{
+     opacity: 0;
+     
+    position: absolute !important;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 0;
+    -webkit-transition: opacity 0.5s ease-in-out;
+    -moz-transition: opacity 0.5s ease-in-out;
+    -o-transition: opacity 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
+    &.active{
+        opacity: 1;
+        // position: relative !important;
+        z-index: 0;
+    }
+    &.undefined{       
+        opacity: 0;
+        // display: none;
+    }
+    &.active1{
+        position: relative !important;
+    }
+
+}
+
+
+#outlined-form{
+    fieldset.Mui-Focused{
+        border-radius: 0 !important;
+        border-color: #191c1d !important;
+        
+    }
+}
+
+.categoryLink{
+
 }

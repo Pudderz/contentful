@@ -4,6 +4,9 @@ import React, { Component } from "react";
 import CategorySelection from "./categorySelection";
 
 class Footer extends Component {
+  changeCategory=(category)=>{
+    this.props.changeCategory(category)
+  }
   render() {
     return (
       <div className="colorPurple">
@@ -25,11 +28,13 @@ class Footer extends Component {
             <h2 style={{ margin: "auto", textAlign: "center" }}>
               Subscribe to the mailing list
             </h2>
-            <ButtonGroup style={{ height: "fit-content", minWidth: "40%" }}>
-              <TextField
+            <form style={{ minWidth: "40%" }} netlify="true" id="outlined-form">
+              <TextField 
                 id="outlined-basic"
                 label="email"
                 variant="outlined"
+                type="email"
+                name="email"
                 style={{
                   backgroundColor: "white",
                   borderRadius: "0",
@@ -37,15 +42,17 @@ class Footer extends Component {
                 }}
               />
               <Button
+              type="submit"
                 style={{
                   color: "white",
                   backgroundColor: "#191c1d",
                   borderRadius: "0",
+                  height: '100%',
                 }}
               >
                 SubScribe
               </Button>
-            </ButtonGroup>
+            </form>
           </div>
           <hr
             style={{ width: "100%", maxWidth: "1300px", margin: "24px auto 0" }}
@@ -54,7 +61,7 @@ class Footer extends Component {
             style={{ margin: "auto", padding: "20px" }}
             className="selection"
           >
-            <CategorySelection />
+            <CategorySelection changeCategory={this.changeCategory}/>
           </div>
           <hr style={{ width: "100%", maxWidth: "1300px", margin: "auto" }} />
           <div
