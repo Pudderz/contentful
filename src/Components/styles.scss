@@ -742,24 +742,27 @@ label input{
         // background: #fff;
     
     padding-left: 0px;
-    max-width: 80%;
+    // max-width: 80%;
     width: 100%;
     background-color: transparent;
     outline: none;
     border-style: none;
     font-size: 50px;
     // color: #262626;
-    color: white;
+    color: #191c1d;
     transition: all 0.3s;
     border-radius: 6px;
     padding: 20px 60px 20px 0px;
         margin: 0 20px 0 0;
+        width: 100%;
+    box-sizing: border-box;
+
     &:focus{
         
         box-shadow: 0 3px 5px #ccc;
         background-color: #fff;
         padding: 20px 40px 20px 20px;
-        
+        color: white;
     }
     
     }
@@ -770,6 +773,7 @@ label input{
         padding: 20px 40px 20px 20px;
         background-color: #44555a;
         box-shadow: 0 3px 5px rgb(44, 43, 43);
+        color: white;
         }
     }
 }

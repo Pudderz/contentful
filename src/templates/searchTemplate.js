@@ -127,7 +127,7 @@ class SearchTemplate extends Component {
                 position: "absolute",
                 bottom: "50%",
                 right: "10%",
-                width: "100%",
+                boxSizing: 'border-box',
               }}
             >
               <input
@@ -144,7 +144,7 @@ class SearchTemplate extends Component {
         </div>
         <Container maxWidth="lg">
           <h2>{queryResults.length} Results</h2>
-          <ol>
+          <ol style={{paddingLeft:0}}>
             {queryResults.map((item) => {
               return (
                 <li
@@ -157,6 +157,7 @@ class SearchTemplate extends Component {
                     padding: "20px",
                     borderRadius: '20px',
                      boxShadow: "0px 1px 2px 1px lightslategrey",
+                     boxSizing: 'border-box',
                      listStyle:'none',
                   }}
                 >
