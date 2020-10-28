@@ -147,8 +147,33 @@ export default function MenuListComposition() {
               display: "flex",
               justifyContent: "flex-end",
             }}
-              inputProps={{ 'aria-label': 'search' }}
-            />
+          >
+            <Tooltip title="Search">
+              <IconButton
+                color="disabled"
+                variant="contained"
+                onClick={handleSearch}
+              >
+                <SearchOutlinedIcon />
+              </IconButton>
+            </Tooltip>
+            <div style={{ width: searchWidth, overflow: "hidden" }}>
+              <form action="/search" method="GET">
+                <InputBase
+                name="search"
+                placeholder="Search…"
+                style={{
+                  margin: "10px auto",
+                  backgroundColor: "lightgrey",
+                  padding: "0px 11px",
+                  borderRadius: "36px",
+                  width: searchWidth,
+                  transition: "width 2s",
+                }}
+                inputProps={{ "aria-label": "search" }}
+              />
+              </form>
+              
             </div>
 
             <Tooltip title={bookmarkOpen === true ? "" : "Saved"}>

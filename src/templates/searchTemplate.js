@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import * as JsSearch from "js-search";
 import MenuListComposition from "../Components/top";
 import { Link } from "gatsby";
-import Navigation from "../Components/navigation";
 import Container from "@material-ui/core/Container";
+import Footer from "../Components/footer";
 class SearchTemplate extends Component {
   state = {
     isLoading: true,
@@ -34,7 +34,15 @@ class SearchTemplate extends Component {
     return null;
   }
   async componentDidMount() {
-    this.rebuildIndex();
+    await this.rebuildIndex();
+    console.log(window.location.search)
+    if(window.location.search){
+      const regex = /(?<=\?search=).+/g
+      let searchResult = window.location.search.match(regex);
+      searchResult = decodeURIComponent(( searchResult[0]+ '').replace(/\+/g, '%20'));
+      this.setState({searchQuery: searchResult});
+      this.searchData({target:{value: searchResult}});
+    }
   }
 
   rebuildIndex = () => {
@@ -87,9 +95,12 @@ class SearchTemplate extends Component {
   };
   handleSubmit = (e) => {
     e.preventDefault();
-    this.searchData(e);
+    this.searchData({target:{value:e.target.children[0].children[0].value}});
   };
+
+  
   render() {
+    
     const { searchResults, searchQuery } = this.state;
     const {
       pageContext: { blogData: { allBlogs } = allBlogs } = {},
@@ -98,7 +109,6 @@ class SearchTemplate extends Component {
     return (
       <div>
         <MenuListComposition />
-        {/* <Navigation /> */}
         <div
           id="searchContainer"
           style={{
@@ -127,6 +137,7 @@ class SearchTemplate extends Component {
                 onChange={this.searchData}
                 placeholder="Search"
                 style={{ margin: "0 auto" }}
+                
               />
             </div>
           </form>
@@ -137,26 +148,30 @@ class SearchTemplate extends Component {
             {queryResults.map((item) => {
               return (
                 <li
+                  key={item.node.post.childMdx.frontmatter.slug}
                   style={{
-                    width: "1000px",
+                    maxWidth: "1300px",
+                    width: '100%',
                     height: "240px",
-                    margin: "auto",
+                    margin: "20px auto",
                     padding: "20px",
-                    height: "fit-content",
-                    boxShadow: "0px 1px 2px 1px lightslategrey",
+                    borderRadius: '20px',
+                     boxShadow: "0px 1px 2px 1px lightslategrey",
+                     listStyle:'none',
                   }}
                 >
                   <Link
                     to={`../blogs/${item.node.post.childMdx.frontmatter.slug}`}
                   >
-                    <h3>{item.node.post.childMdx.frontmatter.title}</h3>
+                    <h3 style={{color: '#191c1d'}}>{item.node.post.childMdx.frontmatter.title}</h3>
                   </Link>
-                  <p>Posted{item.node.post.childMdx.frontmatter.Date}</p>
+                  <p>Posted at: {item.node.post.childMdx.frontmatter.Date}</p>
                 </li>
               );
             })}
           </ol>
         </Container>
+        <Footer/>
       </div>
     );
   }

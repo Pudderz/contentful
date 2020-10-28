@@ -147,6 +147,8 @@ nav{
     *{
         margin: auto;
         z-index: 2;
+        width: 100%;
+        max-width: 500px;
     }
     h2{
         font-size: 58px;
@@ -288,7 +290,7 @@ nav{
 footer{
     margin-top: 30px;
     padding: 20px;
-    background-color: #1b1f25;
+    background-color: #191c1d;
     .flex{
         justify-content: space-evenly;
     }
@@ -386,7 +388,7 @@ img{
     overflow: hidden;
     padding: 0;
     gap: 0;
-    max-width: 100%;
+    width: 100%;
     li{
         height: 50px;
         min-width: 50px;
@@ -607,7 +609,17 @@ label input{
 }
 
 .allPosts{
-    max-width:1200px;
+    max-width:1300px;
+    .image{
+        max-height: 400px;
+    }
+    @media(min-width:600px){
+        .image{
+        height: 200px;
+        width: 100%;
+    }
+    }
+    
 }
 
 
@@ -725,6 +737,7 @@ label input{
 
 
 #searchContainer{
+    background-color: #191c1d;
     .bigSearch{
         // background: #fff;
     
@@ -735,7 +748,8 @@ label input{
     outline: none;
     border-style: none;
     font-size: 50px;
-    color: #262626;
+    // color: #262626;
+    color: white;
     transition: all 0.3s;
     border-radius: 6px;
     padding: 20px 60px 20px 0px;
@@ -751,9 +765,11 @@ label input{
     }
     &:hover{
         .bigSearch{
-        box-shadow: 0 3px 5px #ccc;
-        background-color: #fff;
+        // box-shadow: 0 3px 5px #ccc;
+        // background-color: #fff;
         padding: 20px 40px 20px 20px;
+        background-color: #44555a;
+        box-shadow: 0 3px 5px rgb(44, 43, 43);
         }
     }
 }
@@ -819,4 +835,66 @@ label input{
     line-height: 335%;
     height: 100%;
     width: 20%;
+}
+
+.categoriesSelection{
+    height: 0;
+    transition: all 0.3s ease-in;
+    z-index: 3;
+    .MuiPaper-root{
+        max-height: fit-content;
+    } 
+    &.true{
+        height: 50px;
+        
+    }
+    .MuiDrawer-paperAnchorTop{
+        display: block;
+        position: relative;
+        z-index: 3;
+    }
+    div:not(.movingOutline){
+        background-color: rgb(25, 28, 29);
+        border-style: none !important;
+    }    
+}
+
+.selection{
+    button{
+       font-size: 15px; 
+       padding: 0px 5px;
+       color: rgba(255, 255, 255, 0.8);
+       outline: rgba(255, 255, 255, 0.8);
+       border: 1px solid rgba(255, 255, 255, 0.8);
+       transition: 0.3s ease-in-out;
+       letter-spacing: inherit;
+        text-transform: initial;
+       &:hover{
+        //    border: 1px solid #fcbc3e;
+           color: #fcbc3e;
+           opacity: 1;
+       }
+    }
+
+}
+
+.movingOutline{
+    opacity: 0;
+    &.active{
+        opacity: 1;
+    }
+}
+
+.colorPurple{
+    .flexFooter{
+        display: flex;
+        justify-content: space-evenly;
+        flex-wrap: wrap;
+        a:hover{
+            color: $background-color;
+        }
+        a{
+            margin: 5px auto;
+        }
+    }
 }
