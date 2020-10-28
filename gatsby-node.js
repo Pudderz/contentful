@@ -10,7 +10,7 @@ exports.createPages = async ({ actions, graphql }) => {
       ) {
         edges {
           node {
-            
+            categories
             post {
               childMdx {
                 frontmatter {
@@ -61,6 +61,7 @@ exports.createPages = async ({ actions, graphql }) => {
         options: {
           indexStrategy: "All",
           searchSanitizer: "Lower Case",
+          
         },
       },
     },
