@@ -8,13 +8,13 @@ export const PopularPosts = props => {
         <div className="popularPosts">
             <h3>Recent Posts</h3>
             <hr/>
-            <ul className="allPosts recent">
-            <Grid container spacing={2}>
+            
+            <Grid container spacing={2} className="allPosts recent">
             {articles.map((article, index) => (
                 <Blog key={index} data={article} smallestSize={6} small={12}/>
             ))}
             </Grid>
-             </ul>
+          
             <hr/>
             <div className="center"><Link style={{backgroundColor:'#191c1d', padding:'10px', color:'#fff'}} to="/posts">All Posts</Link></div>
         </div>
