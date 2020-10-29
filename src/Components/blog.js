@@ -22,7 +22,7 @@ function Blog({data, smallestSize, small}) {
                 
                 <div dangerouslySetInnerHTML={{__html:data.node.post.childMdx.frontmatter.snippet}}></div>
                 <time>Posted At: {data.node.post.childMdx.frontmatter.postedAt}</time>
-                <Link to={`/blogs/${data.node.post.childMdx.frontmatter.slug}`} className="purple">Read More</Link>   
+                <Link to={`/blogs/${data.node.post.childMdx.frontmatter.slug}`} className="purple">Go To Post</Link>   
             </div>
             
         {/* </li> */}

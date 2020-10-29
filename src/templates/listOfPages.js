@@ -17,14 +17,12 @@ const BlogPost = ({ data, pageContext }) => {
       <h3 style={{ margin: "50px auto 25px auto", textAlign: "center" }}>All Articles</h3>
       <Pager pageContext={pageContext} />
       <div>
-        
-        <ul className="allPosts">
-          <Grid container spacing={2}>
+        <Grid container spacing={2} className="allPosts" style={{margin:'auto'}}> 
+
           {articles.map((article, index) => (
             <Blog key={index} data={article}  smallestSize={4} small={6}/>
           ))}
-          </Grid>
-        </ul>
+        </Grid>
       </div>
       <Pager pageContext={pageContext} />
       <GoToTopBot />

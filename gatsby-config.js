@@ -7,7 +7,7 @@ module.exports = {
   /* Your site config here */
   //pathPrefix: "/Gatsby-Project",
   siteMetadata: {
-    siteUrl: `https://localhost:9000/`
+    siteUrl: process.env.GATSBY_SITEURL
   },
   plugins: [
   {resolve: `gatsby-plugin-manifest`,

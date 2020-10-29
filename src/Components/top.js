@@ -228,7 +228,7 @@ export const MenuListComposition = (props) => {
               </IconButton>
             </Tooltip> */}
             <Tooltip title={!open?"settings": ""}>
-              <IconButton aria-label="profile" variant="contained">
+              <IconButton aria-label="profile" variant="contained" onClick={handleToggle}>
                 <SettingsIcon
                   style={{ fill: "#fff" }}
                   aria-label="profile"
@@ -236,7 +236,7 @@ export const MenuListComposition = (props) => {
                   ref={anchorRef}
                   aria-controls={open ? "menu-list-grow" : undefined}
                   aria-haspopup="true"
-                  onClick={handleToggle}
+                  
                 />
               </IconButton>
             </Tooltip>
