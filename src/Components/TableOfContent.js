@@ -1,83 +1,93 @@
-import React, {useState, useEffect} from 'react'
-import './tocStyles.scss'
-function renderItems(items, activeId) {
-    return (
-      <ol>
-        {items.map((item) => (
-          <li key={item.url}>
-              {item.url && 
-              <a href={item.url}
-            style={{
-                color: activeId === item.url.slice(1) ? "black" : "grey",
+import { Button, SwipeableDrawer } from "@material-ui/core";
+import React, { useState, useEffect } from "react";
+import "./tocStyles.scss";
+function renderItems(items, activeIds) {
+  return (
+    <ol  style={{padding:'0px', listStyle:'none'}}>
+      {items.map((item) => 
+        <li key={item.url}>
+          {item.url && (
+            <a
+              className={`hover ${
+                activeIds === item.url.slice(1) ? "active" : ""
+              }`}
+              href={item.url}
+              style={{
+                color: activeIds === item.url.slice(1) ? "#191c1d" : "",
               }}
-            >{item.title}</a>
-              }
-            
-            {item.items && renderItems(item.items, activeId)}
-          </li>
-        ))}
-      </ol>
-    );
-  }
-  
-  function getIds(items) {
-    return items.reduce((acc, item) => {
-      if (item.url) {
-          
-        // url has a # as first character, remove it to get just the id
-        acc.push(item.url.slice(1));
-      }
-      if (item.items) {
-        acc.push(...getIds(item.items));
-      }
-      return acc;
-    }, []);
-  }
+            >
+              {item.title}
+            </a>
+          )}
 
+          {item.items && renderItems(item.items, activeIds)}
+        </li>
+      )}
+    </ol>
+  );
+}
 
-  function useActiveId(idArray) {
-    const [intersectingId, setIntersectingId] = useState('placeholder');
+function getIds(items) {
+  return items.reduce((acc, item) => {
+    if (item.url) {
+      // url has a # as first character, remove it to get just the id
+      acc.push(item.url.slice(1));
+    }
+    if (item.items) {
+      acc.push(...getIds(item.items));
+    }
+    return acc;
+  }, []);
+}
 
-    useEffect(() => {
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-                //changes intersecting id if intersecting
-              setIntersectingId(entry.target.id);
-            }
-          });
-        },
-        { rootMargin: `0% 0% -80% 0%` }
-      );
-        
-      idArray.forEach((id) => {
-        observer.observe(document.getElementById(id));
-      });
+function useActiveId(idArray) {
+  const [intersectingId, setIntersectingId] = useState("placeholder");
 
-      return () => {
-        idArray.forEach((id) => {
-          observer.unobserve(document.getElementById(id));
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            //changes intersecting id if intersecting
+            setIntersectingId(entry.target.id);
+          }
         });
+      },
+      { rootMargin: `0% 0% -80% 0%` }
+    );
 
-      };
-    }, [idArray]);
-    return intersectingId;
-  }
+    idArray.forEach((id) => {
+      observer.observe(document.getElementById(id));
+    });
+
+    return () => {
+      idArray.forEach((id) => {
+        observer.unobserve(document.getElementById(id));
+      });
+    };
+  }, []);
+  return intersectingId;
+}
 
 export function TableOfContents(props) {
-    const idArray = getIds(props.items);
-    const activeId = useActiveId(idArray);
-    return (
-      <details>
+  const idArray = getIds(props.items);
+  const activeId = useActiveId(idArray);
+  console.log(activeId)
+ 
+
+
+  return (
+    <>
+      <div id="examples">
         <summary>Table of Contents</summary>
-        <ol>
-            {renderItems(props.items, activeId)}
-          
-        </ol>
-      </details>
-    );
-  }
+        <ol className="example">{renderItems(props.items, activeId)}</ol>
+        {props.children}
+      
+      </div>
 
+      
+    </>
+  );
+}
 
-  export default TableOfContents
+export default TableOfContents;

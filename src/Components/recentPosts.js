@@ -9,7 +9,7 @@ export const PopularPosts = props => {
             <h3>Recent Posts</h3>
             <hr/>
             
-            <Grid container spacing={2} className="allPosts recent">
+            <Grid container  className="allPosts recent">
             {articles.map((article, index) => (
                 <Blog key={index} data={article} smallestSize={6} small={12}/>
             ))}
