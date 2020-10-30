@@ -2,7 +2,7 @@ import { Button, ButtonGroup, TextField } from "@material-ui/core";
 import { Link } from "gatsby";
 import React, { Component } from "react";
 import CategorySelection from "./categorySelection";
-
+import './footer.scss'
 class Footer extends Component {
   changeCategory=(category)=>{
     this.props.changeCategory(category)
@@ -38,16 +38,19 @@ class Footer extends Component {
                 style={{
                   backgroundColor: "white",
                   borderRadius: "0",
-                  width: "60%",
+                  
                 }}
               />
               <Button
               type="submit"
+              id="footerSubscribe"
                 style={{
                   color: "white",
                   backgroundColor: "#191c1d",
                   borderRadius: "0",
-                  height: '100%',
+                  
+                  // width: '100%',
+                  // margin: '20px 0 0'
                 }}
               >
                 SubScribe
