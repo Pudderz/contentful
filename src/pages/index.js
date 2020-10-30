@@ -7,7 +7,7 @@ import { graphql } from "gatsby";
 import Metadata from "../Components/metadata";
 import MenuListComposition from '../Components/top'
 import Footer from "../Components/footer";
-
+import '../Components/homePage.scss'
 
 function Home({ data }) {
  
@@ -48,6 +48,7 @@ export const query = graphql`
     ) {
       edges {
         node {
+          categories
           featuredImage {
             fluid(maxWidth: 1300,quality: 90) {
               ...GatsbyContentfulFluid

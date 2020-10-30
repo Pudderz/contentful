@@ -16,7 +16,7 @@ export const PopularPosts = props => {
             </Grid>
           
             <hr/>
-            <div className="center"><Link style={{backgroundColor:'#191c1d', padding:'10px', color:'#fff'}} to="/posts">All Posts</Link></div>
+            <div className="center"><Link to="/posts">All Posts</Link></div>
         </div>
     )
     

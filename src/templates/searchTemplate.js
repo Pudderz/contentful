@@ -5,7 +5,7 @@ import { Link } from "gatsby";
 import Container from "@material-ui/core/Container";
 import Footer from "../Components/footer";
 import { Button, InputLabel, MenuItem, Select } from "@material-ui/core";
-import { StaticQuery, graphql } from "gatsby";
+import '../Components/searchPage.scss'
 class SearchTemplate extends Component {
   state = {
     isLoading: true,
@@ -225,7 +225,7 @@ class SearchTemplate extends Component {
                   <Link
                     to={`../blogs/${item.node.post.childMdx.frontmatter.slug}`}
                   >
-                    <h3 style={{ color: "#191c1d", margin: "10px 0" }}>
+                    <h3 className="underline black" style={{ color: "#191c1d", margin: "10px 0" }}>
                       {item.node.post.childMdx.frontmatter.title}
                     </h3>
                   </Link>

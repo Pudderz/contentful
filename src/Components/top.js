@@ -24,6 +24,7 @@ import Switch from "@material-ui/core/Switch";
 import SearchIcon from "@material-ui/icons/Search";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import CloseIcon from "@material-ui/icons/Close";
+import './nav.scss';
 
 export const MenuListComposition = (props) => {
   const [open, setOpen] = React.useState(false);

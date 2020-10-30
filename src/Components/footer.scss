@@ -7,6 +7,10 @@
         margin: 20px 0 0;
         height: auto;
     }
+    &:hover{
+        letter-spacing: 1px;
+       
+    }
 }
 @media(max-width:600px){
     .MuiFormControl-root {
@@ -14,7 +18,15 @@
     }
 }
 
-
+.flexFooter{
+    a{
+      height: 22px;
+      &:before,
+      &:after{
+        height: 2px;
+      }  
+    }
+}
 
 .MuiDrawer-paperAnchorRight{
     #examples{
@@ -30,3 +42,69 @@
         }
     }
 }
+
+footer {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #191c1d;
+    .flex {
+      justify-content: space-evenly;
+    }
+  }
+  
+
+
+// Category Selection
+
+.categoriesSelection {
+    height: 0;
+    transition: all 0.3s ease-in;
+    z-index: 3;
+    .MuiPaper-root {
+      max-height: fit-content;
+    }
+    &.true {
+      height: 50px;
+    }
+    .MuiDrawer-paperAnchorTop {
+      display: block;
+      position: relative;
+      z-index: 3;
+    }
+    div:not(.movingOutline) {
+      background-color: rgb(25, 28, 29);
+      border-style: none !important;
+    }
+  }
+
+  .selection {
+    button {
+      font-size: 15px;
+      padding: 0px 5px;
+      color: rgba(255, 255, 255, 0.8);
+      outline: rgba(255, 255, 255, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      transition: 0.3s ease-in-out;
+      letter-spacing: inherit;
+      text-transform: initial;
+      &:hover {
+        //    border: 1px solid #fcbc3e;
+        color: #fcbc3e;
+        opacity: 1;
+      }
+    }
+  }
+  
+
+  #outlined-form {
+    fieldset.Mui-Focused {
+      border-radius: 0 !important;
+      border-color: #191c1d !important;
+    }
+  }
+  .movingOutline {
+    opacity: 0;
+    &.active {
+      opacity: 1;
+    }
+  }  
