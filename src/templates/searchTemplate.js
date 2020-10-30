@@ -4,7 +4,7 @@ import MenuListComposition from "../Components/top";
 import { Link } from "gatsby";
 import Container from "@material-ui/core/Container";
 import Footer from "../Components/footer";
-import { InputLabel, MenuItem, Select } from "@material-ui/core";
+import { Button, InputLabel, MenuItem, Select } from "@material-ui/core";
 import { StaticQuery, graphql } from "gatsby";
 class SearchTemplate extends Component {
   state = {
@@ -104,7 +104,7 @@ class SearchTemplate extends Component {
   handleSubmit = e => {
     e.preventDefault();
     this.searchData({
-      target: { value: e.target.children[0].children[0].value },
+      target: { value: e.target.children[0].children[1].value },
     });
   };
 
@@ -140,7 +140,7 @@ class SearchTemplate extends Component {
           style={{
             backgroundColor: "rgba(236,239,243,0.5)",
             borderBottom: "1px solid #ECEFF3",
-            height: "300px",
+            // height: "300px",
             width: "100%",
           }}
         >
@@ -156,6 +156,7 @@ class SearchTemplate extends Component {
                 boxSizing: "border-box",
               }}
             >
+              <h3 style={{ margin: "0" }}>Searching For</h3>
               <input
                 className="bigSearch"
                 autoComplete="off"
@@ -164,8 +165,16 @@ class SearchTemplate extends Component {
                 onChange={this.searchData}
                 placeholder="Search"
                 style={{ margin: "0 auto" }}
+                
               />
+              <Button
+              type="submit"
+              variant="outlined"
+              className="smallSearchSubmit"
+              style={{margin:'20px auto'}}
+              >Submit</Button>
             </div>
+            
           </form>
         </div>
         <Container maxWidth="lg">
