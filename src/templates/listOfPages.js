@@ -17,8 +17,7 @@ const BlogPost = ({ data, pageContext }) => {
       <h3 style={{ margin: "50px auto 25px auto", textAlign: "center" }}>All Articles</h3>
       <Pager pageContext={pageContext} />
       <div>
-        <Grid container spacing={2} className="allPosts" style={{margin:'auto'}}> 
-
+        <Grid container spacing={2} className="allPosts" style={{margin:'auto', maxWidth:'min(1300px, 100%)'}}> 
           {articles.map((article, index) => (
             <Blog key={index} data={article}  smallestSize={4} small={6}/>
           ))}
