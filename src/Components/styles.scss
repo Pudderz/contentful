@@ -461,20 +461,22 @@ img{
     height: 0%;
     top: 0%;
     right: 0%;
-    background-color: hsl(256, 26%, 20%);
+    background-color: #1b1f25;
+
     z-index: 3;
     box-sizing: border-box;
     
     overflow-x: hidden;
     transition: 0.3s;
     overflow: hidden;
-}
-
-#overlay a{
+    a, button{
     margin: auto;
+    color: gray;
+    text-transform: none;
     font-size: 2em;
     &:hover{
         color: white;
+    }
     }
 }
 #overlay.showing{
@@ -583,11 +585,12 @@ img{
     display: flex;
 }
 .center{
-    margin: auto;
+    margin: 20px auto;
     width: fit-content;
     .center a{
     color: rgba(255, 255, 255, 0.664);
     padding: 10px;
+    text-decoration: none;
         &:hover{
             text-decoration: underline;
         }
@@ -750,7 +753,8 @@ img{
 
 
 #searchContainer{
-    background-color: #191c1d;
+    // background-color: #191c1d;
+    height: 300px;
     .bigSearch{
         // background: #fff;
     
@@ -784,12 +788,25 @@ img{
         // box-shadow: 0 3px 5px #ccc;
         // background-color: #fff;
         padding: 20px 40px 20px 20px;
-        background-color: #44555a;
-        box-shadow: 0 3px 5px rgb(44, 43, 43);
-        color: white;
+        // background-color: #44555a;
+        // box-shadow: 0 3px 5px rgb(44, 43, 43);
+        box-shadow: 0 2px 4px #7e7e7e;
+        // color: white;
         }
     }
 }
+
+@media(max-width: 500px){
+    #searchContainer{
+        height: 150px;
+    }
+    #searchContainer .bigSearch{
+        font-size: 15px;
+        padding: 0;
+    }
+}
+
+
 @media(min-width:590px){
     .recent{
     .items{
@@ -826,6 +843,7 @@ img{
         }
         
     }
+    
     
 }
 }
@@ -969,4 +987,51 @@ img{
 
 .categoryLink{
 
+}
+#messageLabel{
+    position: absolute;
+}
+#message{
+    margin: 0px 0px 0px 119px;
+    height: 134px;
+    width: 224px;
+    resize: vertical;
+    min-height: 45px;
+}
+.contactForm{
+    @media(max-width: 430px){
+        input, textarea{
+            width: 100%;
+        }
+        #messageLabel{
+            position: initial;
+        }
+        textarea#message{
+            width: 100%;
+            margin:0;
+
+        }
+        .purple{
+            margin: auto;
+        }
+    }
+
+}
+
+.modalImage{
+    .image{
+        max-width: 100%;
+        max-height: 100vh;
+        position: absolute;
+    }
+    .image picture img{
+        object-fit: contain !important;
+    }
+}
+
+@media(max-width:750px){
+    #blogMenuOpen{
+        padding: 0;
+    }
+    
 }

@@ -3,12 +3,11 @@ import Footer from "../Components/footer";
 import Metadata from "../Components/metadata";
 import "../Components/about.scss";
 import MenuListComposition from "../Components/top";
-
 class about extends Component {
   render() {
     return (
       <div style={{ textAlign: "center" }}>
-        <MenuListComposition />
+        <MenuListComposition/>
         <Metadata />
         <div
           id="aboutSite"
@@ -16,8 +15,8 @@ class about extends Component {
             textAlign: "center",
             display: "flex",
             justifyContent: "space-around",
-            minHeight: '60vh',
-            flexWrap:'wrap',
+            minHeight: "60vh",
+            flexWrap: "wrap",
           }}
         >
           <div>
@@ -28,12 +27,15 @@ class about extends Component {
             </p>
           </div>
 
-          <div id="formDiv" style={{
-                //   height: '100%',
-                  boxSizing: 'border-box',
-                  backgroundolor: '#242a2c',
-          }}>
-            <form className="contactForm"  netlify="true">
+          <div
+            id="formDiv"
+            style={{
+              //   height: '100%',
+              boxSizing: "border-box",
+              backgroundolor: "#242a2c",
+            }}
+          >
+            <form className="contactForm" netlify="true">
               <h3>Contact Form</h3>
               <label htmlFor="name">
                 Name:
@@ -52,26 +54,16 @@ class about extends Component {
               >
                 <label
                   htmlFor="message"
+                  id="messageLabel"
                   style={{
                     margin: "0px",
-                    position: "absolute",
                     top: "0%",
                     left: "23px",
                   }}
                 >
                   Message:
                 </label>
-                <textarea
-                  id="message"
-                  placeholder="message"
-                  style={{
-                    margin: "0px 0px 0px 119px",
-                    height: "134px",
-                    width: "224px",
-                    resize: "vertical",
-                    minHeight: "45px",
-                  }}
-                />
+                <textarea id="message" placeholder="message" style={{}} />
               </div>
 
               <button className="purple" type="submit">
