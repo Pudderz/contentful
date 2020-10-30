@@ -51,7 +51,25 @@ const MarkdownTemp = ({ data, pageContext }) => {
   };
   return (
     <React.Fragment>
-      <MenuListComposition/>
+      <MenuListComposition>
+          <Tooltip title="Menu">
+            <IconButton
+            id="blogMenuOpen"
+              aria-label="profile"
+              variant="contained"
+              onClick={()=>toggleDrawer('right', true)}
+            >
+              <ArrowBackIosIcon
+                style={{ fill: "#fff" }}
+                aria-label="profile"
+                variant="contained"
+                // ref={anchorRef}
+                // aria-controls={open ? "menu-list-grow" : undefined}
+                aria-haspopup="true"
+              />
+            </IconButton>
+          </Tooltip>
+        </MenuListComposition>
       <Metadata />
 
       <header

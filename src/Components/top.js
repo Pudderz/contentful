@@ -21,6 +21,9 @@ import Drawer from "@material-ui/core/Drawer";
 import CategorySelection from "./categorySelection";
 import { Grid } from "@material-ui/core";
 import Switch from "@material-ui/core/Switch";
+import SearchIcon from "@material-ui/icons/Search";
+import InputAdornment from "@material-ui/core/InputAdornment";
+import CloseIcon from "@material-ui/icons/Close";
 
 export const MenuListComposition = (props) => {
   const [open, setOpen] = React.useState(false);
@@ -170,11 +173,6 @@ export const MenuListComposition = (props) => {
               justifyContent: "flex-end",
             }}
           >
-            <Tooltip title="Search">
-              <IconButton variant="contained" onClick={handleSearch}>
-                <SearchOutlinedIcon style={{ fill: "#fff" }} />
-              </IconButton>
-            </Tooltip>
             <div style={{ width: searchWidth, overflow: "hidden" }}>
               <form onSubmit={(e) => submitSearch(e)}>
                 <InputBase
@@ -191,11 +189,28 @@ export const MenuListComposition = (props) => {
                     width: searchWidth,
                     transition: "width 2s",
                   }}
-                  inputProps={{ "aria-label": "search" }}
+                  InputProps={{
+                    "aria-label": "search",
+                  }}
+                  endAdornment={
+                    <IconButton size="small" type="submit">
+                      <SearchIcon style={{ fill: "black" }} />
+                    </IconButton>
+                  }
                 />
               </form>
             </div>
+            <Tooltip title="Search">
+              <IconButton variant="contained" onClick={handleSearch}>
+                {searchWidth === "0px" ? (
+                  <SearchOutlinedIcon style={{ fill: "#fff" }} />
+                ) : (
+                  <CloseIcon style={{ fill: "#fff" }} />
+                )}
 
+                {/* <SearchOutlinedIcon style={{ fill: "#fff" }} /> */}
+              </IconButton>
+            </Tooltip>
             {/* <Tooltip title={bookmarkOpen === true ? "" : "Saved"}>
               <IconButton color="disabled" variant="contained">
                 <BookmarksOutlinedIcon
@@ -227,7 +242,9 @@ export const MenuListComposition = (props) => {
                 <AccountCircleOutlinedIcon />
               </IconButton>
             </Tooltip> */}
-            <Tooltip title={!open?"settings": ""}>
+
+            {/* Settings icon button that will change the layout colour from ligth to dark theme */}
+            {/* <Tooltip title={!open?"settings": ""}>
               <IconButton aria-label="profile" variant="contained" onClick={handleToggle}>
                 <SettingsIcon
                   style={{ fill: "#fff" }}
@@ -239,7 +256,8 @@ export const MenuListComposition = (props) => {
                   
                 />
               </IconButton>
-            </Tooltip>
+            </Tooltip> */}
+            {props.children}
           </div>
           <Popper
             open={open}
@@ -274,7 +292,7 @@ export const MenuListComposition = (props) => {
                         container
                         alignItems="center"
                         spacing={1}
-                        style={{width:'fit-content', margin: '-4px 5px'}}
+                        style={{ width: "fit-content", margin: "-4px 5px" }}
                       >
                         <Grid item>Light</Grid>
                         <Grid item>
@@ -344,10 +362,7 @@ export const MenuListComposition = (props) => {
           </Popper> */}
         </div>
         <div className="menu">
-          <Link
-            to="/"
-            style={{ color: "#000", margin: "0", fontSize: "large" }}
-          >
+          <Link to="/" style={{ margin: "0", fontSize: "large" }}>
             Blog
           </Link>
           <button
@@ -361,13 +376,14 @@ export const MenuListComposition = (props) => {
             <div className="bar2"></div>
             <div className="bar3"></div>
           </button>
+          {props.children}
         </div>
       </nav>
       <div id="overlay" className={`${menuState.showing}`}>
         <Link to="/">Home</Link>
         <Link to="/posts">Posts</Link>
+        <Link to="/search">Search</Link>
         <Link to="/about">About</Link>
-        <Button to="http://www.matthewPudney.co.uk">Portfolio</Button>
         <Button to="https://github.com/Pudderz">Github</Button>
       </div>
       <Drawer
