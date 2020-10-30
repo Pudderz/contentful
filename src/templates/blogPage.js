@@ -115,7 +115,8 @@ const MarkdownTemp = ({ data, pageContext }) => {
             maxWidth: "80%",
           }}
         >
-          <h2>{post.childMdx.frontmatter.title}</h2>
+          <h2 style={{fontSize: '2em',
+    margin: '0'}}>{post.childMdx.frontmatter.title}</h2>
           <h3
             style={{
               fontSize: "min(1em, 6vw)",

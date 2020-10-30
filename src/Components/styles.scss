@@ -1022,7 +1022,7 @@ img{
     .image{
         max-width: 100%;
         max-height: 100vh;
-        position: absolute;
+        position: absolute !important;
     }
     .image picture img{
         object-fit: contain !important;

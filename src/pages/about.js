@@ -35,15 +35,15 @@ class about extends Component {
               backgroundolor: "#242a2c",
             }}
           >
-            <form className="contactForm" netlify="true">
+            <form className="contactForm" netlify>
               <h3>Contact Form</h3>
               <label htmlFor="name">
                 Name:
-                <input id="name" type="text" placeholder="name" />
+                <input id="name" name="contact-name"type="text" placeholder="name" required/>
               </label>
               <label htmlFor="email">
                 Email:
-                <input id="email" type="email" placeholder="email" />
+                <input id="email" name="contact-email"type="email" placeholder="email" required/>
               </label>
               <div
                 style={{
@@ -63,7 +63,7 @@ class about extends Component {
                 >
                   Message:
                 </label>
-                <textarea id="message" placeholder="message" style={{}} />
+                <textarea id="message" name="contact-message" placeholder="message" style={{}} required/>
               </div>
 
               <button className="purple" type="submit">

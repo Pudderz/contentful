@@ -28,13 +28,13 @@ class Footer extends Component {
             <h2 style={{ margin: "auto", textAlign: "center" }}>
               Subscribe to the mailing list
             </h2>
-            <form style={{ minWidth: "40%" }} netlify="true" id="outlined-form">
+            <form style={{ minWidth: "40%" }} netlify id="outlined-form">
               <TextField 
                 id="outlined-basic"
                 label="email"
                 variant="outlined"
                 type="email"
-                name="email"
+                name="subscribe-email"
                 style={{
                   backgroundColor: "white",
                   borderRadius: "0",
