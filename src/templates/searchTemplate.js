@@ -20,6 +20,7 @@ class SearchTemplate extends Component {
     selectedStrategy: "",
     selectedSanitizer: "",
     category: "",
+    categoryList: [],
   };
 
   static getDerivedStateFromProps(nextProps, prevState) {
@@ -37,6 +38,13 @@ class SearchTemplate extends Component {
     return null;
   }
   async componentDidMount() {
+    const categorySearch = new Set();
+    await this.props.pageContext.blogData.allBlogs.map(article => 
+      article.node.categories.map(category => {
+        categorySearch.add(category)
+      })
+    )
+    this.setState({categoryList: [...categorySearch]})
     await this.rebuildIndex();
 
     if (this.props.location.state !== null) {
@@ -192,16 +200,14 @@ class SearchTemplate extends Component {
               <em>None</em>
             </MenuItem>
 
-            {allBlogs.map((article, pageIndex) => {
-              console.log(article.node.categories);
-              return article.node.categories.map((category, index) => {
+            {this.state.categoryList.map((category, index) => {
                 return (
-                  <MenuItem key={`${pageIndex},${index}`} value={`${category}`}>
+                  <MenuItem key={`${index}`} value={`${category}`}>
                     {category}
                   </MenuItem>
                 );
-              });
-            })}
+              })
+            }
           </Select>
           <h2>{queryResults.length} Results</h2>
           <ol style={{ paddingLeft: 0, minHeight: "20vh" }}>

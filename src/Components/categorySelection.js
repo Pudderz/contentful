@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { StaticQuery, graphql } from "gatsby";
 import { navigate } from "gatsby";
 import { Button } from "@material-ui/core";
+import { Category } from "@material-ui/icons";
 
 
 const CategorySelection = (props) => {
@@ -64,17 +65,23 @@ const buttonClicked =(category)=>{
         }
       `}
       render={(data) => {
+        const categorySet = new Set()
+        data.allContentfulTeam.edges.map(article =>
+          article.node.categories.map(category => {
+            categorySet.add(category);
+          })
+        )
+        
         return (
           <div style={{ position: "relative" ,display: 'flex',
           flexWrap: 'wrap',
           justifyContent: 'center',}}>
 
-            {data.allContentfulTeam.edges.map((article, pageIndex) =>
-              article.node.categories.map((category, index) => {
+            {[...categorySet].map((category, index) => {
                 return (
                   <Button
                   className="categoryLink"
-                    key={`${pageIndex},${index}`}
+                    key={index}
                     onMouseEnter={onMouseOver}
                     onMouseLeave= {onMouseLeave}
                     variant="outlined"
@@ -89,7 +96,7 @@ const buttonClicked =(category)=>{
                   </Button>
                 );
               })
-            )}
+            }
 
             <div
               className={`movingOutline ${showOutline}`}
