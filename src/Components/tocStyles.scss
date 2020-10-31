@@ -78,7 +78,7 @@ $animate: all 0.2s ease-in-out;
     align-items: center;
     margin: 0 0 45px;
     .hover {
-      font-size: 30px;
+      font-size: 14px;
       text-align: center;
       margin: 0 auto;
       padding: 0;
@@ -93,7 +93,7 @@ $animate: all 0.2s ease-in-out;
       &:after {
         content: "";
         position: absolute;
-        bottom: 4px;
+        bottom: 0px;
         width: 0px;
         height: 3px;
         margin: 5px 0 0;
