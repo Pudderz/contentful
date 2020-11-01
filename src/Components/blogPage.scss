@@ -8,16 +8,48 @@
     object-fit: contain !important;
   }
 }
+// .blogPiece{
+//   *{
+//     max-width: 100%;
+//   }
+// }
 
 @media (max-width: 750px) {
   #blogMenuOpen {
     padding: 0;
   }
+  
 }
+@media(max-width: 1200px){
+  section{
+    display: block;
+  }
+  .blogContent{
+    p, a{
+      font-size: 12px;
+    }
+    a{
+      overflow-wrap: break-word;
+    }
+    ul{
+      padding: 0;
+    }
+
+  }
+}
+ul.flexbottom {
+  padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+  justify-content: center;
+  margin: auto;
+}
+
 
 .blogPiece {
   background-color: white;
-  max-width: 1000px;
+  max-width: 100%;
   margin: 0px auto 20px auto;
 
   padding: 0.5vw;

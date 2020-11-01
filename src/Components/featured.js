@@ -131,7 +131,7 @@ const Featured = (props) => {
           bottom: "0",
         }}
       >
-        <ul id="popular">
+        <ul id="popular" className="flexbottom">
           {allData.allContentfulTeam.edges.map((item, index) => (
             <li
               key={`${index}`}
