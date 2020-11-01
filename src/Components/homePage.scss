@@ -74,6 +74,10 @@
 }
 
 @media (max-width: 550px) {
+  #textContainer{
+    position: absolute;
+    bottom: 0;
+  }
   .featuredText {
     h2 {
       font-size: 30px;
@@ -91,7 +95,7 @@
   }
   #popular li,
   #popular .image {
-    min-width: 24vw !important;
+    min-width: 25vw !important;
     border-radius: 0px !important;
     height: 50px;
     margin: 0 !important;
