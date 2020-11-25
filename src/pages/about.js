@@ -3,6 +3,7 @@ import Footer from "../Components/footer";
 import Metadata from "../Components/metadata";
 import "../Components/about.scss";
 import MenuListComposition from "../Components/top";
+import { Link } from "gatsby";
 class about extends Component {
   render() {
     return (
@@ -13,64 +14,33 @@ class about extends Component {
           id="aboutSite"
           style={{
             textAlign: "center",
-            display: "flex",
+            display: "block",
             justifyContent: "space-around",
             minHeight: "60vh",
             flexWrap: "wrap",
           }}
         >
           <div>
-            <h2>About Site</h2>
+            <h2>About Me</h2>
             <p>
               This is a Gatsby Blog Template site that takes data from a mdx
               files using graphql and displays the content in a blog format
             </p>
           </div>
-
-          <div
-            id="formDiv"
-            style={{
-              //   height: '100%',
-              boxSizing: "border-box",
-              backgroundolor: "#242a2c",
-            }}
-          >
-            <form className="contactForm" netlify>
-              <h3>Contact Form</h3>
-              <label htmlFor="name">
-                Name:
-                <input id="name" name="contact-name"type="text" placeholder="name" required/>
-              </label>
-              <label htmlFor="email">
-                Email:
-                <input id="email" name="contact-email"type="email" placeholder="email" required/>
-              </label>
-              <div
-                style={{
-                  position: "relative",
-                  width: "fit-content",
-                  margin: "5px auto 0px",
-                }}
-              >
-                <label
-                  htmlFor="message"
-                  id="messageLabel"
-                  style={{
-                    margin: "0px",
-                    top: "0%",
-                    left: "23px",
-                  }}
-                >
-                  Message:
-                </label>
-                <textarea id="message" name="contact-message" placeholder="message" style={{}} required/>
-              </div>
-
-              <button className="purple" type="submit">
-                Send
-              </button>
-            </form>
+          <div>
+            <h2>About Blog</h2>
+            <p>
+              This is a Gatsby Blog Template site that takes data from a mdx
+              files using graphql and displays the content in a blog format
+            </p>
           </div>
+          <div>
+            <h2>Contact Me</h2>
+            <p>
+              <Link to="/contact">Contact</Link>
+            </p>
+          </div>
+          
         </div>
         <Footer />
       </div>

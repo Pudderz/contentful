@@ -261,3 +261,14 @@ img {
     }
   }
 }
+
+.columns{
+  width: fit-content;
+  margin: auto;
+  &:before{
+    background: #fff;
+  }
+  &:after {
+  background: #F5F7F7;
+}
+}

@@ -24,7 +24,13 @@ const Featured = (props) => {
   //     props.onPostClick();
   // }
   return (
-    <div className="featuredContainer">
+    <div style={{
+      // margin:'auto',
+      // maxWidth:'1400px',
+      // width:'100%',
+      // display:'flex'
+    }}>
+      <div className="featuredContainer">
       <div
       // className="featuredImage"
       >
@@ -167,6 +173,8 @@ const Featured = (props) => {
         </div>
       </div>
     </div>
+    </div>
+    
   );
 };
 

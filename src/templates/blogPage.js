@@ -91,7 +91,7 @@ const MarkdownTemp = ({ data, pageContext }) => {
       <div
           style={{
             // textAlign: "center",
-            padding: "2rem",
+            padding: "2rem 2rem 0",
             zIndex: "2",
             position: "relative",
             // fontSize: "2rem",

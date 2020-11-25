@@ -8,6 +8,8 @@ import GoToTopBot from "../Components/goToTopBot";
 import Metadata from "../Components/metadata";
 import Grid from '@material-ui/core/Grid';
 import MenuListComposition from '../Components/top'
+import CategorySelection from "../Components/categorySelection";
+
 const BlogPost = ({ data, pageContext }) => {
   const articles = data.allContentfulTeam.edges;
   return (
@@ -16,13 +18,27 @@ const BlogPost = ({ data, pageContext }) => {
       <MenuListComposition/>
       <h3 style={{ margin: "50px auto 25px auto", textAlign: "center" }}>All Articles</h3>
       <Pager pageContext={pageContext} />
-      <div>
+      <div className="columns" style={{display:'flex',alignItems: 'stretch'}}>
+        <div style={{maxWidth:'1140px'}}>
         <Grid container spacing={2} className="allPosts" style={{margin:'auto', maxWidth:'min(1300px, 100%)'}}> 
           {articles.map((article, index) => (
             <Blog key={index} data={article}  smallestSize={4} small={6}/>
           ))}
         </Grid>
       </div>
+      <div style={{background: '#F5F7F7'}}>
+        text
+
+<p>Categories</p>
+<hr/>
+        <div style={{maxWidth: '500px'}}>
+
+          <CategorySelection/>
+        </div>
+        <hr/>
+      </div>
+      </div>
+      
       <Pager pageContext={pageContext} />
       <GoToTopBot />
       <Footer />
