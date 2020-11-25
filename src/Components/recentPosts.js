@@ -5,7 +5,7 @@ import Blog from './blog'
 export const PopularPosts = props => {
     const articles = props.data;
     return (
-        <div className="popularPosts">
+        <div className="popularPosts"style={{padding:'20px', boxSizing:'border-box'}}>
             <h3>Recent Posts</h3>
             <hr/>
             

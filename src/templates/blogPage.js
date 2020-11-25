@@ -23,6 +23,7 @@ import {
   Tooltip,
   Button,
   Drawer,
+  ButtonBase,
 } from "@material-ui/core";
 
 const MarkdownTemp = ({ data, pageContext }) => {
@@ -82,15 +83,53 @@ const MarkdownTemp = ({ data, pageContext }) => {
           fontSize: "2rem",
         }}
       >
-        <div
+        
+        
+
+        
+      </header>
+      <div
           style={{
-            position: "absolute",
+            // textAlign: "center",
+            padding: "2rem",
+            zIndex: "2",
+            position: "relative",
+            // fontSize: "2rem",
+            width: "60rem",
+            margin: "auto",
+            maxWidth: '100%',
+    boxSizing: 'border-box',
+          }}
+        >
+
+<h2 style={{fontSize: '2em',
+    margin: '0'}}>{post.childMdx.frontmatter.title}</h2>
+
+          <hr style={{margin:'0'}}/>
+          <div style={{display:'flex',gap:'20px'}}>
+            <p>by Matthew Pudney</p>
+          <p>{post.childMdx.frontmatter.postedAt}</p>  
+          
+          </div>
+          
+          <hr style={{marginTop:'0'}}/>
+      <div
+          style={{
+            position: "relative",
+            // maxWidth:'800px',
+            // padding:'20px',
+            boxSizing:'border-box',
+
+            margin:'auto',
+            width:'100%',
             top: "0",
             bottom: "0",
             left: "0",
             right: "0",
             zIndex: "1",
             opacity: "1",
+            maxHeight:'50vh',
+            overflow: 'hidden',
             // "backgroundSize": "cover",
             // "backgroundPosition": "center center",
             // 'backgroundImage': `url(${data.contentfulTeam.featuredImage.fluid})`,
@@ -100,63 +139,15 @@ const MarkdownTemp = ({ data, pageContext }) => {
           <Image
             fluid={data.contentfulTeam.featuredImage.fluid}
             alt={post.childMdx.frontmatter.title}
-            style={{ position: "relative", width: "100%", height: "100%" }}
+            style={{position: 'static', width: "100%", height: "100%" }}
             className="image"
           />
-        </div>
-        <div
-          style={{
-            textAlign: "center",
-            padding: "2rem",
-            zIndex: "2",
-            position: "relative",
-            fontSize: "2rem",
-            width: "60rem",
-            margin: "auto",
-            maxWidth: "80%",
-          }}
-        >
-          <h2 style={{fontSize: '2em',
-    margin: '0'}}>{post.childMdx.frontmatter.title}</h2>
-          <h3
-            style={{
-              fontSize: "min(1em, 6vw)",
-              fontFamily: "Karla, sans-serif",
-            }}
-          >
-            {post.childMdx.frontmatter.snippet}
-          </h3>
-          <h4>{post.childMdx.frontmatter.postedAt}</h4>
-          {previous && (
-            <Link
-              className="purple buttonGap"
-              // style={{ color: "black", fontSize: "1.5em" }}
-              to={`/blogs/${previous}`}
-            >
-              Previous Post
-            </Link>
-          )}
-          {next && (
-            <Link
-              className="purple buttonGap"
-              // style={{ color: "black", fontSize: "1.5em" }}
-              to={`/blogs/${next}`}
-            >
-              Next Post
-            </Link>
-          )}
-
-          {/* <button className="purple buttonGap">Blog</button>
-          <button className="purple buttonGap">GitHub</button>
-          <button className="purple buttonGap">Portfolio</button> */}
-        </div>
-
-        <Tooltip title="Fullscreen Image">
+          <Tooltip title="Fullscreen Image">
           <Fab
             style={{
               position: "absolute",
-              bottom: "0",
-              right: "0",
+              bottom: "20px",
+              right: "20px",
               zIndex: "2",
             }}
             aria-label="fullscreen"
@@ -187,8 +178,10 @@ const MarkdownTemp = ({ data, pageContext }) => {
           timeout: 500,
         }}
       >
+
+        
         <Fade in={openImage} onClick={handleImageClose}>
-          <div className="modalImage" style={{backgroundColor: 'rgba(0, 0, 0, 0.7)', outline:'none'}}>
+          {/* <div className="modalImage" style={{backgroundColor: 'rgba(0, 0, 0, 0.7)', outline:'none'}}> */}
             {/* <h2 id="transition-modal-title" style={{color:'white', textAlign:'center'}}>{post.childMdx.frontmatter.title}</h2> */}
             <Image
             loading="lazy"
@@ -197,10 +190,67 @@ const MarkdownTemp = ({ data, pageContext }) => {
             style={{ position: "relative", width: "100%", height: "100%"}}
             className="image"
           />
-          </div>
+          {/* </div> */}
         </Fade>
       </Modal>
-      </header>
+        </div>
+
+        
+          
+        <h3
+
+            style={{
+              textAlign:'center',
+              fontSize: "min(1em, 6vw)",
+              fontFamily: "Karla, sans-serif",
+            }}
+          >
+            {post.childMdx.frontmatter.snippet}
+          </h3>
+<div style={{
+  display:'flex',
+  justifyContent:'space-between'
+
+}}>
+{previous && (
+
+          <Link
+          // className="purple buttonGap"
+          // style={{ color: "black", fontSize: "1.5em" }}
+          to={`/blogs/${previous}`}
+        >
+        <Button color="primary" variant="outlined" style={{borderRadius:'0px'}}>
+
+        
+          Previous Post
+        </Button>  
+        </Link>
+        
+        
+      )}
+      {next && (
+       
+        <Link
+          // className="purple buttonGap"
+          // style={{ color: "black", fontSize: "1.5em" }}
+          to={`/blogs/${next}`}
+        >
+<Button color="primary" variant="outlined" style={{borderRadius:'0px'}}>
+          Next Post
+        </Button>
+        </Link>
+        
+      )}
+</div>
+          
+
+          {/* <button className="purple buttonGap">Blog</button>
+          <button className="purple buttonGap">GitHub</button>
+          <button className="purple buttonGap">Portfolio</button> */}
+        </div>
+
+       
+
 
       <Drawer
         anchor="right"
@@ -266,7 +316,7 @@ const MarkdownTemp = ({ data, pageContext }) => {
             </Link>
           )}
       </Drawer>
-      <section>
+      <section style={{marginTop:'0px'}}>
         {post?.childMdx.tableOfContents?.items && (
           <TableOfContents items={post.childMdx.tableOfContents.items}>
           </TableOfContents>
