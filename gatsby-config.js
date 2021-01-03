@@ -10,6 +10,16 @@ module.exports = {
     siteUrl: process.env.GATSBY_SITEURL
   },
   plugins: [
+    {
+      resolve: `gatsby-plugin-google-analytics`,
+      options: {
+        trackingId:process.env.GATSBY_GOOGLE_ANALYTICS_TRACKING_ID,
+        head: true,
+        anonymize: true,
+        respectDNT: true,
+        pageTransitionDelay:0,
+      }
+    },
   {resolve: `gatsby-plugin-manifest`,
       options: {
         name: "Gatsby Blog",
@@ -41,6 +51,12 @@ module.exports = {
     resolve: 'gatsby-plugin-html-attributes',
     options: {
       lang: 'en'
+    }
+  },
+  {
+    resolve: `gatsby-transformer-remark`,
+    options: {
+      plugins: [ `gatsby-remark-images` ],
     }
   },
   {
@@ -81,7 +97,8 @@ module.exports = {
             path: `${__dirname}/src/posts`,
           },
         }
-      ]
+      ],
+      plugins: ['gatsby-remark-images']
       
       
 
