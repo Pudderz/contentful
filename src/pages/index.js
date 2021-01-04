@@ -10,7 +10,7 @@ import Footer from "../Components/footer";
 import '../Components/homePage.scss'
 import { Link } from 'gatsby';
 import { MostPopular } from "../Components/MostPopular";
-import AboutSection from "../Components/aboutSection";
+import AboutSection from "../Components/AboutSection";
 import AdSense from 'react-adsense';
 function Home({ data }) {
  
