@@ -25,9 +25,9 @@
     display: block;
   }
   .blogContent{
-    p, a{
-      font-size: 12px;
-    }
+    // p, a{
+    //   font-size: 12px;
+    // }
     a{
       overflow-wrap: break-word;
     }
@@ -64,24 +64,55 @@ ul.flexbottom {
 }
 
 .blogContent {
+    font-family: system-ui;
     background-color: white;
-    padding: 20px;
+    // padding: 20px;
     font-size: 16px;
+    padding: 2rem 2rem 0px;
+    box-sizing: border-box;
     h1{
       font-size: 40px;
       // text-align: center;
+      font-weight: revert;
+    }
+    h2,h3,h4,h5{
+      font-weight: revert;
+      margin-top: 40px;
+      margin-bottom: 30px;
+      font-family: system-ui;
     }
     img{
-      margin: auto;
+      margin: 0 10%;
+      width: 80%;
+    }
+    .image img{
+      margin: 0;
       width: 100%;
     }
+    p{
+      // font-size: 0.9em;
+      
+      color: #393939;
+      line-height: 30px;
+      letter-spacing: 0.005em;
+    }
     @media(min-width: 1280px){
+      padding: 20px;
+      p, li{
+        font-size: 18px;
+      }
       h2{
         font-size: 35px;
       }
       h3{
         font-size: 25px;
       }
+      h3{
+        font-size: 25px;
+      }
+    }
+    pre.grvsc-container {
+      font-size: 16px;
     }
   }
   
