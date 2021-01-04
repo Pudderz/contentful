@@ -21,12 +21,12 @@ module.exports = {
         // pageTransitionDelay:0,
       }
     },
-    {
-      resolve: `gatsby-plugin-google-adsense`,
-      options: {
-        publisherId: `ca-pub-xxxxxxxxxx`
-      },
-    },
+    // {
+    //   resolve: `gatsby-plugin-google-adsense`,
+    //   options: {
+    //     publisherId: `ca-pub-1286129126098643`
+    //   },
+    // },
   {resolve: `gatsby-plugin-manifest`,
       options: {
         name: "Gatsby Blog",
