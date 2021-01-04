@@ -190,9 +190,9 @@ export const MenuListComposition = (props) => {
                     width: searchWidth,
                     transition: "width 2s",
                   }}
-                  InputProps={{
-                    "aria-label": "search",
-                  }}
+                  // inputProps={{
+                  //   "aria-label": "search",
+                  // }}
                   endAdornment={
                     <IconButton size="small" type="submit">
                       <SearchIcon style={{ fill: "black" }} />

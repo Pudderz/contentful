@@ -48,9 +48,9 @@ function Home({ data }) {
             <AdSense.Google
               client='ca-pub-1286129126098643'
               slot='7806394673'
-              style={{ display: 'block' }}
-              layout='in-article'
-              format='fluid'
+              // style={{ display: 'block' }}
+              // layout='in-article'
+              // format='fluid'
             />
  
         </div>
