@@ -32,10 +32,10 @@
     color: grey;
     font-size: 15px;
   }
-  #message {
-    padding-top: 0;
-    padding-bottom: 0;
-  }
+  // #message {
+  //   padding-top: 0;
+  //   padding-bottom: 0;
+  // }
   .purple {
     width: 200px;
     margin: 10px 29px 0 auto;
@@ -48,9 +48,9 @@
   font-size: 22px;
 }
 
-#message {
-  height: 200px;
-}
+// #message {
+//   height: 200px;
+// }
 
 #aboutSite {
   background-color: rgb(25, 28, 29);
@@ -81,14 +81,14 @@
 
 
 
-#messageLabel {
-  position: absolute;
-}
+// #messageLabel {
+//   position: absolute;
+// }
 #message {
-  margin: 0px 0px 0px 119px;
-  height: 134px;
-  width: 224px;
-  resize: vertical;
+  // margin: 0px 0px 0px 119px;
+  // height: 134px;
+  // width: 224px;
+  // resize: vertical;
   min-height: 45px;
 }
 .contactForm {
@@ -97,13 +97,13 @@
     textarea {
       width: 100%;
     }
-    #messageLabel {
-      position: initial;
-    }
-    textarea#message {
-      width: 100%;
-      margin: 0;
-    }
+    // #messageLabel {
+    //   position: initial;
+    // }
+    // textarea#message {
+    //   width: 100%;
+    //   margin: 0;
+    // }
     .purple {
       margin: auto;
     }

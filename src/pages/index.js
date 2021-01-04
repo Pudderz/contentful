@@ -8,7 +8,10 @@ import Metadata from "../Components/metadata";
 import MenuListComposition from '../Components/top'
 import Footer from "../Components/footer";
 import '../Components/homePage.scss'
-
+import { Link } from 'gatsby';
+import { MostPopular } from "../Components/MostPopular";
+import AboutSection from "../Components/aboutSection";
+import AdSense from 'react-adsense';
 function Home({ data }) {
  
 
@@ -16,21 +19,43 @@ function Home({ data }) {
     <>
       <Metadata />
       
-      <MenuListComposition/>
+      
       <div style={{ backgroundColor:'rgb(25, 28, 29)', 'padding': '10px',
     color: '#fff', textAlign: 'center'}}>
       <h1 style={{margin:'auto', fontSize:"50px"}}>Blog</h1>
+      
       </div>
+      <MenuListComposition background="rgb(25, 28, 29)"/>
 
       <main>
-        <div className="featured">
+        <div style={{margin:'auto', maxWidth:'1300px'}}>
+         <div className="featured" style={{marginTop:'50px'}}>
           <Featured
             // data={data.allContentfulTeam.edges[state.featuredIndex]}
             allData={data}
             // onPostClick={onPostClick}
           ></Featured>
         </div>
-        <RecentPosts data={data.allContentfulTeam.edges} />
+        {/* <RecentPosts data={data.allContentfulTeam.edges} />  */}
+        <MostPopular/>
+        <AboutSection/>
+        <hr/>
+            <div className="center"><Link to="/posts">All Posts</Link>
+            
+            <Link to="/posts">Search</Link>
+            <Link to="/posts">About</Link>
+            </div>
+            <AdSense.Google
+              client='ca-pub-1286129126098643'
+              slot='7806394673'
+              style={{ display: 'block' }}
+              layout='in-article'
+              format='fluid'
+            />
+ 
+        </div>
+               
+        
       </main>
       <Footer/>
     </>

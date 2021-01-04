@@ -25,27 +25,18 @@ const Featured = (props) => {
   // }
   return (
     <div style={{
-      // margin:'auto',
+       margin:'auto',
       // maxWidth:'1400px',
       // width:'100%',
-      // display:'flex'
+      display:'flex',
+        margin: 'auto',
+        width: '100%',
+        maxWidth: '1400px',
     }}>
-      <div className="featuredContainer">
+      <div className="featuredContainer" >
       <div
       // className="featuredImage"
       >
-        {/* <div
-          style={{
-            height: "100%",
-            width: "100%",
-          }}
-        > */}
-          {/* <a
-            to={`/blogs/${
-              allData.allContentfulTeam.edges[state.featuredIndex].node.post
-                .childMdx.frontmatter.slug
-            }`}
-          > */}
           {allData.allContentfulTeam.edges.map((data, index) => (
             <Image
               key={index}
@@ -58,19 +49,8 @@ const Featured = (props) => {
               height="300px"
             />
           ))}
-          {/* <Image
-                style={{
-                    height:'100%',
-                }}
-                fluid={allData.allContentfulTeam.edges[state.featuredIndex].node.featuredImage.fluid}
-                alt={allData.allContentfulTeam.edges[state.featuredIndex].node.post.childMdx.frontmatter.title}
-                className={`image ${active[allData.allContentfulTeam.edges[state.featuredIndex].node.post.childMdx.frontmatter.title]}`}
-                height="300px"
-                />     */}
-          {/* </a> */}
-        {/* </div> */}
       </div>
-      <div id="textContainer">
+      <div id="textContainer" style={{width:'300px'}}>
         <div className="featuredText">
           <div>
             <a
@@ -97,7 +77,9 @@ const Featured = (props) => {
                   .childMdx.frontmatter.slug
               }`}
             >
-              <h2 id="featuredTitle" className="underline">
+              <h2 id="featuredTitle" 
+              // className="underline"
+              >
                 {
                   allData.allContentfulTeam.edges[state.featuredIndex].node.post
                     .childMdx.frontmatter.title
@@ -124,24 +106,28 @@ const Featured = (props) => {
             </Link>
           </div>
         </div>
-        <div
+        
+      </div>
+    </div>
+    <div
           className="popularSelection"
           style={{
-            display: "flex",
-            position: "absolute",
+            // display: "grid",
+            // position: "absolute",
             zIndex: "2",
-            width: "100%",
+            // width: "100%",
             justifyContent: "space-around",
             bottom: "0",
           }}
         >
-          <ul id="popular" className="flexbottom">
+          <ul id="popular" className="flexbottom" style={{display:'grid', height:'100%'}}>
             {allData.allContentfulTeam.edges.map((item, index) => (
               <li
                 key={`${index}`}
                 onClick={onChange}
                 onKeyDown={onChange}
                 data-key={`${index}`}
+                style={{backgroundColor: (active[index]==='active')? '#223131':'darkslategrey'}}
               >
                 <Image
                   fluid={item.node.featuredImage.fluid}
@@ -171,8 +157,6 @@ const Featured = (props) => {
                     <ImageIcon/>
                 </IconButton> */}
         </div>
-      </div>
-    </div>
     </div>
     
   );
