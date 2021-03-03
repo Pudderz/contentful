@@ -1,64 +1,34 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Button from "@material-ui/core/Button";
 import ClickAwayListener from "@material-ui/core/ClickAwayListener";
-import Grow from "@material-ui/core/Grow";
-import Paper from "@material-ui/core/Paper";
-import Popper from "@material-ui/core/Popper";
-import MenuItem from "@material-ui/core/MenuItem";
 import MenuList from "@material-ui/core/MenuList";
-import { makeStyles } from "@material-ui/core/styles";
 import Tooltip from "@material-ui/core/Tooltip";
-import AccountCircleOutlinedIcon from "@material-ui/icons/AccountCircleOutlined";
-import NotificationsNoneTwoToneIcon from "@material-ui/icons/NotificationsNoneTwoTone";
-import BookmarksOutlinedIcon from "@material-ui/icons/BookmarksOutlined";
 import SearchOutlinedIcon from "@material-ui/icons/SearchOutlined";
 import IconButton from "@material-ui/core/IconButton";
 import InputBase from "@material-ui/core/InputBase";
-import Badge from "@material-ui/core/Badge";
-import SettingsIcon from "@material-ui/icons/Settings";
 import { Link, navigate } from "gatsby";
 import Drawer from "@material-ui/core/Drawer";
 import CategorySelection from "./categorySelection";
 import { Grid } from "@material-ui/core";
 import Switch from "@material-ui/core/Switch";
 import SearchIcon from "@material-ui/icons/Search";
-import InputAdornment from "@material-ui/core/InputAdornment";
-import CloseIcon from "@material-ui/icons/Close";
-import './nav.scss';
+import "./nav.scss";
 
 export const MenuListComposition = (props) => {
   const [open, setOpen] = React.useState(false);
-  const [bookmarkOpen, setBookOpen] = React.useState(false);
   const anchorRef = React.useRef(null);
-  const anchorBookRef = React.useRef(null);
-
-  const handleToggle = (e) => {
-    console.log("opened");
-    setOpen((prevOpen) => !prevOpen);
-    // anchorRef.current = e.currentTarget
-    console.log(open);
-  };
-  const handleBookmarkToggle = (e) => {
-    console.log("opened");
-    setBookOpen((prevOpen) => !prevOpen);
-    // anchorRef.current = e.currentTarget
-    console.log(bookmarkOpen);
-  };
-
-  const handleClose = (event) => {
-    if (anchorRef.current && anchorRef.current.contains(event.target)) {
-      return;
-    }
-
-    setOpen(false);
-  };
-  const handleBookClose = (event) => {
-    if (anchorBookRef.current && anchorBookRef.current.contains(event.target)) {
-      return;
-    }
-
-    setBookOpen(false);
-  };
+  const searchBar = useRef(null);
+  const [menuState, setShowMenu] = useState({
+    showing: "",
+    hamburger: "",
+  });
+  const [searchWidth, setSearchWidth] = useState("0px");
+  const menuShowingRef = useRef(false);
+  const prevOpen = useRef(open);
+  const [state, setState] = useState({
+    top: false,
+  });
+  const [searchQuery, setSearchQuery] = useState("");
 
   function handleListKeyDown(event) {
     if (event.key === "Tab") {
@@ -66,19 +36,20 @@ export const MenuListComposition = (props) => {
       setOpen(false);
     }
   }
-  function handleBookListKeyDown(event) {
-    if (event.key === "Tab") {
-      event.preventDefault();
-      setBookOpen(false);
+
+  const handleSearch = (boolean = true) => {
+    if (boolean) {
+      console.log("button clicked");
+      searchBar.current.focus();
     }
-  }
-  const [searchWidth, setSearchWidth] = useState("0px");
-  const handleSearch = () => {
-    setSearchWidth(searchWidth === "0px" ? "auto" : "0px");
+    if (!boolean) {
+      setSearchWidth("0px");
+    } else {
+      setSearchWidth(searchWidth === "0px" ? "auto" : "0px");
+    }
   };
-  // return focus to the button when we transitioned from !open -> open
-  const prevOpen = React.useRef(open);
-  React.useEffect(() => {
+
+  useEffect(() => {
     if (prevOpen.current === true && open === false) {
       anchorRef.current.focus();
     }
@@ -86,37 +57,14 @@ export const MenuListComposition = (props) => {
     prevOpen.current = open;
   }, [open]);
 
-  const prevBookOpen = React.useRef(bookmarkOpen);
-  React.useEffect(() => {
-    if (prevBookOpen.current === true && bookmarkOpen === false) {
-      anchorBookRef.current.focus();
-    }
-
-    prevBookOpen.current = bookmarkOpen;
-  }, [bookmarkOpen]);
-
-  const [navState, setNavDisplay] = useState({ top: "0px" });
-  const [menuState, setShowMenu] = useState({
-    showing: "",
-    hamburger: "",
-  });
-  const menuShowingRef = useRef(false);
-
   const displayMenu = () => {
-    menuShowingRef.current = menuState.showing === "none" ? true : false;
+    menuShowingRef.current = menuState.showing === "none";
 
     setShowMenu({
       showing: menuState.showing === "" ? "showing" : "",
       hamburger: menuState.showing === "" ? "change" : "",
     });
-    setNavDisplay({
-      top: "0px",
-    });
   };
-
-  const [state, setState] = React.useState({
-    top: false,
-  });
 
   const toggleDrawer = (anchor, open) => (event) => {
     if (
@@ -128,9 +76,6 @@ export const MenuListComposition = (props) => {
     setState({ ...state, [anchor]: !state[anchor] });
   };
 
-  const [searchQuery, setSearchQuery] = useState("");
-  const changeSearchQuery = (e) => setSearchQuery(e.target.value);
-
   const submitSearch = (e) => {
     e.preventDefault();
     if (window.location.pathname === "/search") {
@@ -140,10 +85,12 @@ export const MenuListComposition = (props) => {
       navigate("/search", { state: { search: searchQuery } });
     }
   };
+
+  const changeSearchQuery = (e) => setSearchQuery(e.target.value);
   const changeCategory = (e) => props.changeCategory(e);
   return (
     <>
-      <nav>
+      <nav className="header">
         <div
           className="navbuttons buttons"
           style={{ display: "flex", justifyContent: "space-between" }}
@@ -159,7 +106,7 @@ export const MenuListComposition = (props) => {
             <Link to="/posts">Posts</Link>
             <Link to="/about">About</Link>
             <Button
-              style={{ textTransform: "none" }}
+              style={{ textTransform: "none", backgroundColor: 'transparent'}}
               onClick={toggleDrawer("top")}
             >
               Categories
@@ -174,193 +121,68 @@ export const MenuListComposition = (props) => {
               justifyContent: "flex-end",
             }}
           >
-            <div style={{ width: searchWidth, overflow: "hidden" }}>
-              <form onSubmit={(e) => submitSearch(e)}>
-                <InputBase
-                  autoComplete="off"
-                  name="search"
-                  value={searchQuery}
-                  onChange={changeSearchQuery}
-                  placeholder="Search…"
-                  style={{
-                    margin: "10px auto",
-                    backgroundColor: "lightgrey",
-                    padding: "0px 11px",
-                    borderRadius: "36px",
-                    width: searchWidth,
-                    transition: "width 2s",
-                  }}
-                  // inputProps={{
-                  //   "aria-label": "search",
-                  // }}
-                  endAdornment={
-                    <IconButton size="small" type="submit">
-                      <SearchIcon style={{ fill: "black" }} />
+            <ClickAwayListener onClickAway={() => handleSearch(false)}>
+              <div style={{ display: "flex" }}>
+                <div style={{ width: searchWidth, overflow: "hidden" }}>
+                  <form onSubmit={(e) => submitSearch(e)}>
+                    <InputBase
+                      autoComplete="off"
+                      ref={searchBar}
+                      name="search"
+                      value={searchQuery}
+                      onChange={changeSearchQuery}
+                      placeholder="Search…"
+                      style={{
+                        margin: "10px auto",
+                        backgroundColor: "lightgrey",
+                        padding: "0px 11px",
+                        borderRadius: "36px",
+                        width: searchWidth,
+                        transition: "width 2s",
+                      }}
+                      // inputProps={{
+                      //   "aria-label": "search",
+                      // }}
+                      endAdornment={
+                        <IconButton size="small" type="submit">
+                          <SearchIcon style={{ fill: "black" }} />
+                        </IconButton>
+                      }
+                    />
+                  </form>
+                </div>
+                {searchWidth === "0px" && (
+                  <Tooltip title="Search">
+                    <IconButton
+                      variant="contained"
+                      onClick={() => handleSearch()}
+                    >
+                      <SearchOutlinedIcon style={{ fill: "#4a5568" }} />
                     </IconButton>
-                  }
-                />
-              </form>
-            </div>
-            <Tooltip title="Search">
-              <IconButton variant="contained" onClick={handleSearch}>
-                {searchWidth === "0px" ? (
-                  <SearchOutlinedIcon style={{ fill: "#fff" }} />
-                ) : (
-                  <CloseIcon style={{ fill: "#fff" }} />
+                  </Tooltip>
                 )}
-
-                {/* <SearchOutlinedIcon style={{ fill: "#fff" }} /> */}
-              </IconButton>
-            </Tooltip>
-            {/* <Tooltip title={bookmarkOpen === true ? "" : "Saved"}>
-              <IconButton color="disabled" variant="contained">
-                <BookmarksOutlinedIcon
-                  ref={anchorBookRef}
-                  aria-controls={bookmarkOpen ? "menu-book-grow" : undefined}
-                  aria-haspopup="true"
-                  onClick={handleBookmarkToggle}
-                />
-              </IconButton>
-            </Tooltip>
-
-            <Tooltip title="Notifications">
-              <IconButton color="disabled" variant="contained">
-                <Badge badgeContent={4} color="primary">
-                  <NotificationsNoneTwoToneIcon />
-                </Badge>
-              </IconButton>
-            </Tooltip>
-
-            <Tooltip title={open === true ? "" : "Profile"}>
-              <IconButton
-                aria-label="profile"
-                variant="contained"
-                ref={anchorRef}
-                aria-controls={open ? "menu-list-grow" : undefined}
-                aria-haspopup="true"
-                onClick={handleToggle}
+              </div>
+            </ClickAwayListener>
+            <Tooltip title="Light / Dark Mode">
+              <MenuList
+                autoFocusItem={open}
+                id="menu-list-grow"
+                onKeyDown={handleListKeyDown}
               >
-                <AccountCircleOutlinedIcon />
-              </IconButton>
-            </Tooltip> */}
-
-            {/* Settings icon button that will change the layout colour from ligth to dark theme */}
-            {/* <Tooltip title={!open?"settings": ""}>
-              <IconButton aria-label="profile" variant="contained" onClick={handleToggle}>
-                <SettingsIcon
-                  style={{ fill: "#fff" }}
-                  aria-label="profile"
-                  variant="contained"
-                  ref={anchorRef}
-                  aria-controls={open ? "menu-list-grow" : undefined}
-                  aria-haspopup="true"
-                  
-                />
-              </IconButton>
-            </Tooltip> */}
-            {props.children}
+                <Grid
+                  component="label"
+                  container
+                  alignItems="center"
+                  spacing={1}
+                  style={{ width: "fit-content", margin: "-4px 5px" }}
+                >
+                  <Grid item>
+                    <Switch checked={state.checkedC} name="checkedC" />
+                  </Grid>
+                </Grid>
+              </MenuList>
+            </Tooltip>
           </div>
-          <Popper
-            open={open}
-            anchorEl={anchorRef.current}
-            role={undefined}
-            transition
-            disablePortal
-            style={{ zIndex: 4 }}
-            modifiers={{
-              arrow: {
-                enabled: true,
-              },
-            }}
-          >
-            {({ TransitionProps, placement }) => (
-              <Grow
-                {...TransitionProps}
-                style={{
-                  transformOrigin:
-                    placement === "bottom" ? "center top" : "center bottom",
-                }}
-              >
-                <Paper>
-                  <ClickAwayListener onClickAway={handleClose}>
-                    <MenuList
-                      autoFocusItem={open}
-                      id="menu-list-grow"
-                      onKeyDown={handleListKeyDown}
-                    >
-                      <Grid
-                        component="label"
-                        container
-                        alignItems="center"
-                        spacing={1}
-                        style={{ width: "fit-content", margin: "-4px 5px" }}
-                      >
-                        <Grid item>Light</Grid>
-                        <Grid item>
-                          <Switch
-                            checked={state.checkedC}
-                            // onChange={handleChange}
-                            name="checkedC"
-                          />
-                        </Grid>
-                        <Grid item>Dark</Grid>
-                      </Grid>
-                      {/* <MenuItem onClick={handleClose}>Profile</MenuItem>
-                      <MenuItem onClick={handleClose}>My account</MenuItem>
-                      <MenuItem onClick={handleClose}>Logout</MenuItem> */}
-                    </MenuList>
-                  </ClickAwayListener>
-                </Paper>
-              </Grow>
-            )}
-          </Popper>
-          {/* <Popper
-            open={bookmarkOpen}
-            anchorEl={anchorBookRef.current}
-            role={undefined}
-            transition
-            disablePortal
-            style={{ zIndex: 4 }}
-            modifiers={{
-              arrow: {
-                enabled: true,
-              },
-            }}
-          >
-            {({ TransitionProps, placement }) => (
-              <Grow
-                {...TransitionProps}
-                style={{
-                  transformOrigin:
-                    placement === "bottom" ? "center top" : "center bottom",
-                }}
-              >
-                <Paper>
-                  <ClickAwayListener onClickAway={handleBookClose}>
-                    <MenuList
-                      autoFocusItem={open}
-                      id="menu-book-grow"
-                      onKeyDown={handleBookListKeyDown}
-                    >
-                      <ol
-                        style={{
-                          padding: "25px 8px 0px 8px",
-
-                          listStyle: "none",
-                        }}
-                      >
-                        <li>No Saved Posts</li>
-                        <hr />
-                        <li>
-                          <MenuItem onClick={handleClose}>Go To all</MenuItem>
-                        </li>
-                      </ol>
-                    </MenuList>
-                  </ClickAwayListener>
-                </Paper>
-              </Grow>
-            )}
-          </Popper> */}
         </div>
         <div className="menu">
           <Link to="/" style={{ margin: "0", fontSize: "large" }}>
@@ -377,7 +199,6 @@ export const MenuListComposition = (props) => {
             <div className="bar2"></div>
             <div className="bar3"></div>
           </button>
-          {props.children}
         </div>
       </nav>
       <div id="overlay" className={`${menuState.showing}`}>
@@ -394,14 +215,15 @@ export const MenuListComposition = (props) => {
           top: "52px",
           left: "0",
           right: "0",
-          backgroundColor: "#191c1d",
+          // backgroundColor: "#191c1d",
+          backgroundColor: "#fff",
           maxHeight: "fit-content",
           width: "100%",
         }}
         anchor={"top"}
         variant="persistent"
         open={state["top"]}
-        onClose={toggleDrawer("top", false)}
+        onClose={() => toggleDrawer("top", false)}
       >
         <div
           className="selection"
@@ -410,11 +232,10 @@ export const MenuListComposition = (props) => {
             margin: " 20px auto",
             width: "fit-content",
             maxHeight: "auto",
+            // boxShadow: '0px 0px 5px 0px rgba(112, 154, 168, 0.3)'
           }}
         >
-          <h5
-            style={{ margin: "5px auto", width: "fit-content", color: "#fff" }}
-          >
+          <h5 style={{ margin: "5px auto", width: "fit-content" }}>
             Categories
           </h5>
           <CategorySelection changeCategory={changeCategory} />
