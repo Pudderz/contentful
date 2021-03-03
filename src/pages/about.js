@@ -7,7 +7,7 @@ import { Link } from "gatsby";
 import { Fab, makeStyles, Tooltip } from "@material-ui/core";
 import LinkedInIcon from "@material-ui/icons/LinkedIn";
 import GitHubIcon from "@material-ui/icons/GitHub";
-import ContactForm from "../Components/ContactForm";
+import ContactForm from "../Components/AboutPage/ContactForm";
 
 const useStyles = makeStyles({
   contactInfo: {

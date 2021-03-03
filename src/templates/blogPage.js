@@ -4,7 +4,7 @@ import Image from "gatsby-image";
 import Footer from "../Components/Common/footer";
 import Metadata from "../Components/Common/metadata";
 import { MDXRenderer } from "gatsby-plugin-mdx";
-import TableOfContents from "../Components/TableOfContent";
+import TableOfContents from "../Components/BlogPage/TableOfContent";
 import PropTypes from "prop-types";
 import "../styles/blogStyles.scss";
 import { DiscussionEmbed } from "disqus-react";
