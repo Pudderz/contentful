@@ -46,7 +46,9 @@ const buttonClicked =(category)=>{
   if(window.location.pathname === "/search"){
     props.changeCategory({target:{value:category}})
   }else{
-    navigate('/search',{state: { category : category}}
+    let slug=category.toLowerCase();
+    slug= slug.split(' ').join('');
+    navigate(`/category/${slug}`
     )
   }
   }
