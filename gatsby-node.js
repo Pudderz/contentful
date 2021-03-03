@@ -68,6 +68,45 @@ exports.createPages = async ({ actions, graphql }) => {
     });
   });
 
+  // Category pages
+  const categorySet = new Set();
+  const categoryObject = {};
+
+  //creates set of all categories
+  blogPosts.map((article) =>
+    article.node.categories.map((category) => {
+      categorySet.add(category);
+    })
+  );
+
+  //creates object contianing an array for each category
+  categorySet.forEach((category) => (categoryObject[category] = []));
+
+  //adds article into category object for each category it is in
+  blogPosts.forEach((article, index) => {
+    article.node.categories.map((category) => {
+      categoryObject[category].push(article);
+    });
+  });
+
+  //creates category pages containing all articles for that category
+
+  for (category in categoryObject) {
+    let slug=category.toLowerCase();
+    slug= slug.split(' ').join('');
+    paginate({
+      createPage,
+      items: categoryObject[category],
+      itemsPerPage: 6,
+      pathPrefix: `/category/${slug}`,
+      component: path.resolve("./src/templates/categoryTemplate.js"),
+      context:{
+        category:category
+      }
+    });
+  }
+
+  // Search Page
   createPage({
     path: "/search",
     component: path.resolve(`./src/templates/searchTemplate.js`),
