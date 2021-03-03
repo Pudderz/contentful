@@ -41,7 +41,7 @@
     "gatsby-remark-responsive-image": "^1.0.0-alpha13-alpha.435e0178",
     "gatsby-remark-slug": "^0.1.0",
     "gatsby-remark-vscode": "^3.1.0",
-    "gatsby-source-contentful": "^3.0.3",
+    "gatsby-source-contentful": "^4.5.0",
     "gatsby-source-filesystem": "^2.3.30",
     "gatsby-transformer-remark": "^2.11.1",
     "gatsby-transformer-sharp": "^2.5.15",
