@@ -12,7 +12,7 @@ import CategorySelection from "./categorySelection";
 import { Grid } from "@material-ui/core";
 import Switch from "@material-ui/core/Switch";
 import SearchIcon from "@material-ui/icons/Search";
-import "./nav.scss";
+import "../styles/nav.scss";
 
 export const MenuListComposition = (props) => {
   const [open, setOpen] = React.useState(false);

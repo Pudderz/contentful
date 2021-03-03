@@ -6,7 +6,7 @@ import { graphql } from "gatsby";
 import Metadata from "../Components/metadata";
 import MenuListComposition from "../Components/top";
 import Footer from "../Components/footer";
-import "../Components/homePage.scss";
+import "../styles/homePage.scss";
 import AboutSection from "../Components/AboutSection";
 import AdSense from "react-adsense";
 import { PopularPosts } from "../Components/PopularPosts";

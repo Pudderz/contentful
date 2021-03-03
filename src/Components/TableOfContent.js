@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import CloseIcon from '@material-ui/icons/Close';
-import "./tocStyles.scss";
+import "../styles/tocStyles.scss";
 import { IconButton } from "@material-ui/core";
 
 function renderItems(items, activeIds) {

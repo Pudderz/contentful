@@ -6,7 +6,7 @@ import Metadata from "../Components/metadata";
 import { MDXRenderer } from "gatsby-plugin-mdx";
 import TableOfContents from "../Components/TableOfContent";
 import PropTypes from "prop-types";
-import "../Components/blogStyles.scss";
+import "../styles/blogStyles.scss";
 import { DiscussionEmbed } from "disqus-react";
 import MenuListComposition from "../Components/top";
 import FullscreenIcon from "@material-ui/icons/Fullscreen";
@@ -22,8 +22,6 @@ import {
   IconButton,
   Tooltip,
   Button,
-  Drawer,
-  ButtonBase,
 } from "@material-ui/core";
 import AboutSection from "../Components/AboutSection";
 

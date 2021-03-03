@@ -1,7 +1,7 @@
 import React from "react";
 import Footer from "../Components/footer";
 import Metadata from "../Components/metadata";
-import "../Components/about.scss";
+import "../styles/about.scss";
 import MenuListComposition from "../Components/top";
 import { Link } from "gatsby";
 import { Fab, makeStyles, Tooltip } from "@material-ui/core";
