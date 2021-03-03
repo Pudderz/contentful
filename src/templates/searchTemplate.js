@@ -4,8 +4,21 @@ import MenuListComposition from "../Components/top";
 import { Link } from "gatsby";
 import Container from "@material-ui/core/Container";
 import Footer from "../Components/footer";
-import { Button, InputLabel, MenuItem, Select } from "@material-ui/core";
-import '../Components/searchPage.scss'
+import { InputBase } from "@material-ui/core";
+import SearchIcon from "@material-ui/icons/Search";
+
+import {
+  Breadcrumbs,
+  Button,
+  IconButton,
+  InputLabel,
+  MenuItem,
+  Select,
+  TextField,
+  Typography,
+} from "@material-ui/core";
+import "../Components/searchPage.scss";
+import PopularBlog from "../Components/PopularBlog";
 class SearchTemplate extends Component {
   state = {
     isLoading: true,
@@ -39,12 +52,12 @@ class SearchTemplate extends Component {
   }
   async componentDidMount() {
     const categorySearch = new Set();
-    await this.props.pageContext.blogData.allBlogs.map(article => 
-      article.node.categories.map(category => {
-        categorySearch.add(category)
+    await this.props.pageContext.blogData.allBlogs.map((article) =>
+      article.node.categories.map((category) => {
+        categorySearch.add(category);
       })
-    )
-    this.setState({categoryList: [...categorySearch]})
+    );
+    this.setState({ categoryList: [...categorySearch] });
     await this.rebuildIndex();
 
     if (this.props.location.state !== null) {
@@ -82,52 +95,33 @@ class SearchTemplate extends Component {
     this.setState({ search: dataToSearch, isLoading: false });
   };
 
-  searchData = e => {
+  searchData = (e) => {
     const { search } = this.state;
-     const query = `${e.target.value} ${this.state.category}`.trim();
-    // let queryResult = search;
-    console.log(search)
-    const searchValue= `${e.target.value}`.trim();
-    // if(searchValue !== ''){
-      const queryResult = search.search(query);
-    //   if(this.state.category!== ''){
-    //   // console.log(`searching: ${query}`);
-    //   queryResult = queryResult.search(this.state.categories);
-    //   }
-    // }else if(this.state.category!== ''){
-    //     queryResult = queryResult.search(searchValue);
-    //     if(searchValue !== ''){
-    //     // console.log(`searching: ${query}`);
-    //     queryResult = queryResult.search(this.state.categories);
-    //     }
-    //   }
-  
-    // console.log(queryResult)
-    
-    // console.log(queryResult)
-    // console.log(queryResult);
+    const query = `${e.target.value} ${this.state.category}`.trim();
+    console.log(search);
+    const queryResult = search.search(query);
     this.setState({ searchQuery: e.target.value, searchResults: queryResult });
   };
 
-  handleSubmit = e => {
+  handleSubmit = (e) => {
     e.preventDefault();
     this.searchData({
-      target: { value: e.target.children[0].children[1].value },
+      target: { value: this.state.searchQuery },
     });
   };
 
-  changeCategory = e => {
-    console.log(e.target.value);
+  changeCategory = (e) => {
     this.setState(
       {
         category: e.target.value,
       },
       () => {
-        console.log(this.state.category);
         this.searchData({ target: { value: this.state.searchQuery } });
       }
     );
   };
+
+  handleSearch = (e) => this.setState({ searchQuery: e.target.value });
 
   render() {
     const { searchResults, searchQuery, category } = this.state;
@@ -136,113 +130,119 @@ class SearchTemplate extends Component {
     } = this.props;
     const queryResults =
       searchQuery === "" && category === "" ? allBlogs : searchResults;
+
     return (
-      <div>
+      <>
         <MenuListComposition
           changeSearch={this.searchData}
           changeCategory={this.changeCategory}
         />
-
-        <div
-          id="searchContainer"
-          style={{
-            backgroundColor: "rgba(236,239,243,0.5)",
-            borderBottom: "1px solid #ECEFF3",
-            // height: "300px",
-            width: "100%",
-          }}
-        >
-          <form onSubmit={this.handleSubmit}>
-            <div
-              style={{
-                left: "10%",
-                transform: "translate(0%,50%)",
-                margin: "0",
-                position: "absolute",
-                bottom: "50%",
-                right: "10%",
-                boxSizing: "border-box",
-              }}
-            >
-              <h3 style={{ margin: "0" }}>Searching For</h3>
-              <input
-                className="bigSearch"
-                autoComplete="off"
-                id="Search"
-                value={searchQuery}
-                onChange={this.searchData}
-                placeholder="Search"
-                style={{ margin: "0 auto" }}
-                
-              />
-              <Button
-              type="submit"
-              variant="outlined"
-              className="smallSearchSubmit"
-              style={{margin:'20px auto'}}
-              >Submit</Button>
-            </div>
-            
-          </form>
-        </div>
         <Container maxWidth="lg">
-          <InputLabel id="demo-controlled-open-select-label">
-            Category
-          </InputLabel>
-          <Select
-            labelId="demo-controlled-open-select-label"
-            id="demo-controlled-open-select"
-            value={this.state.category}
-            onChange={this.changeCategory}
-            style={{width: '100%'}}
+          <div
+            style={{
+              width: "100%",
+              padding: "20px 8px",
+              boxSizing: "border-box",
+            }}
           >
-            <MenuItem value="">
-              <em>None</em>
-            </MenuItem>
+            <Breadcrumbs aria-label="breadcrumb" className="breadcrumb">
+              <Link color="inherit" to="/posts">
+                All Articles
+              </Link>
+              <Typography color="textPrimary">Search</Typography>
+            </Breadcrumbs>
+          </div>
 
-            {this.state.categoryList.map((category, index) => {
-                return (
-                  <MenuItem key={`${index}`} value={`${category}`}>
-                    {category}
-                  </MenuItem>
-                );
-              })
-            }
-          </Select>
-          <h2>{queryResults.length} Results</h2>
-          <ol style={{ paddingLeft: 0, minHeight: "20vh" }}>
-            {queryResults.map((item) => {
-              return (
-                <li
-                  key={item.node.post.childMdx.frontmatter.slug}
-                  className="searchItem"
+          <form onSubmit={this.handleSubmit}>
+            <div>
+              {/* <h3 style={{ margin: "0" }}>Searching For</h3> */}
+              <div>
+                <InputBase
+                  autoComplete="off"
+                  name="search"
+                  value={searchQuery}
+                  onChange={this.handleSearch}
+                  placeholder="Search…"
                   style={{
-                    maxWidth: "1300px",
-                    width: "100%",
-                    // height: "240px",
-                    margin: "20px auto",
-                    padding: "20px",
+                    margin: "10px auto",
+                    backgroundColor: "#fff",
+                    boxShadow: "0px 0px 5px 0px rgba(112, 154, 168, 0.3)",
+                    padding: "3px 11px",
                     borderRadius: "20px",
-                    boxShadow: "0px 1px 2px 1px lightslategrey",
-                    boxSizing: "border-box",
-                    listStyle: "none",
+                    width: "100%",
+                  }}
+                  inputProps={{
+                    "aria-label": "search",
+                  }}
+                  endAdornment={
+                    <IconButton size="small" type="submit">
+                      <SearchIcon style={{ fill: "black" }} />
+                    </IconButton>
+                  }
+                />
+                <div
+                  style={{
+                    width: "fit-content",
+                    minWidth: "200px",
+                    padding: "10px 11px 0",
                   }}
                 >
-                  <Link
-                    to={`../blogs/${item.node.post.childMdx.frontmatter.slug}`}
+                  <InputLabel id="demo-controlled-open-select-label">
+                    Category
+                  </InputLabel>
+                  <Select
+                    labelId="demo-controlled-open-select-label"
+                    id="demo-controlled-open-select"
+                    value={this.state.category}
+                    onChange={this.changeCategory}
+                    style={{ width: "100%" }}
+                    placeholder="None"
                   >
-                    <h3 className="underline black" style={{ color: "#191c1d", margin: "10px 0" }}>
-                      {item.node.post.childMdx.frontmatter.title}
-                    </h3>
-                  </Link>
-                  <p>Posted at: {item.node.post.childMdx.frontmatter.Date}</p>
-                </li>
-              );
+                    <MenuItem value="">
+                      <em>None</em>
+                    </MenuItem>
+
+                    {this.state.categoryList.map((category, index) => {
+                      return (
+                        <MenuItem key={`${index}`} value={`${category}`}>
+                          {category}
+                        </MenuItem>
+                      );
+                    })}
+                  </Select>
+                </div>
+
+                {/* <Button
+                  type="submit"
+                  variant="outlined"
+                  className="smallSearchSubmit"
+                  style={{ width: "fit-content" }}
+                >
+                  Submit
+                </Button> */}
+              </div>
+
+              <div style={{ display: "flex", width: "100%", gap: "20px" }}>
+                <div style={{ width: "100%" }}></div>
+              </div>
+            </div>
+          </form>
+          <h2>{queryResults.length} Results</h2>
+          <ol
+            style={{
+              paddingLeft: 0,
+              minHeight: "20vh",
+              display: "grid",
+              gap: "10px",
+            }}
+          >
+            {queryResults.map((item) => {
+              return <PopularBlog data={item} />;
             })}
           </ol>
         </Container>
         <Footer changeCategory={this.changeCategory} />
-      </div>
+      </>
     );
   }
 }
