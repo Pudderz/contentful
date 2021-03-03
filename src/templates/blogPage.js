@@ -25,6 +25,7 @@ import {
   Drawer,
   ButtonBase,
 } from "@material-ui/core";
+import AboutSection from "../Components/AboutSection";
 
 const MarkdownTemp = ({ data, pageContext }) => {
   const post = data.contentfulTeam.post;
@@ -85,7 +86,7 @@ const MarkdownTemp = ({ data, pageContext }) => {
       </header> */}
       
 
-      <Drawer
+      {/* <Drawer
         anchor="right"
         open={state[`right`]}
         onClose={() => toggleDrawer(`right`, false)}
@@ -122,7 +123,7 @@ const MarkdownTemp = ({ data, pageContext }) => {
          
         )} */}
 
-        <div
+        {/* <div
           className="overlay"
           style={{
             display: "grid",
@@ -132,12 +133,12 @@ const MarkdownTemp = ({ data, pageContext }) => {
             gridTemplateRows: "repeat(auto-fill, 40px)",
           }}
         >
-          <Link to="/">Home</Link>
+          {/* <Link to="/">Home</Link>
           <Link to="/posts">Posts</Link>
           <Link to="/search">Search</Link>
           <Link to="/about">About</Link>
-          <Button to="https://github.com/Pudderz">Github</Button>
-        </div>
+          <Button to="https://github.com/Pudderz">Github</Button> */}
+        {/* </div>
         {next && (
           <Link
             className="purple buttonGap"
@@ -169,15 +170,30 @@ const MarkdownTemp = ({ data, pageContext }) => {
             Previous Post
           </Link>
         )}
-      </Drawer>
-      <section style={{ marginTop: "0px" }}>
-        {/* {post?.childMdx.tableOfContents?.items && (
+      </Drawer> */}
+        <section style={{ marginTop: "20px" }}>
+          <div style={{gridColumn: '6/7'}}>
+             
+        <div 
+        id="blogAboutSection"
+        style={{
+          // width: "clamp(300px,100%,33.3%)",
+          margin: "4.2em 20px",
+          flexGrow: "2",
+          boxSizing:'border-box',
+      }}>
+<AboutSection/> 
+        </div>
+           
+            {post?.childMdx.tableOfContents?.items && (
           <TableOfContents items={post.childMdx.tableOfContents.items}>
           </TableOfContents>
-        )} */}
+        )}
+          </div>
+        
 
         <div className="blogPiece">
-          <div className="blogContent">
+          {/* <div className="blogContent"> */}
           <div
         style={{
           // textAlign: "center",
@@ -258,7 +274,7 @@ const MarkdownTemp = ({ data, pageContext }) => {
           </Tooltip>
           <Modal
             aria-labelledby="transition-modal-Image"
-            aria-describedby="transition-modal-description"
+            aria-describedby={`modal image of ${post.childMdx.frontmatter.title}`}
             open={openImage}
             onClose={handleImageClose}
             closeAfterTransition
@@ -274,7 +290,7 @@ const MarkdownTemp = ({ data, pageContext }) => {
                 loading="lazy"
                 fluid={data.contentfulTeam.featuredImage.fluid}
                 alt={post.childMdx.frontmatter.title}
-                style={{ position: "relative", width: "100%", height: "100%" }}
+                style={{ position: "relative", width: "80%", maxHeight: "80%",maxWidth:'90%', margin:'auto' }}
                 className="image"
               />
               {/* </div> */}
@@ -336,14 +352,29 @@ const MarkdownTemp = ({ data, pageContext }) => {
       </div>
 
 
+   <div style={{ marginTop: "50px" }}>
+        {/* {post?.childMdx.tableOfContents?.items && (
+          <TableOfContents items={post.childMdx.tableOfContents.items}>
+          </TableOfContents>
+        )} */}
+
+        {/* <div className="blogPiece"> */}
+          <div className="blogContent">
+         
 
 
             <MDXRenderer>{post.childMdx.body}</MDXRenderer>
             <DiscussionEmbed {...disqusConfig} />
           </div>
+        {/* </div> */}
         </div>
-      </section>
+      </div>
 
+          {/* </div> */}
+        
+  
+     
+</section>
       <Footer />
     </React.Fragment>
   );

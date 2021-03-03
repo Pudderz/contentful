@@ -8,12 +8,10 @@ summary {
 }
 
 #examples {
-  grid-column: 6/7;
-  margin: 20px;
-  position: sticky;
   display: block;
   background-color: white;
-  font-size: 1.2em;
+  padding: 20px;
+  box-shadow: 0px 0px 5px 0px rgba(112, 154, 168, 0.3);
   grid-column: 6/7;
   ol {
     padding: 0;
@@ -24,14 +22,12 @@ summary {
   border-radius: 5px;
   // border: 1px solid;
   padding: 1rem;
-  margin-bottom: 2rem;
+  margin: 2rem 30px;
   max-height: calc(100vh - (4rem * 2));
   overflow: auto;
   top: 4rem;
   height: fit-content;
-  summary {
-    cursor: pointer;
-  }
+  
   &::-webkit-details-marker {
     display: none;
   }
@@ -39,7 +35,7 @@ summary {
 
 section {
   display: grid;
-  grid-template-columns: 1fr minmax(0, 35ch) 1fr 90ch 1fr 35ch 1fr;
+  grid-template-columns: 2fr minmax(0, 45ch) 1fr 90ch 1fr minmax(20ch, 45ch) 2fr;
   grid-auto-flow: dense;
   margin-top: 4rem;
   margin-bottom: 4rem;
@@ -49,7 +45,17 @@ section {
   grid-column: 4/5;
 }
 
-@media (max-width: 1200px) {
+#blogAboutSection{
+  .aboutButtons{
+    flex-flow: wrap;
+  }
+}
+
+
+@media (max-width: 1300px) {
+  #blogAboutSection{
+    display:none;
+  }
   section {
     grid-template-columns: 1rem 1fr 1rem;
   }
@@ -68,84 +74,30 @@ section {
     display: flow-root;
   }
 }
-$animate: all 0.2s ease-in-out;
 
 #examples,
 .examples {
   .example {
     display: flex;
-    flex-flow: row nowrap;
-    align-items: center;
+
     margin: 0 0 45px;
     .hover {
-      font-size: 14px;
+      font-size: 16px;
       text-align: center;
       margin: 0 auto;
       padding: 0;
-      transition: $animate;
       position: relative;
       width: fit-content;
       color: grey;
       &:hover {
         color: rgb(48, 48, 48);
       }
-      &:before,
-      &:after {
-        content: "";
-        position: absolute;
-        bottom: 0px;
-        width: 0px;
-        height: 3px;
-        margin: 5px 0 0;
-        transition: $animate;
-        transition-duration: 0.75s;
-        opacity: 0;
-        background-color: #191c1d;
-        left: 0;
-      }
-      &.hover-1 {
-        &:before,
-        &:after {
-          left: 0;
-        }
-      }
-      &.hover-2 {
-        &:before,
-        &:after {
-          right: 0;
-        }
-      }
-      &.hover-3 {
-        &:before {
-          left: 50%;
-        }
-        &:after {
-          right: 50%;
-        }
-      }
-      &.hover-4 {
-        &:before {
-          left: 0;
-        }
-        &:after {
-          right: 0;
-        }
-      }
+     
 
       &.active {
         cursor: pointer;
-        &:before,
-        &:after {
-          width: 100%;
-          opacity: 1;
-        }
-        &.hover-3,
-        &.hover-4 {
-          &:before,
-          &:after {
-            width: 50%;
-          }
-        }
+        text-decoration: underline;
+        
       }
     }
   }

@@ -1,6 +1,8 @@
-import { Button, SwipeableDrawer } from "@material-ui/core";
 import React, { useState, useEffect } from "react";
+import CloseIcon from '@material-ui/icons/Close';
 import "./tocStyles.scss";
+import { IconButton } from "@material-ui/core";
+
 function renderItems(items, activeIds) {
   return (
     <ol  style={{padding:'0px', listStyle:'none'}}>
@@ -70,17 +72,27 @@ function useActiveId(idArray) {
 }
 
 export function TableOfContents(props) {
+  const [display, setDisplay]= useState(true)
   const idArray = getIds(props.items);
   const activeId = useActiveId(idArray);
-  console.log(activeId)
- 
 
+
+  const handleClose = () =>{  
+    setDisplay(!display);
+  }
 
   return (
     <>
-      <div id="examples">
-        <summary>Table of Contents</summary>
-        <ol className="example">{renderItems(props.items, activeId)}</ol>
+      <div id="examples" style={{position:display?"sticky": "inherit"}}>
+        <div style={{display:'flex', justifyContent:'space-between'}}>
+
+        <summary style={{alignSelf:'center'}}>Table of Contents</summary>
+        <IconButton aria-label="close" onClick={handleClose}>
+          <CloseIcon fontSize="small" />
+        </IconButton>
+        </div>
+        
+        <ol className="example" style={{display:display?"flex":"none"}}>{renderItems(props.items, activeId)}</ol>
         {props.children}
       
       </div>
