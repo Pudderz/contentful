@@ -1,15 +1,15 @@
 import React, { useState } from "react";
-import "../Components/styles.scss";
-import RecentPosts from "../Components/recentPosts";
+import "../styles/styles.scss";
+import RecentPosts from "../Components/FrontPage/recentPosts";
 import PropTypes from "prop-types";
 import { graphql } from "gatsby";
-import Metadata from "../Components/metadata";
-import MenuListComposition from "../Components/top";
-import Footer from "../Components/footer";
+import Metadata from "../Components/Common/metadata";
+import MenuListComposition from "../Components/Common/top";
+import Footer from "../Components/Common/footer";
 import "../styles/homePage.scss";
-import AboutSection from "../Components/AboutSection";
+import AboutSection from "../Components/Common/AboutSection";
 import AdSense from "react-adsense";
-import { PopularPosts } from "../Components/PopularPosts";
+import { PopularPosts } from "../Components/FrontPage/PopularPosts";
 import {Featured } from '../Components/featured'
 function Home({ data }) {
   return (

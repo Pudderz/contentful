@@ -1,8 +1,8 @@
 import React from "react";
-import Footer from "../Components/footer";
-import Metadata from "../Components/metadata";
+import Footer from "../Components/Common/footer";
+import Metadata from "../Components/Common/metadata";
 import "../styles/about.scss";
-import MenuListComposition from "../Components/top";
+import MenuListComposition from "../Components/Common/top";
 import { Link } from "gatsby";
 import { Fab, makeStyles, Tooltip } from "@material-ui/core";
 import LinkedInIcon from "@material-ui/icons/LinkedIn";

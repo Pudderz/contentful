@@ -1,9 +1,7 @@
 import React from "react";
 import { Link } from "gatsby";
-import { Grid } from "@material-ui/core";
-import Blog from "./blog";
-import { Breadcrumbs, Typography } from "@material-ui/core";
 import PopularBlog from "./PopularBlog";
+
 export const RecentPosts = (props) => {
   const articles = props.data;
   return (

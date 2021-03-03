@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import { graphql, Link } from "gatsby";
 import Image from "gatsby-image";
-import Footer from "../Components/footer";
-import Metadata from "../Components/metadata";
+import Footer from "../Components/Common/footer";
+import Metadata from "../Components/Common/metadata";
 import { MDXRenderer } from "gatsby-plugin-mdx";
 import TableOfContents from "../Components/TableOfContent";
 import PropTypes from "prop-types";
 import "../styles/blogStyles.scss";
 import { DiscussionEmbed } from "disqus-react";
-import MenuListComposition from "../Components/top";
+import MenuListComposition from "../Components/Common/top";
 import FullscreenIcon from "@material-ui/icons/Fullscreen";
 import SettingsIcon from "@material-ui/icons/Settings";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
@@ -16,14 +16,14 @@ import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 import Modal from "@material-ui/core/Modal";
 import Backdrop from "@material-ui/core/Backdrop";
 import Fade from "@material-ui/core/Fade";
-import "../Components/blogPage.scss";
+import "../styles/blogPage.scss";
 import {
   Fab,
   IconButton,
   Tooltip,
   Button,
 } from "@material-ui/core";
-import AboutSection from "../Components/AboutSection";
+import AboutSection from "../Components/Common/AboutSection";
 
 const MarkdownTemp = ({ data, pageContext }) => {
   const post = data.contentfulTeam.post;

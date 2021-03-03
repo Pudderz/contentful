@@ -1,4 +1,4 @@
-require('./src/Components/styles.scss');
+require('./src/styles/styles.scss');
 export const onServiceWorkerUpdateReady =()=>{
     const answer = window.confirm(
         `This application has been updated. ` +

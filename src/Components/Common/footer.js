@@ -2,7 +2,7 @@ import { Button, ButtonGroup, TextField } from "@material-ui/core";
 import { Link } from "gatsby";
 import React, { Component } from "react";
 import CategorySelection from "./categorySelection";
-import './footer.scss'
+import '../../styles/footer.scss'
 
 
 class Footer extends Component {

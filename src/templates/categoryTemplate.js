@@ -1,16 +1,16 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { graphql, Link } from "gatsby";
-import Footer from "../Components/footer";
+import Footer from "../Components/Common/footer";
 import Blog from "../Components/blog";
 import Pager from "../Components/pager";
-import GoToTopBot from "../Components/goToTopBot";
-import Metadata from "../Components/metadata";
+import GoToTopBot from "../Components/Common/goToTopBot";
+import Metadata from "../Components/Common/metadata";
 import Grid from "@material-ui/core/Grid";
-import MenuListComposition from "../Components/top";
-import CategorySelection from "../Components/categorySelection";
+import MenuListComposition from "../Components/Common/top";
+import CategorySelection from "../Components/Common/categorySelection";
 import { Breadcrumbs, Typography } from "@material-ui/core";
-import PopularBlog from "../Components/PopularBlog";
+
 
 const CategoryTemplate = (props) => {
   const { data, pageContext } = props;

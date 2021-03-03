@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import * as JsSearch from "js-search";
-import MenuListComposition from "../Components/top";
+import MenuListComposition from "../Components/Common/top";
 import { Link } from "gatsby";
 import Container from "@material-ui/core/Container";
-import Footer from "../Components/footer";
+import Footer from "../Components/Common/footer";
 import { InputBase } from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
 
@@ -17,8 +17,8 @@ import {
   TextField,
   Typography,
 } from "@material-ui/core";
-import "../Components/searchPage.scss";
-import PopularBlog from "../Components/PopularBlog";
+import "../styles/searchPage.scss";
+import PopularBlog from "../Components/FrontPage/PopularBlog";
 class SearchTemplate extends Component {
   state = {
     isLoading: true,
