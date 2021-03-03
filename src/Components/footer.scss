@@ -1,26 +1,33 @@
 
-#footerSubscribe{
-    width: 30%;
-    height: 100%;
-    @media(max-width:600px){
-        width: 100%;
-        margin: 20px 0 0;
-        height: auto;
-    }
-    &:hover{
-        letter-spacing: 1px;
+// #footerSubscribe{
+//     width: 30%;
+//     height: 100%;
+//     @media(max-width:600px){
+//         width: 100%;
+//         margin: 20px 0 0;
+//         height: auto;
+//     }
+//     &:hover{
+//         letter-spacing: 1px;
        
-    }
-}
-@media(max-width:600px){
-    .MuiFormControl-root {
-        width: 100%;
-    }
-}
+//     }
+// }
+// @media(max-width:600px){
+//     .MuiFormControl-root {
+//         width: 100%;
+//     }
+// }
 
 .flexFooter{
+  display: flex;
+  justify-content: space-around;
     a{
       height: 22px;
+      color: rgb(74, 85, 104);
+      &:hover{
+        text-decoration: underline;
+      }
+
       &:before,
       &:after{
         height: 2px;
@@ -46,7 +53,9 @@
 footer {
     margin-top: 30px;
     padding: 20px;
-    background-color: #191c1d;
+    // background-color: #191c1d;
+    background-color: #fff;
+    box-shadow: 0px 0px 5px 0px rgba(112, 154, 168, 30%);
     .flex {
       justify-content: space-evenly;
     }
@@ -72,7 +81,7 @@ footer {
       z-index: 3;
     }
     div:not(.movingOutline) {
-      background-color: rgb(25, 28, 29);
+      // background-color: rgb(25, 28, 29);
       border-style: none !important;
     }
   }
@@ -81,15 +90,21 @@ footer {
     button {
       font-size: 15px;
       padding: 0px 5px;
-      color: rgba(255, 255, 255, 0.8);
-      outline: rgba(255, 255, 255, 0.8);
-      border: 1px solid rgba(255, 255, 255, 0.8);
+      // color: rgba(255, 255, 255, 0.8);
+      // outline: rgba(255, 255, 255, 0.8);
+      // border: 1px solid rgba(255, 255, 255, 0.8);
+  color: #4a5568;
+  outline: #4a5568;
+  border: 1px solid #4a5568;
       transition: 0.3s ease-in-out;
       letter-spacing: inherit;
       text-transform: initial;
       &:hover {
         //    border: 1px solid #fcbc3e;
-        color: #fcbc3e;
+        
+        // color: #fcbc3e;
+        // color: rgba(0, 200, 0, 0.2);
+        color: #4a5568;
         opacity: 1;
       }
     }

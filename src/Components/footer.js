@@ -13,8 +13,8 @@ class Footer extends Component {
   
   render() {
     return (
-      <div className="colorPurple">
-        <footer className="grid">
+
+        <footer className="grid" style={{position:'sticky', top:'100%', left:'0', right:'0'}}>
           <hr
             style={{ width: "100%", maxWidth: "1300px", margin: "24px auto 0" }}
           />
@@ -41,7 +41,6 @@ class Footer extends Component {
             <Link to="/posts">All Articles</Link>
           </div>
         </footer>
-      </div>
     );
   }
 }
