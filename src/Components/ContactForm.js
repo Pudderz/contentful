@@ -16,6 +16,10 @@ const useStyles = makeStyles((theme) => ({
     width: '50%',
     padding: '20px',
     boxSizing: 'border-box',
+    minWidth:'300px',
+    flexGrow:'2',
+    width:'600px',
+    margin:'0',
     '& button':{
       margin: '20px 0',
     }
@@ -110,10 +114,9 @@ export default function ContactForm() {
   };
 
   return (
-      <div className={`${classes.root} form`}>
+      <div className={`${classes.root} form aboutContainer `}>
         <h2>Contact Form</h2>
 
-        <hr />
         {/* form designed to work with for netlify forms */}
         <form
           onSubmit={handleSubmit}

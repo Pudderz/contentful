@@ -48,10 +48,10 @@ ul.flexbottom {
 
 
 .blogPiece {
-  background-color: white;
+  // background-color: white;
   max-width: 100%;
   margin: 0px auto 20px auto;
-
+  
   padding: 0.5vw;
   font-size: 1.3em;
   h1 {
@@ -65,9 +65,11 @@ ul.flexbottom {
 
 .blogContent {
     font-family: system-ui;
-    background-color: white;
+    // background-color: white;
+  // box-shadow: 0px 0px 2px 0px #709aa8;
     // padding: 20px;
-    font-size: 16px;
+    
+    font-size: 1.125rem;
     padding: 2rem 2rem 0px;
     box-sizing: border-box;
     h1{
@@ -91,7 +93,7 @@ ul.flexbottom {
     }
     p{
       // font-size: 0.9em;
-      
+      margin-bottom: 2rem;
       color: #393939;
       line-height: 30px;
       letter-spacing: 0.005em;
