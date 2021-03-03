@@ -2,8 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import { graphql, Link } from "gatsby";
 import Footer from "../Components/Common/footer";
-import Blog from "../Components/blog";
-import Pager from "../Components/pager";
+import Blog from "../Components/listOfBlogs/blog";
+import Pager from "../Components/listOfBlogs/pager";
 import GoToTopBot from "../Components/Common/goToTopBot";
 import Metadata from "../Components/Common/metadata";
 import Grid from "@material-ui/core/Grid";
@@ -11,11 +11,12 @@ import MenuListComposition from "../Components/Common/top";
 import CategorySelection from "../Components/Common/categorySelection";
 import { Breadcrumbs, Typography } from "@material-ui/core";
 import PopularBlog from "../Components/FrontPage/PopularBlog";
+import ItemBlog from "../Components/listOfBlogs/ItemBlog";
 
 const listOfAllPosts = ({ data, pageContext }) => {
   const articles = data.allContentfulTeam.edges;
   return (
-    <div>
+    <>
       <Metadata />
       <MenuListComposition />
       {/* <h3 style={{ margin: "50px auto 25px auto", textAlign: "center" }}>
@@ -29,9 +30,9 @@ const listOfAllPosts = ({ data, pageContext }) => {
       <div className="columnContainer" style={{ width: "100%" }}>
         <div
           className="columns"
-          style={{ display: "flex", alignItems: "stretch" }}
+          style={{ display: "flex", alignItems: "stretch", width:'100%', justifyContent:'space-between', }}
         >
-          <div className="postContainer" >
+          <div className="postContainer" style={{margin:'auto', flexGrow:'1'}}>
             <Grid
               container
               spacing={2}
@@ -53,13 +54,18 @@ const listOfAllPosts = ({ data, pageContext }) => {
                   </Breadcrumbs>
                 </div>
               </Grid>
-              {articles.map((article, index) => (
-                <Blog key={index} data={article} smallestSize={4} small={5} />
-              ))}
+              <ol className="listOfPosts">
+                
+               {articles.map((article, index) => (
+                <ItemBlog data={article} ></ItemBlog>
+                // <Blog key={index} data={article} smallestSize={4} small={5} />
+              ))} 
+              </ol>
+              
             </Grid>
           </div>
           <div
-          className="filterOptions"
+            className="filterOptions"
             style={{
               background: "#F5F7F7",
               padding: "20px",
@@ -67,26 +73,30 @@ const listOfAllPosts = ({ data, pageContext }) => {
               flexBasis: "20%",
             }}
           >
-            <h3 style={{fontSize:'1.5em'}}>Categories</h3>
+            <h3 style={{ fontSize: "1.5em" }}>Categories</h3>
             <hr />
             <div style={{ maxWidth: "500px" }}>
               <CategorySelection />
             </div>
             <hr />
-            <h3 style={{fontSize:'1.5em'}}>Popular Posts</h3>
-            
+            <h3 style={{ fontSize: "1.5em" }}>Popular Posts</h3>
+
             <hr />
             <ul
               container
               spacing={2}
               className="allPosts"
-              style={{ margin: "auto", maxWidth: "min(1080px, 100%)", padding:'0', gap:'20px', display:'grid' }}
+              style={{
+                margin: "auto",
+                maxWidth: "min(1080px, 100%)",
+                padding: "0",
+                gap: "20px",
+                display: "grid",
+              }}
             >
-              {/* <Grid xs={12} item>
-              </Grid> */}
+
               {articles.map((data, index) => (
                 <li
-                
                   key={data.node.post.childMdx.frontmatter.slug}
                   style={{
                     display: "flex",
@@ -94,25 +104,21 @@ const listOfAllPosts = ({ data, pageContext }) => {
                     padding: "0px",
                     justifyContent: "space-between",
                     boxSizing: "border-box",
-                    
                   }}
                 >
-                  <div style={{ display: "flex" }} className="popListItems "> 
-
-                    <div  style={{ width: "100%" }}>
-<Link
+                  <div style={{ display: "flex" }} className="popListItems ">
+                    <div style={{ width: "100%" }}>
+                      <Link
                         to={`/blogs/${data.node.post.childMdx.frontmatter.slug}`}
-                      >                    
+                      >
                         <div
                           style={{
                             // padding: "0px 20px 20px 20px",
                             display: "flex",
-                            justifyContent:'space-between',
+                            justifyContent: "space-between",
                             gap: "10px",
                           }}
                         >
-
-                  
                           <h2
                             style={{
                               fontSize: "15px",
@@ -125,32 +131,23 @@ const listOfAllPosts = ({ data, pageContext }) => {
                           >
                             {data.node.post.childMdx.frontmatter.title}
                           </h2>
-  
+
                           <time
                             style={{
                               color: "rgb(42, 48, 57)",
                               fontSize: "14px",
-                              alignSelf:'center'
+                              alignSelf: "center",
                             }}
                           >
                             {data.node.post.childMdx.frontmatter.postedAt}
                           </time>
                         </div>
-                    </Link>
+                      </Link>
                     </div>
                   </div>
-                  {/* </li> */}
                 </li>
-                // <PopularBlog key={index} data={article} smallestSize={12} small={12} index = {index} text={false}/>
               ))}
             </ul>
-            {/* <Grid container  
-            className="allPosts recent"
-            >
-            {articles.map((article, index) => (
-                <Blog key={index} data={article} smallestSize={5} small={12}/>
-            ))}
-            </Grid> */}
           </div>
         </div>
         <Pager pageContext={pageContext} />
@@ -158,7 +155,7 @@ const listOfAllPosts = ({ data, pageContext }) => {
 
       <GoToTopBot />
       <Footer />
-    </div>
+    </>
   );
 };
 
@@ -176,6 +173,7 @@ export const query = graphql`
     ) {
       edges {
         node {
+          categories
           featuredImage {
             fluid(maxWidth: 800) {
               ...GatsbyContentfulFluid

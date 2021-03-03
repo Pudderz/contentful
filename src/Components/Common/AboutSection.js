@@ -17,7 +17,6 @@ export const AboutSection = () => {
     <div>
       <div
         className="aboutContainer"
-        //   style={{ width: "clamp(300px,100%,33.3%)" }}
       >
         <h3>Hey I'm Matthew</h3>
 
@@ -27,12 +26,12 @@ export const AboutSection = () => {
             role.
           </p>
           <p>
-            Here I take a deep dive into tech I'm learn to solidify and further
-            my learning,
+            Here I take a deep dive into what I'm learning to solidify and further
+            my knowledge, improve my explanation and writing skills and hopefully create a helpful resource to
+            others.
           </p>
           <p>
-            improve my explanations and hopefully create a helpful resource to
-            others.
+            Feel free to message me, would love to chat and share ideas.
           </p>
         </div>
 

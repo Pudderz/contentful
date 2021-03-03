@@ -21,7 +21,6 @@ function renderItems(items, activeIds) {
               {item.title}
             </a>
           )}
-
           {item.items && renderItems(item.items, activeIds)}
         </li>
       )}

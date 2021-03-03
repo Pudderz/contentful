@@ -427,3 +427,15 @@ nav.breadcrumb {
     
 }
 
+
+
+.listOfPosts{
+  width: 100%;
+  display: flex;
+  gap: 10px;
+  padding: 10px;
+  flex-direction: column;
+  &>li{
+    width: 100%;
+  }
+}

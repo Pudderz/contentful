@@ -68,7 +68,6 @@ export const About = () => {
           <div
             className="textContainer aboutContainer "
             style={{
-              // width: "clamp(300px,100%,33.3%)",
               margin: "0 auto",
               flexGrow: "2",
             }}
