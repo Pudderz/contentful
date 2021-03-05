@@ -11,7 +11,10 @@ import AboutSection from "../Components/Common/AboutSection";
 import AdSense from "react-adsense";
 import { PopularPosts } from "../Components/FrontPage/PopularPosts";
 import {Featured } from '../Components/featured'
-function Home({ data }) {
+function Home(props, ) {
+  // console.log(data.allPageViews.nodes);
+  const { data,pageContext  } = props;
+
   return (
     <>
       <Metadata />
@@ -20,21 +23,21 @@ function Home({ data }) {
 
       <main>
         <div style={{ margin: "auto", maxWidth: "1300px" }}>
-          <div className="featured" style={{ marginTop: "50px" }}>
-            {/* <Featured
+          {/* <div className="featured" style={{ marginTop: "50px" }}>
+            <Featured
             // data={data.allContentfulTeam.edges[state.featuredIndex]}
             allData={data}
             // onPostClick={onPostClick}
           ></Featured>
-           */}
           
-          </div>
+          
+          </div> */}
           <div
           className="frontPageContainer"
           
           >
-            <RecentPosts data={data.allContentfulTeam.edges} />
-            <PopularPosts data={data.allContentfulTeam.edges} />
+            <RecentPosts data={data.recentPosts.edges} />
+            <PopularPosts data={data.popularPosts.edges} popularInfo={pageContext.popularPosts} />
 
             <div
             className="clampContainer"
@@ -43,13 +46,6 @@ function Home({ data }) {
             </div>
           </div>
 
-          {/* <AdSense.Google
-              client='ca-pub-1286129126098643'
-              // slot='7806394673'
-              // style={{ display: 'block' }}
-              // layout='in-article'
-              // format='fluid'
-            /> */}
         </div>
       </main>
       <Footer />
@@ -58,11 +54,14 @@ function Home({ data }) {
 }
 Home.propTypes = {
   data: PropTypes.object.isRequired,
+  pageContext: PropTypes.object.isRequired,
 };
 
 export const query = graphql`
-  query {
-    allContentfulTeam(
+  query(
+    $array: [String]
+  ){
+    recentPosts: allContentfulTeam(
       limit: 4
       sort: { fields: [post___childMdx___frontmatter___Date], order: DESC }
     ) {
@@ -87,6 +86,35 @@ export const query = graphql`
         }
       }
     }
+
+    popularPosts: allContentfulTeam(
+      limit: 4
+      filter: {slug: {in: $array}}
+    ) {
+      edges {
+        node {
+          categories
+          featuredImage {
+            fluid(maxWidth: 1300, quality: 90) {
+              ...GatsbyContentfulFluid
+            }
+          }
+          post {
+            childMdx {
+              frontmatter {
+                slug
+                title
+                snippet
+                postedAt
+              }
+            }
+          }
+        }
+      }
+    }
+
+   
+    
   }
 `;
 

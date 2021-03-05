@@ -1,8 +1,33 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import PopularBlog from "./PopularBlog";
 
 export const PopularPosts = (props) => {
   const articles = props.data;
+  const popularPosts = props.popularInfo;
+  const [allPopularPosts, setAllPopularPosts] = useState( props.data)
+  // ToDO order articles in order of pageviews provided by popularPosts
+
+useEffect(() => {
+  const popularOrder = [];
+  console.log(popularPosts);
+  popularPosts.forEach((post)=>{
+
+
+    for(let article of articles){
+      
+      if(article.node.post.childMdx.frontmatter.slug === post.id){
+        console.log(article.node.post.childMdx.frontmatter.slug);
+        popularOrder.push(article);
+        break;
+      }
+    }
+  })
+
+  setAllPopularPosts(popularOrder);
+
+}, [])
+
+
   return (
     <div
       className="popularPosts"
@@ -25,9 +50,9 @@ export const PopularPosts = (props) => {
           boxSizing: "border-box",
         }}
       >
-        {articles.map((article, index) => (
+        {allPopularPosts.map((article, index) => (
           <PopularBlog
-            key={index}
+            key={article.node.post.childMdx.frontmatter.slug}
             data={article}
             smallestSize={6}
             small={6}

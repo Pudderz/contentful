@@ -2,8 +2,6 @@
 const { paginate } = require("gatsby-awesome-pagination");
 const path = require("path");
 
-// const crypto = require("crypto");
-// const { google } = require("googleapis");
 
 require("dotenv").config();
 
@@ -28,6 +26,12 @@ exports.createPages = async ({ actions, graphql }) => {
               }
             }
           }
+        }
+      }
+      allPageViews(sort: {order: DESC, fields: totalCount}, filter: {children: {}, id: {regex: "/blogs/"}}, limit: 4) {
+        nodes {
+          totalCount
+          id
         }
       }
     }
@@ -120,77 +124,31 @@ exports.createPages = async ({ actions, graphql }) => {
       },
     },
   });
+
+  const popularPosts = results.data.allPageViews.nodes;
+  console.log(popularPosts);
+  const popularPostsSlugs = [];
+  let blogsRegex = /(?<=\/blogs\/)\w+/i
+  // removes /blogs/ from eg "/blogs/garbagecollection" to get just the slug
+  // to query on the index page index
+  popularPosts.map((posts, index)=>{
+    let slug = posts.id.match(blogsRegex);
+    popularPosts[index].id = slug[0];
+    popularPostsSlugs.push(slug[0])
+    console.log(slug);
+
+  })
+  console.log(popularPostsSlugs)
+  console.log(popularPosts);
+  // pass most popular blogs to index.js
+
+  createPage({
+    path: "/",
+    component: path.resolve(`./src/pages/index.js`),
+    context: {
+      popularPosts: popularPosts,
+      array: popularPostsSlugs,
+    },
+  })
 };
 
-// exports.sourceNodes = async ({ actions }) => {
-//   const { createNode } = actions;
-
-//   // google auth logic
-//   const scopes = "https://www.googleapis.com/auth/analytics.readonly";
-//   const jwt = new google.auth.JWT(
-//     process.env.CLIENT_EMAIL,
-//     null,
-//     process.env.PRIVATE_KEY,
-//     scopes
-//   );
-//   await jwt.authorize();
-
-//   const analyticsReporting = google.analyticsreporting({
-//     version: "v4",
-//     auth: jwt,
-//   });
-
-//   // Analytics Reporting v4 query
-//   const result = await analyticsReporting.reports.batchGet({
-//     requestBody: {
-//       reportRequests: [
-//         {
-//           viewId: process.env.VIEWID,
-//           dateRanges: [
-//             {
-//               startDate: "30DaysAgo",
-//               endDate: "today",
-//             },
-//           ],
-//           metrics: [
-//             {
-//               expression: "ga:pageviews",
-//             },
-//           ],
-//           dimensions: [
-//             {
-//               name: "ga:pagePath",
-//             },
-//           ],
-//           orderBys: [
-//             {
-//               sortOrder: "DESCENDING",
-//               fieldName: "ga:pageviews",
-//             },
-//           ],
-//         },
-//       ],
-//     },
-//   });
-
-//   // Add analytics data to graphql
-//   const { rows } = result.data.reports[0].data;
-//   for (const { dimensions, metrics } of rows) {
-//     const path = dimensions[0];
-//     const totalCount = metrics[0].values[0];
-//     createNode({
-//       path,
-//       totalCount: Number(totalCount),
-//       id: path,
-//       internal: {
-//         type: `PageViews`,
-//         contentDigest: crypto
-//           .createHash(`md5`)
-//           .update(JSON.stringify({ path, totalCount }))
-//           .digest(`hex`),
-//         mediaType: `text/plain`,
-//         description: `Page views per path`,
-//       },
-//     });
-//   }
-// };
