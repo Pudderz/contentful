@@ -72,13 +72,15 @@ export const About = () => {
               flexGrow: "2",
             }}
           >
-            <div>
+            <div style={{overflow:'hidden'}}>
               <h2>Hey, I'm Matthew</h2>
               <div
                 style={{
                   display: "flex",
                   gap: "1em",
                   justifyContent: "center",
+                  overflow:'hidden',
+                  maxWidth:'100%'
                 }}
               >
                 <Tooltip title="LinkedIn profile">

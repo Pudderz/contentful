@@ -2,14 +2,13 @@ import React from "react";
 import PropTypes from "prop-types";
 import { graphql, Link } from "gatsby";
 import Footer from "../Components/Common/footer";
-import Blog from "../Components/listOfBlogs/blog";
 import Pager from "../Components/listOfBlogs/pager";
 import GoToTopBot from "../Components/Common/goToTopBot";
 import Metadata from "../Components/Common/metadata";
 import Grid from "@material-ui/core/Grid";
 import MenuListComposition from "../Components/Common/top";
 import CategorySelection from "../Components/Common/categorySelection";
-import { Breadcrumbs, Typography } from "@material-ui/core";
+import { Breadcrumbs} from "@material-ui/core";
 import ItemBlog from "../Components/listOfBlogs/ItemBlog";
 
 

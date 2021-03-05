@@ -4,7 +4,6 @@ import { Link } from "gatsby";
 
 import li from "@material-ui/core/Grid";
 function PopularBlog({ data }) {
-  console.log(data);
   return (
     <li
       key={data.node.post.childMdx.frontmatter.slug}
@@ -45,6 +44,8 @@ function PopularBlog({ data }) {
                   display: "flex",
                   gap: "10px",
                   listStyle: "none",
+                  flexFlow:'wrap',
+                  margin:'5px 0'
                 }}
               >
                 {data.node.categories.map((category, index) => (
@@ -55,7 +56,7 @@ function PopularBlog({ data }) {
                       backgroundColor: "rgba(0,200,0,0.2)",
                       padding: "1px 5px",
                       width: "fit-content",
-                      margin: "5px 0 ",
+              
                     }}
                   >
                     {category}

@@ -41,6 +41,7 @@ export const AboutSection = () => {
             display: "flex",
             gap: "1em",
             justifyContent: "space-around",
+            flexFlow:'wrap',
           }}
         >
           <div
