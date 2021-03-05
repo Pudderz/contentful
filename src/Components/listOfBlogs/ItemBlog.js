@@ -46,6 +46,8 @@ function ItemBlog({ data }) {
                   display: "flex",
                   gap: "10px",
                   listStyle: "none",
+                  flexFlow:'wrap',
+                  margin:'5px 0 0',
                 }}
               >
                 {data.node.categories.map((category, index) => (
@@ -56,7 +58,7 @@ function ItemBlog({ data }) {
                       backgroundColor: "rgba(0,200,0,0.2)",
                       padding: "1px 5px",
                       width: "fit-content",
-                      margin: "5px 0 ",
+                      // margin: "5px ",
                     }}
                   >
                     {category}
