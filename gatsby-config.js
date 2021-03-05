@@ -21,6 +21,17 @@ module.exports = {
         // pageTransitionDelay:0,
       }
     },
+    {
+      resolve: `gatsby-plugin-google-analytics-reporter`,
+      options: {
+        email: process.env.GOOGLE_ANALYTICS_CLIENT_EMAIL,
+        privateKey: process.env.GOOGLE_ANALYTICS_PRIVATE_KEY,
+        viewId: process.env.GOOGLE_ANALYTICS_VIEW_ID,
+        startDate: `30daysAgo`,
+        endDate: `today`,
+        pageSize: 10000
+      }
+    },
     // {
     //   resolve: `gatsby-plugin-google-adsense`,
     //   options: {
