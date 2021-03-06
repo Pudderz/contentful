@@ -40,7 +40,7 @@ module.exports = {
     // },
   {resolve: `gatsby-plugin-manifest`,
       options: {
-        name: "Gatsby Blog",
+        name: "Matthew's Blog",
         short_name: "GatsbyBlog",
         start_url: "/",
         background_color: "#131127",

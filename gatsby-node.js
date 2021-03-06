@@ -144,7 +144,7 @@ exports.createPages = async ({ actions, graphql }) => {
 
   createPage({
     path: "/",
-    component: path.resolve(`./src/pages/index.js`),
+    component: path.resolve(`./src/templates/index.js`),
     context: {
       popularPosts: popularPosts,
       array: popularPostsSlugs,

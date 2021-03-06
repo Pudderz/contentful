@@ -3,13 +3,15 @@ import PopularBlog from "./PopularBlog";
 
 export const PopularPosts = (props) => {
   const articles = props.data;
-  const popularPosts = props.popularInfo;
+  
   const [allPopularPosts, setAllPopularPosts] = useState( props.data)
   // ToDO order articles in order of pageviews provided by popularPosts
 
 useEffect(() => {
+  console.log(props)
   const popularOrder = [];
   console.log(popularPosts);
+  const popularPosts = props.popularInfo || [];
   popularPosts.forEach((post)=>{
 
 

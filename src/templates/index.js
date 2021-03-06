@@ -11,7 +11,7 @@ import AboutSection from "../Components/Common/AboutSection";
 import AdSense from "react-adsense";
 import { PopularPosts } from "../Components/FrontPage/PopularPosts";
 import {Featured } from '../Components/featured'
-function Home(props, ) {
+function Home(props ) {
   // console.log(data.allPageViews.nodes);
   const { data,pageContext  } = props;
 
@@ -37,7 +37,7 @@ function Home(props, ) {
           
           >
             <RecentPosts data={data.recentPosts.edges} />
-            <PopularPosts data={data.popularPosts.edges} popularInfo={pageContext.popularPosts} />
+            <PopularPosts data={data.popularPosts.edges} popularInfo={pageContext?.popularPosts} />
 
             <div
             className="clampContainer"
