@@ -1,39 +1,30 @@
 import React, { useState } from "react";
 import { Link, navigate } from "gatsby";
 import Image from "gatsby-image";
+// import FeaturedListItem from "./featuredListItem";
 
 const Featured = (props) => {
   const { allData } = props;
-  const [state, setstate] = useState({
-    featuredIndex: 0,
-  });
+  const [featuredIndex, setFeaturedIndex] = useState(0);
   const [active, setActive] = useState({
     0: "active",
   });
 
-  //  const data = allData[state.featuredIndex]
   const onChange = (e) => {
-    setstate({
-      featuredIndex: e.currentTarget.getAttribute("data-key"),
-    });
+    console.log(e.currentTarget.getAttribute("data-key"));
+    setFeaturedIndex(e.currentTarget.getAttribute("data-key"));
     setActive({
       [e.currentTarget.getAttribute("data-key")]: "active",
     });
   };
-  // const onChange=(e)=>{
-  //     props.onPostClick();
-  // }
+
   return (
     <div style={{
-       margin:'auto',
-      // maxWidth:'1400px',
-      // width:'100%',
-      display:'flex',
         margin: 'auto',
         width: '100%',
         maxWidth: '1400px',
     }}>
-      <div className="featuredContainer" >
+      <div className="featuredContainer"  >
       <div
       // className="featuredImage"
       >
@@ -50,7 +41,6 @@ const Featured = (props) => {
             />
           ))}
       </div>
-      <div id="textContainer" style={{width:'300px'}}>
         <div className="featuredText">
           <div>
             <a
@@ -59,21 +49,20 @@ const Featured = (props) => {
                 navigate("/search", {
                   state: {
                     category:
-                      allData.allContentfulTeam.edges[state.featuredIndex].node
+                      allData.allContentfulTeam.edges[featuredIndex].node
                         .categories[0],
                   },
                 })
               }
-              className="category"
             >
               {
-                allData.allContentfulTeam.edges[state.featuredIndex].node
+                allData.allContentfulTeam.edges[featuredIndex].node
                   .categories[0]
               }
             </a>
             <Link
               to={`/blogs/${
-                allData.allContentfulTeam.edges[state.featuredIndex].node.post
+                allData.allContentfulTeam.edges[featuredIndex].node.post
                   .childMdx.frontmatter.slug
               }`}
             >
@@ -81,7 +70,7 @@ const Featured = (props) => {
               // className="underline"
               >
                 {
-                  allData.allContentfulTeam.edges[state.featuredIndex].node.post
+                  allData.allContentfulTeam.edges[featuredIndex].node.post
                     .childMdx.frontmatter.title
                 }
               </h2>
@@ -90,14 +79,14 @@ const Featured = (props) => {
             <time>
               Posted At:{" "}
               {
-                allData.allContentfulTeam.edges[state.featuredIndex].node.post
+                allData.allContentfulTeam.edges[featuredIndex].node.post
                   .childMdx.frontmatter.postedAt
               }
             </time>
-            {/* <div dangerouslySetInnerHTML={{__html : data.node.post.childMdx.frontmatter.snippet}}/> */}
+            <div dangerouslySetInnerHTML={{__html : allData.allContentfulTeam.edges[featuredIndex].node.post.childMdx.frontmatter.snippet}}/>
             <Link
               to={`/blogs/${
-                allData.allContentfulTeam.edges[state.featuredIndex].node.post
+                allData.allContentfulTeam.edges[featuredIndex].node.post
                   .childMdx.frontmatter.slug
               }`}
               className="purple"
@@ -107,10 +96,12 @@ const Featured = (props) => {
           </div>
         </div>
         
-      </div>
+      {/* </div> */}
+    
+    
     </div>
-    <div
-          className="popularSelection"
+    {/* <div
+          // className="popularSelection"
           style={{
             // display: "grid",
             // position: "absolute",
@@ -120,43 +111,21 @@ const Featured = (props) => {
             bottom: "0",
           }}
         >
-          <ul id="popular" className="flexbottom" style={{display:'grid', height:'100%'}}>
+          <ul id="popular" className="flexbottom" style={{display:'grid', height:'100%', gridTemplateRows: '25%'}}>
             {allData.allContentfulTeam.edges.map((item, index) => (
-              <li
-                key={`${index}`}
-                onClick={onChange}
-                onKeyDown={onChange}
+              <FeaturedListItem
+              indexKey={`${index}`}
+              OnChange={onChange}
+              
                 data-key={`${index}`}
-                style={{backgroundColor: (active[index]==='active')? '#223131':'darkslategrey'}}
-              >
-                <Image
-                  fluid={item.node.featuredImage.fluid}
-                  alt={item.node.post.childMdx.frontmatter.title}
-                  className="image recentPostImage"
-                  style={{ margin: "10px" }}
-                  data-key={`${index}`}
-                />
-                <div className="middle">
-                  <div className="text">
-                    <p>{item.node.post.childMdx.frontmatter.title}</p>
-                  </div>
-                </div>
-              </li>
+                active ={featuredIndex}
+                text = {item.node.post.childMdx.frontmatter.title}
+                image ={item.node.featuredImage.fluid}
+              />
+              
             ))}
           </ul>
-          {/* <IconButton>
-                    <ImageIcon/>
-                </IconButton>
-                <IconButton>
-                    <ImageIcon/>
-                </IconButton>
-                <IconButton>
-                    <ImageIcon/>
-                </IconButton>
-                <IconButton>
-                    <ImageIcon/>
-                </IconButton> */}
-        </div>
+        </div> */}
     </div>
     
   );

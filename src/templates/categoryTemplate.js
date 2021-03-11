@@ -24,9 +24,9 @@ console.log(pageContext.category);
       <div className="columnContainer" style={{ width: "100%" }}>
         <div
           className="columns"
-          style={{ display: "flex", alignItems: "stretch", width:'100%', justifyContent:'space-between', }}
+          style={{ display: "flex", alignItems: "stretch", width:'100%', justifyContent:'space-between', minHeight:'80vh' }}
         >
-          <div className="postContainer" style={{margin:'auto', flexGrow:'1'}}>
+          <div className="postContainer" style={{margin:' 0 auto 40px', flexGrow:'1'}}>
             <Grid
               container
               spacing={2}
@@ -63,16 +63,10 @@ console.log(pageContext.category);
           </div>
           <div
             className="filterOptions"
-            style={{
-              background: "#F5F7F7",
-              padding: "20px",
-              boxSizing: "border-box",
-              flexBasis: "20%",
-            }}
           >
             <h3 style={{ fontSize: "1.5em" }}>Categories</h3>
             <hr />
-            <div style={{ maxWidth: "500px" }}>
+            <div style={{ maxWidth: "500px" }} className="selection">
               <CategorySelection />
             </div>
             <hr />

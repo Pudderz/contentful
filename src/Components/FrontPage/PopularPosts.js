@@ -42,7 +42,9 @@ useEffect(() => {
         flexGrow:'2',
       }}
     >
-      <h3 style={{ fontSize: "1.5em", color: "#4a5568" }}>Popular Posts</h3>
+      <h3 style={{ fontSize: "1.5em" }}
+        className="header"
+      >Popular Posts</h3>
 
       <ul
         style={{

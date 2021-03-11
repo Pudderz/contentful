@@ -66,7 +66,7 @@ function ItemBlog({ data }) {
                 ))}
               </ul>
               <p>{data.node.post.childMdx.frontmatter.snippet}</p>
-              <time style={{ color: "rgb(42, 48, 57)", fontSize: "14px" }}>
+              <time style={{fontSize: "14px" }}>
                 {data.node.post.childMdx.frontmatter.postedAt}
               </time>
             </div>

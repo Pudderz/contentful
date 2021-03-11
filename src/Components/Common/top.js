@@ -15,7 +15,8 @@ import SearchIcon from "@material-ui/icons/Search";
 import "../../styles/nav.scss";
 
 export const MenuListComposition = (props) => {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
+  const [darkMode, setDarkMode] = useState(false);
   const anchorRef = React.useRef(null);
   const searchBar = useRef(null);
   const [menuState, setShowMenu] = useState({
@@ -88,6 +89,50 @@ export const MenuListComposition = (props) => {
 
   const changeSearchQuery = (e) => setSearchQuery(e.target.value);
   const changeCategory = (e) => props.changeCategory(e);
+
+
+  const handleSwitch = (e)=>{
+    console.log(e.target.checked);
+    localStorage.setItem("isDarkMode", e.target.checked)
+    setDarkMode(e.target.checked);
+  }
+
+useEffect(() => {
+  let isDark = localStorage.getItem("isDarkMode");
+  if(typeof isDark !=="undefined" && isDark==="true"){
+    setDarkMode(isDark);
+  }else{
+    localStorage.setItem("isDarkMode", false);
+    setDarkMode(false);
+  }
+  if(!darkMode){
+    document.documentElement.style.setProperty("--primary-background-color","#f7fafc")
+    document.documentElement.style.setProperty("--secondary-background-color","#fff")
+    document.documentElement.style.setProperty("--purple-color","#000")
+    document.documentElement.style.setProperty("--font-header",` "Karla", sans-serif`)
+    document.documentElement.style.setProperty("--gray-color","#4a5568")
+    document.documentElement.style.setProperty("--text-color","rgb(42, 48, 57)");
+    document.documentElement.style.setProperty("--primary-box-shadow","0px 0px 5px 0px rgba(112, 154, 168, 0.3)");
+    document.documentElement.style.setProperty("--filter-options-text","#191c1d");
+    document.documentElement.style.setProperty("--filter-options","rgb(245,247,247)");
+     document.documentElement.style.setProperty("--secondary-text-color","#191c1d");
+     document.documentElement.style.setProperty("--text-hover","rgb(48, 48, 48)");
+     document.documentElement.style.setProperty("--header-color","rgb(74, 85, 104)");
+    }else{
+    document.documentElement.style.setProperty("--primary-background-color","#111")
+    document.documentElement.style.setProperty("--secondary-background-color","#333")
+    document.documentElement.style.setProperty("--purple-color","#fff")
+    document.documentElement.style.setProperty("--gray-color","#ddd")
+    document.documentElement.style.setProperty("--text-color","#fff")
+    document.documentElement.style.setProperty("--primary-box-shadow"," 0px 0px 5px #111");
+    document.documentElement.style.setProperty("--secondary-text-color","#eee");
+    document.documentElement.style.setProperty("--filter-options","#222");
+    document.documentElement.style.setProperty("--filter-options-text","#222");
+    document.documentElement.style.setProperty("--text-hover","#ddd");
+    document.documentElement.style.setProperty("--header-color","#eee");
+
+  }
+}, [darkMode])
   return (
     <>
       <nav className="header">
@@ -157,7 +202,7 @@ export const MenuListComposition = (props) => {
                       variant="contained"
                       onClick={() => handleSearch()}
                     >
-                      <SearchOutlinedIcon style={{ fill: "#4a5568" }} />
+                      <SearchOutlinedIcon className="searchIcon" />
                     </IconButton>
                   </Tooltip>
                 )}
@@ -177,7 +222,7 @@ export const MenuListComposition = (props) => {
                   style={{ width: "fit-content", margin: "-4px 5px" }}
                 >
                   <Grid item>
-                    <Switch checked={state.checkedC} name="checkedC" />
+                    <Switch checked={state.checkedC} name="checkedC" onChange={handleSwitch} checked={darkMode}/>
                   </Grid>
                 </Grid>
               </MenuList>
@@ -216,7 +261,7 @@ export const MenuListComposition = (props) => {
           left: "0",
           right: "0",
           // backgroundColor: "#191c1d",
-          backgroundColor: "#fff",
+          // backgroundColor: "#fff",
           maxHeight: "fit-content",
           width: "100%",
         }}

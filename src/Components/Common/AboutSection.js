@@ -1,12 +1,10 @@
 import { Link, navigate } from "gatsby";
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { Fab, IconButton, InputBase, Tooltip } from "@material-ui/core";
 import LinkedInIcon from "@material-ui/icons/LinkedIn";
 import GitHubIcon from "@material-ui/icons/GitHub";
 import SearchIcon from "@material-ui/icons/Search";
 export const AboutSection = () => {
-
-
   const [searchQuery, setSearchQuery] = useState("");
   const submitSearch = (e) => {
     e.preventDefault();
@@ -15,24 +13,20 @@ export const AboutSection = () => {
   const changeSearchQuery = (e) => setSearchQuery(e.target.value);
   return (
     <div>
-      <div
-        className="aboutContainer"
-      >
+      <div className="aboutContainer">
         <h3>Hey I'm Matthew</h3>
 
         <div>
           <p>
-            I'm a front-end web developer based in UK, looking for a full-time
-            role.
+            I'm a front-end web developer based in the UK, looking for a
+            full-time role.
           </p>
           <p>
-            Here I take a deep dive into what I'm learning to solidify and further
-            my knowledge, improve my explanation and writing skills and hopefully create a helpful resource to
-            others.
+            Here I take a deep dive into tech that I've been learning to
+            solidify and further my knowledge, improve my explanation and
+            writing skills, and hopefully create a helpful resource to others.
           </p>
-          <p>
-            Feel free to message me, would love to chat and share ideas.
-          </p>
+          <p>Feel free to message me as I would love to chat and share ideas.</p>
         </div>
 
         <div
@@ -41,7 +35,7 @@ export const AboutSection = () => {
             display: "flex",
             gap: "1em",
             justifyContent: "space-around",
-            flexFlow:'wrap',
+            flexFlow: "wrap",
           }}
         >
           <div
@@ -81,35 +75,34 @@ export const AboutSection = () => {
         </div>
       </div>
       <div className="aboutContainer" style={{ marginTop: "20px" }}>
-
-          <form onSubmit={submitSearch}>
-            <InputBase
-              autoComplete="off"
-              name="search"
-              value={searchQuery}
-              onChange={changeSearchQuery}
-              placeholder="Search…"
-              style={{
-                margin: "10px auto",
-                backgroundColor: "lightgrey",
-                padding: "2px 11px",
-                borderRadius: "20px",
-                width:'100%',
-              }}
-              inputProps={{
-                "aria-label": "search",
-              }}
-              endAdornment={
-                <IconButton size="small" type="submit">
-                  <SearchIcon style={{ fill: "black" }} />
-                </IconButton>
-              }
-            />
-          </form>
+        <form onSubmit={submitSearch}>
+          <InputBase
+            autoComplete="off"
+            name="search"
+            value={searchQuery}
+            onChange={changeSearchQuery}
+            placeholder="Search…"
+            style={{
+              margin: "10px auto",
+              backgroundColor: "lightgrey",
+              padding: "2px 11px",
+              borderRadius: "20px",
+              width: "100%",
+            }}
+            inputProps={{
+              "aria-label": "search",
+            }}
+            endAdornment={
+              <IconButton size="small" type="submit">
+                <SearchIcon style={{ fill: "black" }} />
+              </IconButton>
+            }
+          />
+        </form>
 
         <Link to="/posts">All Articles</Link>
         <Link to="/about">About</Link>
-        <Link to="/about">Contact</Link>
+        <Link to="/about#contact">Contact</Link>
       </div>
     </div>
   );

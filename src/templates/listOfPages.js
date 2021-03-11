@@ -9,9 +9,9 @@ import Metadata from "../Components/Common/metadata";
 import Grid from "@material-ui/core/Grid";
 import MenuListComposition from "../Components/Common/top";
 import CategorySelection from "../Components/Common/categorySelection";
-import { Breadcrumbs, Typography } from "@material-ui/core";
-import PopularBlog from "../Components/FrontPage/PopularBlog";
+import { Breadcrumbs} from "@material-ui/core";
 import ItemBlog from "../Components/listOfBlogs/ItemBlog";
+import "../styles/allPosts.scss";
 
 const listOfAllPosts = ({ data, pageContext }) => {
   const articles = data.allContentfulTeam.edges;
@@ -19,20 +19,12 @@ const listOfAllPosts = ({ data, pageContext }) => {
     <>
       <Metadata />
       <MenuListComposition />
-      {/* <h3 style={{ margin: "50px auto 25px auto", textAlign: "center" }}>
-        All Articles
-      </h3> */}
-      {/* <div
-        style={{ width: "100%", height: "200px", backgroundColor: "#31393A" }}
-      ></div> */}
-      {/* <Pager pageContext={pageContext} /> */}
-
       <div className="columnContainer" style={{ width: "100%" }}>
         <div
           className="columns"
-          style={{ display: "flex", alignItems: "stretch", width:'100%', justifyContent:'space-between', }}
+          style={{ display: "flex", alignItems: "stretch", width:'100%', justifyContent:'space-between',minHeight:'80vh' }}
         >
-          <div className="postContainer" style={{margin:'auto', flexGrow:'1'}}>
+          <div className="postContainer" style={{margin:' 0 auto 40px', flexGrow:'1'}}>
             <Grid
               container
               spacing={2}
@@ -57,8 +49,7 @@ const listOfAllPosts = ({ data, pageContext }) => {
               <ol className="listOfPosts">
                 
                {articles.map((article, index) => (
-                <ItemBlog data={article} ></ItemBlog>
-                // <Blog key={index} data={article} smallestSize={4} small={5} />
+                <ItemBlog data={article} />
               ))} 
               </ol>
               
@@ -66,16 +57,10 @@ const listOfAllPosts = ({ data, pageContext }) => {
           </div>
           <div
             className="filterOptions"
-            style={{
-              background: "#F5F7F7",
-              padding: "20px",
-              boxSizing: "border-box",
-              flexBasis: "20%",
-            }}
           >
             <h3 style={{ fontSize: "1.5em" }}>Categories</h3>
             <hr />
-            <div style={{ maxWidth: "500px" }}>
+            <div style={{ maxWidth: "500px" }} className="selection">
               <CategorySelection />
             </div>
             <hr />
@@ -134,7 +119,7 @@ const listOfAllPosts = ({ data, pageContext }) => {
 
                           <time
                             style={{
-                              color: "rgb(42, 48, 57)",
+                              // color: "rgb(42, 48, 57)",
                               fontSize: "14px",
                               alignSelf: "center",
                             }}

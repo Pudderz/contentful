@@ -149,7 +149,7 @@ class SearchTemplate extends Component {
               <Link color="inherit" to="/posts">
                 All Articles
               </Link>
-              <Typography color="textPrimary">Search</Typography>
+              <p style={{margin:'0'}}>Search</p>
             </Breadcrumbs>
           </div>
 
@@ -187,12 +187,12 @@ class SearchTemplate extends Component {
                     padding: "10px 11px 0",
                   }}
                 >
-                  <InputLabel id="demo-controlled-open-select-label">
+                  <InputLabel id="demo-controlled-open-select-label" className="inputLabelCategory">
                     Category
                   </InputLabel>
                   <Select
-                    labelId="demo-controlled-open-select-label"
-                    id="demo-controlled-open-select"
+                    labelId="category-selection"
+                    className="selectACategory"
                     value={this.state.category}
                     onChange={this.changeCategory}
                     style={{ width: "100%" }}

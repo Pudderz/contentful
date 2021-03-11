@@ -9,9 +9,9 @@ summary {
 
 #examples {
   display: block;
-  background-color: white;
+  background-color: var(--secondary-background-color);
   padding: 20px;
-  box-shadow: 0px 0px 5px 0px rgba(112, 154, 168, 0.3);
+  box-shadow: var(--primary-box-shadow);
   grid-column: 6/7;
   ol {
     padding: 0;
@@ -88,15 +88,16 @@ section {
       padding: 0;
       position: relative;
       width: fit-content;
-      color: grey;
+      color: var(--gray-color);
       &:hover {
-        color: rgb(48, 48, 48);
+        color: var(--text-hover);
       }
      
 
       &.active {
         cursor: pointer;
         text-decoration: underline;
+        color: var(--text-color);
         
       }
     }
@@ -113,4 +114,7 @@ section {
     list-style: none;
     padding: 0;
   }
+}
+summary{
+  color: var(--text-color);
 }

@@ -23,8 +23,6 @@ const useStyles = makeStyles({
     },
   },
   section: {
-    // backgroundColor: '#191c1d',
-    // color: 'white',
     overflow: "hidden",
     "& h2,h3,h4": {
       margin: "0",
@@ -79,7 +77,6 @@ export const About = () => {
                   display: "flex",
                   gap: "1em",
                   justifyContent: "center",
-                  overflow:'hidden',
                   maxWidth:'100%'
                 }}
               >
@@ -108,16 +105,11 @@ export const About = () => {
               </div>
               <hr />
               <p style={{ textAlign: "center" }}>
-                I'm a front-end web developer based in UK, looking for a
-                full-time role.
+              I'm a front-end web developer based in the UK, looking for a
+            full-time role.
               </p>
               <div style={{ padding: "10px" }}></div>
-              <p>
-                I love learning the massive scope of computer science which I
-                find incredibly rewarding and exciting as there's always
-                something more you can learn and improve on.
-              </p>
-              <div style={{ padding: "10px" }} ></div>
+              
 
               <p>
                 I'm currently looking for an opportunity to work on a JavaScript
@@ -126,10 +118,15 @@ export const About = () => {
               </p>
 
               <div>
-                <h2>About Blog</h2>
+                <h2>About Blog Site</h2>
+                <p> 
+            Here I take a deep dive into tech that I've been learning to
+            solidify and further my knowledge, improve my explanation and
+            writing skills, and hopefully create a helpful resource to others.
+          </p>
                 <p>
                   This is a Blog site made with Gatsby using a contentful CMS.
-                  For More info into and about the code, take a look at the Github repo.
+                  For more info into and about the code, take a look at the Github repo.
                 </p>
                 <a href="https://github.com/Pudderz/gatsbyHeadlessCMS">https://github.com/Pudderz/gatsbyHeadlessCMS</a>
                

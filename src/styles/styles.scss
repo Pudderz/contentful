@@ -1,20 +1,48 @@
 @import url("https://fonts.googleapis.com/css2?family=DM+Serif+Display&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Karla:wght@400;700&display=swap");
+// @import "./stylingVariables.scss";
+// $primary-background-color: #f7fafc;
+// $secondary-background-color: #fff;
+// $purple-color: #fff;
+// $font-header: "Karla", sans-serif;
 
-$primary-background-color: #f7fafc;
-$secondary-background-color: #fff;
-$purple-color: #fff;
-$font-header: "Karla", sans-serif;
+:root{
+  --primary-background-color: #f7fafc;
+  --secondary-background-color: #fff;
+  --purple-color: #fff;
+  --font-header: "Karla", sans-serif;
+  --gray-color: #4a5568;
+  --text-color: rgb(42,48,57);
+  --text-hover: rgb(48, 48, 48);
+  --primary-box-shadow: 0px 0px 5px 0px rgba(112, 154, 168, 0.3);
+  --secondary-text-color:#191c1d;
+  --filter-options:rgb(245,247,247);
+  --filter-options-text:#191c1d;
+  --header-color: rgb(74, 85, 104);
+}
+
 
 body {
-  color: #1b1f25;
-  background-color: $primary-background-color;
+  // color: #1b1f25;
+  color: var(--text-color);
+  background-color: var(--primary-background-color);
   /* background-color: rgb(17,17,17); */
   margin: 0%;
   padding: 0%;
   width: 100%;
   height: 100%;
-  font-family: $font-header;
+  font-family: var(--font-header);
+}
+
+.header{
+  color: var(--header-color);
+}
+
+a{
+  color: var(--text-color);
+ &:hover{
+color: var(--text-hover);
+ } 
 }
 
 #gatsby-focus-wrapper{
@@ -221,7 +249,7 @@ img {
     justify-content: space-evenly;
     flex-wrap: wrap;
     a:hover {
-      color: $primary-background-color;
+      color: var(--primary-background-color);
     }
     a {
       margin: 5px auto;
@@ -300,9 +328,9 @@ img {
 
 nav.breadcrumb {
   background: none;
-  color: #191c1d;
+  color: var(--secondary-text-color);
   ol li a {
-    color: #191c1d;
+    color: var(--secondary-text-color);
   }
 }
 @media (min-width: 1280px) {
@@ -320,15 +348,16 @@ nav.breadcrumb {
   -o-transition: all 0.3s ease-in-out;
   bottom: 0;
   padding: 8px;
-  background-color: $secondary-background-color;
+  background-color: var(--secondary-background-color);
   border-radius: 10px;
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
   -ms-border-radius: 10px;
   -o-border-radius: 10px;
-  box-shadow: 0px 0px 5px 0px rgba(112, 154, 168, 0.3);
+  box-shadow: var(--primary-box-shadow);
   display: grid;
   gap: 5px;
+  color: var(--text-color);
   &:hover{
     //left: 5px;
     transform: scale(1.02);
@@ -339,12 +368,12 @@ nav.breadcrumb {
     -o-transform: scale(1.02);
 }
   a {
-    color: #4a5568;
+    color: var(--gray-color);
   }
 }
 
 .aboutContainer {
-  color: #4a5568;
+  color: var(--gray-color);
   position: relative;
   transition: all 0.8s ease-in-out;
   -webkit-transition: all 0.8s ease-in-out;
@@ -353,13 +382,13 @@ nav.breadcrumb {
   -o-transition: all 0.8s ease-in-out;
   bottom: 0;
   padding: 20px;
-  background-color: $secondary-background-color;
+  background-color: var(--secondary-background-color);
   border-radius: 10px;
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
   -ms-border-radius: 10px;
   -o-border-radius: 10px;
-  box-shadow: 0px 0px 5px 0px rgba(112, 154, 168, 0.3);
+  box-shadow: var(--primary-box-shadow);
   display: grid;
   gap: 5px;
   height: fit-content;
@@ -370,10 +399,10 @@ nav.breadcrumb {
     margin: 20px 0;
   }
   a {
-    color: #4a5568;
+    color: var(--gray-color);
     align-self: center;
     &:hover {
-      color: black;
+     
       text-decoration: underline;
     }
   }
@@ -403,10 +432,11 @@ nav.breadcrumb {
     -moz-transform: scale(1.05);
     -ms-transform: scale(1.05);
     -o-transform: scale(1.05);
-    background-color:#f7fafc;
+    // background-color:#f7fafc;
+    text-decoration: underline;
 }
   a {
-    color: #4a5568;
+    color: var(--gray-color);
   }
 }
 

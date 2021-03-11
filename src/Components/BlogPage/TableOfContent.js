@@ -14,9 +14,6 @@ function renderItems(items, activeIds) {
                 activeIds === item.url.slice(1) ? "active" : ""
               }`}
               href={item.url}
-              style={{
-                color: activeIds === item.url.slice(1) ? "#191c1d" : "",
-              }}
             >
               {item.title}
             </a>

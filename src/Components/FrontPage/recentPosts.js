@@ -16,7 +16,9 @@ export const RecentPosts = (props) => {
         flexGrow:"2",
       }}
     >
-      <h3 style={{ fontSize: "1.5em", color: "#4a5568" }}>Recent Posts</h3>
+      <h3 style={{ fontSize: "1.5em" }}
+      className="header"
+      >Recent Posts</h3>
 
       <ul
         style={{

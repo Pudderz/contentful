@@ -1,0 +1,9 @@
+.filterOptions{
+    background: var(--filter-options);
+    padding: 20px;
+    box-sizing: border-box;
+    flex-basis: 20%;
+    h1,h2,h3,h4,h5{
+        color:  var(--text-color);
+    }
+}
