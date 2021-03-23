@@ -8,10 +8,10 @@ export const RecentPosts = (props) => {
     <div
       className="popularPosts"
       style={{
-        minWidth: "min(300px,33%)",
+        // minWidth: "min(300px,33%)",
         boxSizing: "border-box",
-        minWidth: "300px",
-        maxWidth: "1000px",
+        // minWidth: "300px",
+        // maxWidth: "1000px",
         margin: "0 auto",
         flexGrow:"2",
       }}

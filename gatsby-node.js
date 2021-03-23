@@ -42,6 +42,7 @@ exports.createPages = async ({ actions, graphql }) => {
     return;
   }
   const blogPosts = results.data.allContentfulTeam.edges;
+  console.log(blogPosts)
   //paginates /posts to divide the full list of pages up
   //itemsPerPage edit to change number of items per post page
   paginate({
@@ -54,7 +55,8 @@ exports.createPages = async ({ actions, graphql }) => {
 
   //  Creates page for each blog post
   blogPosts.forEach((edge, index) => {
-    const product = edge.node.post.childMdx;
+    if(typeof edge.node.post !=="undefined"){
+      const product = edge.node.post.childMdx;
     createPage({
       path: `/blogs/${product.frontmatter.slug}`,
       component: require.resolve("./src/templates/blogPage.js"),
@@ -70,6 +72,8 @@ exports.createPages = async ({ actions, graphql }) => {
             : blogPosts[index - 1].node.post.childMdx.frontmatter.slug,
       },
     });
+    }
+    
   });
 
   // Category pages

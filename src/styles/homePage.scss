@@ -211,21 +211,45 @@
 
 
 .frontPageContainer{
-  display: flex;
+  display:grid;
+  grid-template-columns: 3fr 3fr 3fr;
+  // display: flex;
   margin: 50px 0;
   max-width: 100%;
   flex-flow: wrap-reverse;
   .clampContainer{
     margin: 4.2em auto;
-    flex-grow: 2;
-    width: calc(clamp(300px,100%,33.3%));
+    width: 100%;
+  }
+  .popularPosts{
+    width:100%
+    
   }
   @media(max-width:1300px){
+    display: flex;
+
+    .clampContainer{
+      margin: 4.2em auto;
+      flex-grow: 2;
+      width: calc(clamp(300px,100%,33.3%));
+    }
+    .popularPosts{
+      width:auto;
+      max-width: 50% ;
+      min-width: 300px;
+    }
     // flex-wrap: wrap-reverse;
     
     .clampContainer{
       width: 100%;
       margin: auto;
+    }
+  }
+  @media(max-width:800px){
+    .popularPosts{
+      width:100%;
+      max-width: 100% ;
+      min-width: auto;
     }
   }
 }

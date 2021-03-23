@@ -52,7 +52,7 @@ const listOfAllPosts = ({ data, pageContext }) => {
                 <ItemBlog data={article} />
               ))} 
               </ol>
-              
+              <Pager pageContext={pageContext} />
             </Grid>
           </div>
           <div
@@ -135,7 +135,7 @@ const listOfAllPosts = ({ data, pageContext }) => {
             </ul>
           </div>
         </div>
-        <Pager pageContext={pageContext} />
+        
       </div>
 
       <GoToTopBot />
